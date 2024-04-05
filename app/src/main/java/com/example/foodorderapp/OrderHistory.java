@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class OrderHistory extends AppCompatActivity {
 
@@ -15,10 +19,26 @@ public class OrderHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order_history);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        initView();
+
+        };
+        public void initView() {
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycle_view_history);
+            recyclerView.setHasFixedSize(true);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            ArrayList<ItemOrderHistory> arrayList = new ArrayList<>();
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 400));
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 600));
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 150));
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 200));
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 200));
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 200));
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 200));
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 200));
+            arrayList.add(new ItemOrderHistory(R.drawable.testitem, "thịt kho tàu", "thịt lợn, đường", 150, 200));
+            ItemOrderHistoryAdapter historyAdapter = new ItemOrderHistoryAdapter(arrayList, getApplicationContext());
+            recyclerView.setAdapter(historyAdapter);
+        };
+
     }
-}
