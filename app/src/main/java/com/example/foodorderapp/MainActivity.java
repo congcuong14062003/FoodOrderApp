@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

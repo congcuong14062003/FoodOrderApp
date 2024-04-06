@@ -26,14 +26,15 @@
         android:id="@+id/textView4"
         android:layout_width="400dp"
         android:layout_height="180dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="180dp"
-        android:layout_marginEnd="8dp"
         android:padding="10dp"
         android:shadowColor="@color/black"
         android:text="What can we serve you today?"
         android:textColor="@color/white"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -45,7 +46,8 @@
         android:background="@drawable/border"
         android:ems="10"
         android:inputType="text"
-        android:text="Search for food"
+       
+        android:hint="Search for food"
         android:textColor="#C4C4C4"
         android:paddingLeft="50dp"
         android:textFontWeight="400"
@@ -74,59 +76,75 @@
         android:layout_alignParentTop="true"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="3dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/search_icon1"
         android:layout_width="24dp"
         android:layout_height="20dp"
 
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/search_cook_icon"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="695dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/search_icon2"
         android:layout_width="16dp"
         android:layout_height="20dp"
 
+        android:layout_marginStart="112dp"
         android:background="@drawable/seacrh_icon1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="695dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.589"
+        tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/search_icon3"
         android:layout_width="20dp"
         android:layout_height="20dp"
 
+        android:layout_marginStart="192dp"
         android:background="@drawable/search_icon2"
-        tools:ignore="DuplicateIds,MissingConstraints"
-        tools:layout_editor_absoluteX="197dp"
-        tools:layout_editor_absoluteY="695dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.589"
+        tools:ignore="DuplicateIds,MissingConstraints" />
 
     <TextView
         android:id="@+id/search_icon4"
         android:layout_width="16dp"
         android:layout_height="20dp"
 
+        android:layout_marginEnd="124dp"
         android:background="@drawable/search_icon3"
-        tools:ignore="DuplicateIds,MissingConstraints"
-        tools:layout_editor_absoluteX="283dp"
-        tools:layout_editor_absoluteY="695dp" />
-
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.512"
+        tools:ignore="DuplicateIds,MissingConstraints" />
 
     <TextView
         android:id="@+id/search_icon5"
         android:layout_width="16dp"
         android:layout_height="20dp"
 
+        android:layout_marginEnd="44dp"
         android:background="@drawable/search_icon4"
-        tools:ignore="DuplicateIds,MissingConstraints"
-        tools:layout_editor_absoluteX="360dp"
-        tools:layout_editor_absoluteY="695dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.512"
+        tools:ignore="DuplicateIds,MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -144,12 +162,15 @@
         android:layout_width="28dp"
         android:layout_height="29dp"
         android:background="@color/white"
+        android:outlineProvider="none"
         app:layout_constraintBottom_toBottomOf="@+id/editTextText"
+        app:layout_constraintEnd_toEndOf="@+id/editTextText"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="@+id/editTextText"
         app:layout_constraintTop_toTopOf="@+id/editTextText"
+        app:layout_constraintVertical_bias="0.476"
         app:srcCompat="@drawable/search_glass1"
-        tools:layout_editor_absoluteX="58dp"
-        tools:ignore="MissingConstraints"
-        android:outlineProvider="none"/>
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

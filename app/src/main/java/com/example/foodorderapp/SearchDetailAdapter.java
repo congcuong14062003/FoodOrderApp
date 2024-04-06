@@ -2,6 +2,7 @@ package com.example.foodorderapp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class SearchDetailAdapter extends RecyclerView.Adapter<SearchViewHolder> 
     @NonNull
     @Override
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         return new SearchViewHolder(LayoutInflater.from(context).inflate(R.layout.activity_search_item,parent,false));
     }
 
@@ -34,6 +36,6 @@ public class SearchDetailAdapter extends RecyclerView.Adapter<SearchViewHolder> 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return items.size();
     }
 }

@@ -1,10 +1,10 @@
 package com.example.foodorderapp;
 
 public class SearchItem {
-    String name;
-    String description;
-    int countReview;
-    int image;
+    private String name;
+    private String description;
+    private int countReview;
+    private int image;
 
     public SearchItem(String name, String description, int countReview, int image){
         this.name=name;

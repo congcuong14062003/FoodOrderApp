@@ -9,7 +9,10 @@
         android:layout_height="48dp"
         android:id="@+id/itemImage"
         android:layout_marginRight="10dp"
-        android:layout_centerVertical="true"/>
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/backgroundintro"
+        />
 
     <TextView
         android:layout_width="match_parent"
