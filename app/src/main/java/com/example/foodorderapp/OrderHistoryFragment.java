@@ -108,7 +108,8 @@ public class OrderHistoryFragment extends Fragment implements IOnItemClickListen
 
         @Override
         protected void onPostExecute(String orderHistoryJsonString) {
-            if (orderHistoryJsonString != null) {
+            View rootView = getView(); // Lấy tham chiếu đến view của fragment
+            if (orderHistoryJsonString != null && rootView != null) {
                 // Xử lý dữ liệu JSON ở đây và cập nhật RecyclerView
                 try {
                     JSONObject jsonObject = new JSONObject(orderHistoryJsonString);
