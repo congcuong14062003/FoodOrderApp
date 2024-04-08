@@ -13,10 +13,10 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
 
     public SearchViewHolder(@NonNull View itemView) {
         super(itemView);
-        itemImage = itemView.findViewById(R.id.itemImage);
-        itemName = itemView.findViewById(R.id.itemName);
-        itemDescription = itemView.findViewById(R.id.itemDescription);
-        itemReview = itemView.findViewById(R.id.itemReview);
+        itemImage = (ImageView) itemView.findViewById(R.id.itemImage);
+        itemName = (TextView) itemView.findViewById(R.id.itemName);
+        itemDescription = (TextView) itemView.findViewById(R.id.itemDescription);
+        itemReview = (TextView) itemView.findViewById(R.id.itemReview);
 
     }
 }

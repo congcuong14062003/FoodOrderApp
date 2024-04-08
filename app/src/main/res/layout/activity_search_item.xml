@@ -1,58 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- res/layout/food_item.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:background="@drawable/mainborder"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:id="@+id/itemImage"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_centerVertical="true"
-        android:background="@drawable/backgroundintro"
-        />
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/itemName"
-        android:layout_toEndOf="@+id/itemImage"
-        android:textColor="@color/black"
-        android:textSize="28dp"
-        android:text="Che do den"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/itemDescription"
-        android:layout_toEndOf="@+id/itemImage"
-        android:layout_below="@+id/itemName"
-        android:textColor="@color/black"
-        android:text="Do den, thach den, thach trang"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/itemReview"
-        android:layout_toEndOf="@+id/itemImage"
-        android:layout_below="@+id/itemDescription"
-        android:textColor="@color/black"
-        android:text="5 danh gia"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/itemReview"
-        android:layout_marginTop="10dp"
-        android:background="#DAD808"
-        />
+        android:layout_height="match_parent"
+        android:padding="16dp">
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/testitem"
+            android:scaleType="centerCrop"
+            android:background="@drawable/mainborder"
+            android:outlineProvider="background"/>
 
 
+        <LinearLayout
+            android:id="@+id/productInfoLayout"
+            android:layout_width="240dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/itemImage"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/itemDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Description"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/countReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lượng đánh giá: "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/itemReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đánh giá"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
 
-</RelativeLayout>
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
