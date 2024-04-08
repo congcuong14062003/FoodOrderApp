@@ -59,7 +59,7 @@
                     android:id="@+id/priceItemHistoryOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/maincolor"
+                    android:textColor="@color/white"
                     android:text="$10"
                     android:textSize="14sp" />
 
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="@color/maincolor"
+                android:textColor="@color/white"
                 android:text="Đánh giá"
                 android:textAlignment="textEnd"
                 />
@@ -155,8 +155,13 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:text="$10"
+<<<<<<< HEAD
                     android:textColor="@color/maincolor"
                     android:textSize="14sp"
+=======
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+>>>>>>> Gcuong
                     android:textStyle="bold" />
             </LinearLayout>
 

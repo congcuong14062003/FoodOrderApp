@@ -2,6 +2,15 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="OrderHistory">
+        <State />
+      </entry>
+      <entry key="SearchActivity">
+        <State />
+      </entry>
+      <entry key="SearchDetailActivity">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>

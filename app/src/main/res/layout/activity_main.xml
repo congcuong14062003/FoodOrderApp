@@ -19,8 +19,24 @@
 
     </FrameLayout>
 
+<<<<<<< HEAD
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
+=======
+        <!-- ImageView cho logo -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logopanda" />
+
+    </RelativeLayout>
+
+    <!-- Phần dưới -->
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+>>>>>>> Gcuong
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_backgroud"
