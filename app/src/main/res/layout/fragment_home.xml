@@ -68,7 +68,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="40dp"
-        android:background="@drawable/rounded_image"
+        android:background="@drawable/mainborder"
         android:hint="Search for food"
         android:inputType="text"
         android:paddingLeft="50dp"

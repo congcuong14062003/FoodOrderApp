@@ -2,73 +2,124 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EBDFD1"
+
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
-        <ImageView
-            android:id="@+id/foodImgList"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/testitem"
-            android:scaleType="centerCrop"
-            android:background="@drawable/mainborder"
-            android:outlineProvider="background"/>
+        android:padding="20dp">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewFoodList"
+            android:layout_width="80dp"
+            app:cardCornerRadius="10dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="15dp"
+            >
+            <ImageView
+                android:scaleType="centerCrop"
+                android:id="@+id/foodImgList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/testitem"
+                android:background="@drawable/mainborder"
+/>
+        </androidx.cardview.widget.CardView>
+
         <LinearLayout
             android:id="@+id/productInfoLayout"
-            android:layout_width="240dp"
-            android:layout_height="94dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/foodImgList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/cardViewFoodList"
+            android:layout_toEndOf="@+id/cardViewFoodList"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/foodName"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Product Name"
-                android:layout_marginBottom="10dp"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/foodIngredient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/textcolor"
                 android:text="Product Description"
                 android:textSize="14sp" />
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/rateStar"
-                    android:layout_width="92dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/logopanda"
-                    android:scaleType="fitXY" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/star1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/pinkstar" />
+
+                    <ImageView
+                        android:id="@+id/star2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/pinkstar" />
+
+                    <ImageView
+                        android:id="@+id/star3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/pinkstar" />
+
+                    <ImageView
+                        android:id="@+id/star4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/pinkstar" />
+
+                    <ImageView
+                        android:id="@+id/star5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/star" />
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/total_reviews"
-                    android:layout_width="72dp"
-                    android:layout_height="match_parent"
-                    android:text="Đánh giá"
-                    android:textAlignment="center"
-                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="100"
                     android:textSize="14sp" />
+
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text=" reviews"
-                    android:textAlignment="center"
-                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="reviews"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
+    <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/maincolor"></LinearLayout>
 </LinearLayout>

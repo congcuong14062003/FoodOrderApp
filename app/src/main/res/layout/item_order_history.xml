@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/mainborder"
     android:layout_margin="20dp"
     android:orientation="vertical">
@@ -9,25 +10,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
-        <ImageView
-            android:id="@+id/imgItemHistoryOrder"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/testitem"
-            android:scaleType="centerCrop"
-            android:background="@drawable/mainborder"
-            android:outlineProvider="background"/>
+        android:padding="20dp">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewHistory"
+            android:layout_width="80dp"
+            app:cardCornerRadius="10dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="20dp"
+            >
+            <ImageView
+                android:id="@+id/imgItemHistoryOrder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/testitem"
+                android:background="@drawable/mainborder"
+                />
+        </androidx.cardview.widget.CardView>
+
 
 
         <LinearLayout
             android:id="@+id/productInfoLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/imgItemHistoryOrder"
+            android:layout_toEndOf="@id/cardViewHistory"
             android:orientation="vertical">
 
             <TextView
@@ -59,6 +65,7 @@
                     android:id="@+id/priceItemHistoryOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:textColor="@color/maincolor"
                     android:text="$10"
                     android:textSize="14sp" />
@@ -80,6 +87,7 @@
                     android:id="@+id/quantityItemHistoryOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="1"
                     android:textSize="14sp" />
 
@@ -102,7 +110,7 @@
             android:id="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/imgItemHistoryOrder"
+            android:layout_below="@id/cardViewHistory"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FAF7F7"
