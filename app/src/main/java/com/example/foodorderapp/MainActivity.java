@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.foodorderapp.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import com.example.foodorderapp.view.FoodFragment;
+import com.example.foodorderapp.view.OrderFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
                         replaceFragment(new HeartFragment());
                         return true;
                     case R.id.navigation_search:
-                        replaceFragment(new SearchFragment());
+                        replaceFragment(new FoodFragment());
                         return true;
                     case R.id.navigation_receipt:
-                        replaceFragment(new OrderHistoryFragment());
+                        replaceFragment(new OrderFragment());
                         return true;
                 }
                 return false;

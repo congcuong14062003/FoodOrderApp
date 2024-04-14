@@ -2,4 +2,5 @@
     android:shape="rectangle">
     <corners android:radius="20dp" /> <!-- Điều chỉnh giá trị radius tùy theo mức độ bo của bạn -->
     <solid android:color="@android:color/white" /> <!-- Màu nền của ImageView -->
+
 </shape>
