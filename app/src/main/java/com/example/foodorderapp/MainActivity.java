@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_heart:
                         replaceFragment(new HeartFragment());
                         return true;
-                    case R.id.navigation_search:
-                        replaceFragment(new FoodFragment());
+                    case R.id.navigation_notification:
+                        replaceFragment(new NotificationFragment());
                         return true;
                     case R.id.navigation_receipt:
                         replaceFragment(new OrderFragment());
