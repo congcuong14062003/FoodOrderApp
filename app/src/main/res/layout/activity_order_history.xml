@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:backgroundTint="#fcf9f9"
     android:layout_height="match_parent"
-
-    tools:context=".OrderHistory">
+    >
 
     <TextView
         android:id="@+id/textView"

@@ -7,12 +7,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgourndlogin"
     tools:context=".SignupActivity">
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="28dp"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,14 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/white"
         android:hint="Họ và tên"
         android:paddingBottom="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
@@ -45,23 +46,25 @@
         android:paddingBottom="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextName"
+        app:layout_constraintStart_toStartOf="@+id/editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/white"
         android:hint="Mật khẩu"
         android:inputType="textPassword"
         android:paddingBottom="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/editSDT"
-        tools:layout_editor_absoluteX="10dp" />
+        app:layout_constraintEnd_toEndOf="@+id/editSDT"
+        app:layout_constraintStart_toStartOf="@+id/editSDT"
+        app:layout_constraintTop_toBottomOf="@+id/editSDT" />
 
     <EditText
         android:id="@+id/editRepeatPassword"
@@ -75,19 +78,25 @@
         android:paddingBottom="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="@+id/editPassword"
+        app:layout_constraintStart_toStartOf="@+id/editPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
     <Button
         android:id="@+id/buttonResign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_custom"
         android:backgroundTint="@color/maincolor"
         android:text="Đăng ký"
-        app:layout_constraintTop_toBottomOf="@+id/editRepeatPassword"
-        tools:layout_editor_absoluteX="20dp" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/mainfontsize"
+        app:layout_constraintEnd_toEndOf="@+id/editRepeatPassword"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editRepeatPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editRepeatPassword" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,7 +111,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quay về trang "
+            android:text="Đã có tài khoản? "
             android:textColor="@color/white" />
 
         <TextView
@@ -112,6 +121,7 @@
             android:layout_marginLeft="1dp"
             android:backgroundTint="#00FF0000"
             android:text="Đăng nhập"
+            android:textSize="@dimen/seconfontsize"
             android:textColor="@color/maincolor" />
     </LinearLayout>
 

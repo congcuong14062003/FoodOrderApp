@@ -21,18 +21,12 @@
         <activity
             android:name=".ReviewsFood"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".OrderHistory"-->
-<!--            android:exported="false" />-->
         <activity
-            android:name=".ItemOrderHistory"
+            android:name=".view.FoodFragment"
             android:exported="false" />
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".LoginActivity"-->
-<!--            android:exported="false" />-->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
