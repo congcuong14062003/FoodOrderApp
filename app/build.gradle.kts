@@ -27,6 +27,7 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        dataBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -35,6 +36,13 @@ android {
 }
 
 dependencies {
+//    val lifecycle_version = "2.6.0"
+//
+//    // ViewModel
+//    implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
+//    // LiveData
+//    implementation("androidx.lifecycle:lifecycle-livedata:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.3.1")
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")

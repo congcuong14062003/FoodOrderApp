@@ -13,11 +13,12 @@
         android:layout_height="102dp"
         android:background="@color/maincolor"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/search_food"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:background="@drawable/border"
@@ -40,19 +41,18 @@
         android:id="@+id/imageView"
         android:layout_width="28dp"
         android:layout_height="29dp"
-        android:layout_marginBottom="36dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginEnd="276dp"
+        android:layout_marginBottom="36dp"
         android:background="@color/white"
-
         app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-
-        app:layout_constraintHorizontal_bias="0.0"
-
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:srcCompat="@drawable/search_glass1"
+        app:layout_constraintEnd_toEndOf="@+id/search_food"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintStart_toStartOf="@+id/search_food"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972"
+        app:srcCompat="@drawable/search"
         tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/textView"
@@ -81,18 +81,20 @@
 
     <TextView
         android:id="@+id/cancelbtn"
-        android:layout_width="64dp"
+        android:layout_width="wrap_content"
         android:layout_height="29dp"
         android:layout_marginTop="36dp"
-        android:width="30dp"
-        android:height="30dp"
-        android:padding="5dp"
-        android:text="  Cancel"
-        android:textSize="15dp"
+        android:layout_marginEnd="15dp"
+        android:text="Cancel"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.846"
-        app:layout_constraintStart_toEndOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/search_food"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

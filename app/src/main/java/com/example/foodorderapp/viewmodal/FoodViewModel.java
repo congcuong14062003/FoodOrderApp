@@ -49,18 +49,15 @@ public class FoodViewModel extends ViewModel {
                         Log.d("OrderViewModel", "API call successful."); // Log success message
                     } else {
                         Log.e("OrderViewModel", "API call failed: Invalid response."); // Log error message
-                        // Xử lý lỗi khi không nhận được dữ liệu hợp lệ từ API
                     }
                 } else {
                     Log.e("OrderViewModel", "API call failed: " + response.message()); // Log error message
-                    // Xử lý lỗi khi không nhận được dữ liệu thành công từ API
                 }
             }
 
             @Override
             public void onFailure(Call<ListFoodResponsive> call, Throwable t) {
                 Log.e("OrderViewModel", "API call failed: " + t.getMessage()); // Log failure message
-                // Xử lý lỗi khi gặp sự cố trong quá trình gọi API
             }
         });
     }

@@ -18,39 +18,29 @@ import com.example.foodorderapp.view.FoodFragment;
 
 public class HomeFragment extends Fragment {
     private EditText searchHome;
-    ActivityMainBinding binding;
+    private FoodFragment foodFragment;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Ánh xạ view
         searchHome = view.findViewById(R.id.search_home);
-
-        // Thêm sự kiện focus change listener vào EditText
         searchHome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // Kiểm tra xem EditText có focus không
                 if (hasFocus) {
-                    Log.d("Search", "Has click search"); // Log success message
-                    replaceFragment(new FoodFragment());
-
-                } else {
-
+                    // Thay thế HomeFragment bằng FoodFragment
+                    FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, new FoodFragment());
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                 }
             }
         });
 
-
         return view;
     }
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
-    }
 }
+
 

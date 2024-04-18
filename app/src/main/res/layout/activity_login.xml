@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgourndlogin"
-    tools:context=".LoginActivity"
     >
 
     <ImageView
@@ -23,7 +23,7 @@
         app:srcCompat="@drawable/logopanda" />
 
     <EditText
-        android:id="@+id/txtUsername"
+        android:id="@+id/txtPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="20dp"
@@ -35,8 +35,9 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
+    <!-- EditText để nhập mật khẩu -->
     <EditText
         android:id="@+id/txtPassword"
         android:layout_width="match_parent"
@@ -49,13 +50,28 @@
         android:paddingBottom="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/txtUsername"
-        app:layout_constraintStart_toStartOf="@+id/txtUsername"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+        app:layout_constraintEnd_toEndOf="@id/txtPhoneNumber"
+        app:layout_constraintStart_toStartOf="@id/txtPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@id/txtPhoneNumber" />
+    <!-- TextView hiển thị thông báo lỗi -->
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/maincolor"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/txtPassword"
+        app:layout_constraintStart_toStartOf="@id/txtPassword"
+        app:layout_constraintEnd_toEndOf="@id/txtPassword"/>
+
+    <!-- TextView hiển thị thông báo lỗi -->
+
+
+    <!-- Button để thực hiện đăng nhập -->
 
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -65,11 +81,12 @@
         android:text="Đăng nhập"
         android:textColor="@color/white"
         android:textSize="@dimen/mainfontsize"
-        app:layout_constraintEnd_toEndOf="@+id/txtPassword"
+        app:layout_constraintEnd_toEndOf="@id/txtPassword"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/txtPassword"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        app:layout_constraintStart_toStartOf="@id/txtPassword"
+        app:layout_constraintTop_toBottomOf="@id/txtPassword" />
 
+    <!-- LinearLayout chứa thông báo và nút đăng ký -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,11 +94,11 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
-        app:layout_constraintStart_toStartOf="@+id/buttonLogin"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:layout_constraintEnd_toEndOf="@id/btnLogin"
+        app:layout_constraintStart_toStartOf="@id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"
         app:layout_constraintVertical_bias="0.888">
-
+        <!-- TextView hiển thị thông báo -->
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -89,16 +106,16 @@
             android:text="Bạn chưa có tài khoản?"
             android:textColor="@color/white" />
 
+        <!-- TextView để chuyển sang màn hình đăng ký -->
         <TextView
-            android:id="@+id/buttonToResign"
+            android:id="@+id/buttonToRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:backgroundTint="#00FF0000"
+            android:backgroundTint="#FF0000"
             android:text="Đăng ký"
             android:textColor="@color/maincolor"
             android:textSize="@dimen/seconfontsize" />
+
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
