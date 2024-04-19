@@ -42,6 +42,8 @@ public class FoodFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_detail, container, false);
 
+
+
         searchFood = view.findViewById(R.id.search_food);
         // Yêu cầu focus cho EditText trong FoodFragment
         searchFood.requestFocus();

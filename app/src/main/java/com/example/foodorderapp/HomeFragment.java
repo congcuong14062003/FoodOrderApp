@@ -8,24 +8,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.foodorderapp.databinding.ActivityMainBinding;
+import com.example.foodorderapp.retrofit.ApiService;
+import com.example.foodorderapp.retrofit.UserResponsive;
+import com.example.foodorderapp.object.UserDTO;
 import com.example.foodorderapp.view.FoodFragment;
+import com.squareup.picasso.Picasso;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
     private EditText searchHome;
     private FoodFragment foodFragment;
-
+    TextView userName;
+    ImageView  avtUser;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         searchHome = view.findViewById(R.id.search_home);
+        // Lấy id người dùng từ bất kỳ đâu trong ứng dụng
+        int userId = UserManager.getInstance().getUserId();
+        userName = view.findViewById(R.id.nameUser);
+        avtUser = view.findViewById(R.id.avtUser);
         searchHome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -38,9 +55,42 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
+        fetchUserInfo(userId);
         return view;
     }
+    private void fetchUserInfo(int userId) {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<UserResponsive> call = apiService.getUserInfo(userId);
+        call.enqueue(new Callback<UserResponsive>() {
+            @Override
+            public void onResponse(Call<UserResponsive> call, Response<UserResponsive> response) {
+                if(response.isSuccessful()) {
+                    UserDTO userData = response.body().getData();
+                    if(userData != null) {
+                        userName.setText(userData.getName());
+                        String avatarUser = userData.getAvatar_thumbnail();
+                        Picasso.get().load(avatarUser).into(avtUser, new com.squareup.picasso.Callback() {
+                            @Override
+                            public void onSuccess() {
+                                Log.d("Picasso", "Hình ảnh đã được tải thành công.");
+                            }
+                            @Override
+                            public void onError(Exception e) {
+                                Log.e("Picasso", "Lỗi khi tải hình ảnh: " + e.getMessage());
+                            }
+                        });
+                        Log.d("Màn Home", "ảnh đại diện: " + avatarUser); // Log success message
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponsive> call, Throwable t) {
+                Toast.makeText(getContext(), "Network error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
-
-

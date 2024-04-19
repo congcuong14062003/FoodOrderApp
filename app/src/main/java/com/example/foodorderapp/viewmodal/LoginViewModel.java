@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.object.LoginUser;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.LoginResponsive;
@@ -54,9 +55,16 @@ public class LoginViewModel {
                 Log.d("LoginViewModel", "Response nè: " + response.code()); // Log response code
                 if (response.code() == 200) {
                     LoginResponsive loginResponse = response.body();
-                    if (loginResponse != null) { // Sử dụng trường status
+                    if (loginResponse != null && loginResponse.isSuccess()) {
                         loginStatus.setValue(true);
                         Log.d("LoginViewModel", "API call successful."); // Log success message
+                        // Log response data
+                        if (loginResponse.getData() != null) {
+                            Log.d("LoginViewModel", "User ID: " + loginResponse.getData().getId());
+                            // Đặt id người dùng khi đăng nhập thành công
+                            UserManager.getInstance().setUserId(loginResponse.getData().getId());
+                            Log.d("LoginViewModel", "User Name: " + loginResponse.getData().getName());
+                        }
                     } else {
                         loginStatus.setValue(false);
                         String errorMessage = loginResponse != null ? loginResponse.getMessage() : "Unknown error";
@@ -70,7 +78,6 @@ public class LoginViewModel {
                     String errorMessage;
                     if (response.errorBody() != null) {
                         try {
-                            // Lấy thông báo lỗi từ message mà backend trả về
                             String errorBodyString = response.errorBody().string();
                             JSONObject jsonObject = new JSONObject(errorBodyString);
                             errorMessage = jsonObject.getString("message");
