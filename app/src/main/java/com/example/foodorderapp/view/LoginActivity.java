@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-
+        // thong tin nguoi dung
         txtUserName = findViewById(R.id.txtPhoneNumber);
         txtPassWord = findViewById(R.id.txtPassword);
         btnsLogin = findViewById(R.id.btnLogin);
