@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
                 }
             }
-
+            // khi không thành công
             @Override
             public void onFailure(Call<UserResponsive> call, Throwable t) {
                 Toast.makeText(getContext(), "Network error", Toast.LENGTH_SHORT).show();
