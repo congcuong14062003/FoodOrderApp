@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
         int userId = UserManager.getInstance().getUserId();
         userName = view.findViewById(R.id.nameUser);
         avtUser = view.findViewById(R.id.avtUser);
+        // ấn vào nút search
         searchHome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
