@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Log; // Import Log class
 
+import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.object.OrderDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.OrderResponse;
@@ -20,23 +21,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OrderViewModel extends ViewModel {
     private MutableLiveData<List<OrderDTO>> orderList;
+    int userId = UserManager.getInstance().getUserId();
 
     public LiveData<List<OrderDTO>> getOrderList() {
         if (orderList == null) {
             orderList = new MutableLiveData<>();
-            loadOrderList();
+            loadOrderList(userId);
         }
         return orderList;
     }
 
-    private void loadOrderList() {
+    private void loadOrderList(int userId) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<OrderResponse> call = apiService.getOrders();
+        Call<OrderResponse> call = apiService.getOrders(userId);
         call.enqueue(new Callback<OrderResponse>() {
             @Override
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {

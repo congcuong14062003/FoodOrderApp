@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
+import com.example.foodorderapp.view.MainActivity;
+
 public class IntroActivity extends AppCompatActivity {
 
     @Override

@@ -2,4 +2,6 @@
 <resources>
     <dimen name="mainfontsize">16sp</dimen>
     <dimen name="seconfontsize">15sp</dimen>
+    <dimen name="twentyfour">24sp</dimen>
+
 </resources>
