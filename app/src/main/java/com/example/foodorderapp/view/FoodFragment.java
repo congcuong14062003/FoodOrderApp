@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -36,17 +37,36 @@ public class FoodFragment extends Fragment {
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
     }
 
+    private void handleSubmit() {
+        String userInput = searchFood.getText().toString(); // Lấy dữ liệu người dùng nhập vào EditText
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, new ResultFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+        // Xử lý dữ liệu userInput ở đây, ví dụ: tìm kiếm, lưu trữ, xử lý, vv.
+
+        // Sau khi xử lý xong, có thể muốn làm gì đó như hiển thị thông báo, chuyển đổi màn hình, vv.
+    }
+
     @Nullable
 // Trong FoodFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_detail, container, false);
-
-
-
         searchFood = view.findViewById(R.id.search_food);
         // Yêu cầu focus cho EditText trong FoodFragment
         searchFood.requestFocus();
+
+        searchFood.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // Xử lý khi người dùng nhập liệu xong và nhấn Enter trên bàn phím ảo hoặc trên thiết bị thật
+                // Gọi hàm xử lý submit
+                handleSubmit();
+                return true;
+            }
+            return false;
+        });
+
 
         RecyclerView recyclerView = view.findViewById(list_food_recycle);
         final ListFoodAdapter adapter = new ListFoodAdapter();
