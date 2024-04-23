@@ -21,4 +21,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("users/login") // Địa chỉ API cho đăng nhập
     Call<LoginResponsive> login(@Field("phone_number") String phoneNumber, @Field("password") String password);
+
+    @GET("notices/list/1")
+    Call<NotiResponsive> getNotis();
 }
