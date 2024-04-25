@@ -1,4 +1,4 @@
-package com.example.foodorderapp;
+package com.example.foodorderapp.view;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.foodorderapp.R;
+import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.databinding.ActivityMainBinding;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.UserResponsive;
@@ -69,6 +71,7 @@ public class HomeFragment extends Fragment {
                 if(response.isSuccessful()) {
                     UserDTO userData = response.body().getData();
                     if(userData != null) {
+
                         userName.setText(userData.getName());
                         String avatarUser = userData.getAvatar_thumbnail();
                         Picasso.get().load(avatarUser).into(avtUser, new com.squareup.picasso.Callback() {
