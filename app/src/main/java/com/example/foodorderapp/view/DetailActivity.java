@@ -1,16 +1,15 @@
 package com.example.foodorderapp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.object.DetailFoodDTO;
@@ -26,12 +25,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DetailActivity extends AppCompatActivity {
-
+    Button btn_order_food;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-
         // Nhận ID của thức ăn từ Intent
         int foodId = getIntent().getIntExtra("foodId", -1);
         Log.d("Màn Detail", "FoodId: " + foodId);
@@ -100,8 +98,20 @@ public class DetailActivity extends AppCompatActivity {
         price_detail.setText(String.valueOf(detailFoodDTO.getPrice())); // Chuyển đổi giá trị double sang String
         total_reviews.setText(String.valueOf(detailFoodDTO.getTotal_reviews())); // Chuyển đổi giá trị double sang String
         solds.setText(String.valueOf(detailFoodDTO.getTotal_orders())); // Chuyển đổi giá trị double sang String
+        Log.d("Màn chi tiết đồ ăn", "id đồ ăn: " +detailFoodDTO.getId());
         // Set số sao
         setRatingStars(detailFoodDTO.getAverage_rating(), starImages);
+
+        btn_order_food = findViewById(R.id.book_food_btn);
+        btn_order_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, OrderMainActivity.class);
+                intent.putExtra("foodId", detailFoodDTO.getId());
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     private void setRatingStars(String averageRating, ImageView[] starImages) {
         // Kiểm tra nếu averageRating là null hoặc rỗng, thì mặc định toàn bộ sẽ là sao trắng

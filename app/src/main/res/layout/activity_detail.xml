@@ -179,9 +179,23 @@
                     android:layout_marginLeft="5dp"
                     android:text="Đã bán" />
             </LinearLayout>
-
-
         </LinearLayout>
+        <Button
+            android:id="@+id/book_food_btn"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/phonebook"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_gravity="end"
+            android:backgroundTint="@color/maincolor"
+            android:background="@drawable/mainborder"
+            android:textColor="@color/white"
+            android:text="booking now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+        </Button>
 
     </LinearLayout>
     
