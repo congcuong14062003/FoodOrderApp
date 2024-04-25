@@ -28,10 +28,8 @@ public interface ApiService {
     @POST("users/login")
     Call<LoginResponsive> login(@Field("phone_number") String phoneNumber, @Field("password") String password);
 
-<<<<<<< HEAD
+
     @GET("notices/list/1")
     Call<NotiResponsive> getNotis();
-=======
 
->>>>>>> cuong
 }
