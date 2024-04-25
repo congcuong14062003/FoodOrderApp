@@ -3,7 +3,6 @@ package com.example.foodorderapp.view;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,14 +12,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.foodorderapp.MainActivity;
 import com.example.foodorderapp.R;
-import com.example.foodorderapp.SignupActivity;
-import com.example.foodorderapp.retrofit.ApiService;
-import com.example.foodorderapp.retrofit.LoginResponsive;
-import com.example.foodorderapp.retrofit.RetrofitClient;
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -55,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
                 loginViewModel.login(phoneNumber, password);
             }
         });
-
 
         loginViewModel.getLoginStatus().observe(this, new Observer<Boolean>() {
             @Override

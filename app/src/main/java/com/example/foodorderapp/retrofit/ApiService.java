@@ -21,4 +21,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("users/login") // Địa chỉ API cho đăng nhập
     Call<LoginResponsive> login(@Field("phone_number") String phoneNumber, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("users/signup")
+    Call<SignUpResponsive> signup(@Field("name") String name, @Field("phoneNumber") String phoneNumber, @Field("address") String address,@Field("password") String password);
 }
