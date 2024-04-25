@@ -3,6 +3,8 @@ package com.example.foodorderapp.view;
 import static com.example.foodorderapp.R.id.list_food_recycle;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +26,12 @@ import com.example.foodorderapp.HomeFragment;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.ListFoodAdapter;
 import com.example.foodorderapp.adapter.OrderAdapter;
+import com.example.foodorderapp.object.FoodDTO;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 import com.example.foodorderapp.viewmodal.OrderViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FoodFragment extends Fragment {
     private FoodViewModel foodViewModel;
@@ -39,13 +45,21 @@ public class FoodFragment extends Fragment {
 
     private void handleSubmit() {
         String userInput = searchFood.getText().toString(); // Lấy dữ liệu người dùng nhập vào EditText
+
+        Fragment resultFragment = new ResultFragment();
+        Bundle args = new Bundle();
+        args.putString("userInput", userInput);
+        resultFragment.setArguments(args);
+
+
+
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, new ResultFragment());
+        transaction.replace(R.id.frame_layout, resultFragment);
         transaction.addToBackStack(null);
         transaction.commit();
         // Xử lý dữ liệu userInput ở đây, ví dụ: tìm kiếm, lưu trữ, xử lý, vv.
 
-        // Sau khi xử lý xong, có thể muốn làm gì đó như hiển thị thông báo, chuyển đổi màn hình, vv.
+
     }
 
     @Nullable
@@ -56,6 +70,8 @@ public class FoodFragment extends Fragment {
         searchFood = view.findViewById(R.id.search_food);
         // Yêu cầu focus cho EditText trong FoodFragment
         searchFood.requestFocus();
+
+
 
         searchFood.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -75,6 +91,34 @@ public class FoodFragment extends Fragment {
 
         foodViewModel.getFoodList().observe(getViewLifecycleOwner(), orderDTOs -> {
             adapter.setFoodList(orderDTOs);
+        });
+
+        // thay đổi theo sự kiện onchange của input
+        searchFood.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String newText = s.toString().toLowerCase();
+                List<FoodDTO> newList = new ArrayList<>();
+
+                for (FoodDTO food : foodViewModel.getFoodList().getValue() ){
+                    if(food.getName().toLowerCase().startsWith(newText)){
+                        newList.add(food);
+                    }
+                }
+
+                adapter.setFoodList(newList);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
 
         // Lắng nghe sự kiện click của nút "Cancel"

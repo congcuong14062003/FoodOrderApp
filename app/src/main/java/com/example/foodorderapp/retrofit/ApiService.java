@@ -6,6 +6,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
     String BASE_URL = "https://food-app-server-murex.vercel.app/";
@@ -15,6 +16,9 @@ public interface ApiService {
 
     @GET("foods")
     Call<ListFoodResponsive> getFoods();
+
+    @GET("foods")
+    Call<ListFoodResponsive> getFoodListByName(@Query("name") String userInput);
 
     @GET("users/info/{userId}")
     Call<UserResponsive> getUserInfo(@Path("userId") int userId);
