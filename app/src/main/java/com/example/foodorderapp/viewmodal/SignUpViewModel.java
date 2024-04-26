@@ -1,11 +1,12 @@
 package com.example.foodorderapp.viewmodal;
 
-import android.widget.TextView;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-import com.example.foodorderapp.object.SignUpUser;
+import com.example.foodorderapp.object.UserDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.SignUpResponsive;
 
@@ -15,13 +16,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SignUpViewModel {
+public class SignUpViewModel extends ViewModel {
     private MutableLiveData<Boolean> signUpStatus;
-    private TextView errorMessageTextView;
-
-    public SignUpViewModel(TextView errorMessageTextView) {
-        this.errorMessageTextView = errorMessageTextView;
-    }
 
     public LiveData<Boolean> getSignUpStatus() {
         if (signUpStatus == null) {
@@ -31,7 +27,7 @@ public class SignUpViewModel {
     }
 
     public void signup(String name, String phoneNumber, String address, String password) {
-        SignUpUser user = new SignUpUser();
+        UserDTO user = new UserDTO();
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
         user.setAddress(address);
@@ -43,8 +39,7 @@ public class SignUpViewModel {
                 .build();
 
         ApiService api = retrofit.create(ApiService.class);
-        Call<SignUpResponsive> call = api.signup(user.getName(), user.getPhoneNumber(), user.getAddress(), user.getPassword());
-
+        Call<SignUpResponsive> call = api.signup(name, phoneNumber, address, password);
         call.enqueue(new Callback<SignUpResponsive>() {
             @Override
             public void onResponse(Call<SignUpResponsive> call, Response<SignUpResponsive> response) {
@@ -54,18 +49,17 @@ public class SignUpViewModel {
                         signUpStatus.setValue(true);
                     } else {
                         signUpStatus.setValue(false);
-                        errorMessageTextView.setText(signUpResponse != null ? signUpResponse.getMessage() : "Unknown error");
                     }
                 } else {
                     signUpStatus.setValue(false);
-                    errorMessageTextView.setText("Server error: " + response.code());
                 }
             }
             @Override
             public void onFailure(Call<SignUpResponsive> call, Throwable t) {
                 signUpStatus.setValue(false);
-                errorMessageTextView.setText("Network error: " + t.getMessage());
+                Log.e("SignUpViewModel", "API call failed: " + t.getMessage());
             }
+
         });
     }
 }

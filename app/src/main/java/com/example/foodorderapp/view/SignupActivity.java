@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.viewmodal.SignUpViewModel;
@@ -24,6 +25,7 @@ public class SignupActivity extends AppCompatActivity {
     private TextView btnToLogin;
     private TextView errorMessageTextView;
     private SignUpViewModel signUpViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,8 @@ public class SignupActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Initialize views
         txtName = findViewById(R.id.editTextName);
         txtPhoneNumber = findViewById(R.id.editSDT);
         txtAddress = findViewById(R.id.editAddress);
@@ -41,6 +45,29 @@ public class SignupActivity extends AppCompatActivity {
         txtRepeatPassword = findViewById(R.id.editRepeatPassword);
         btnSignUp = findViewById(R.id.buttonResign);
         btnToLogin = findViewById(R.id.buttonToLogin);
+
+        // Initialize ViewModel
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+
+        // Observe signUpStatus LiveData
+        signUpViewModel.getSignUpStatus().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isSuccess) {
+                if (isSuccess) {
+                    // Handle successful sign-up
+                    Toast.makeText(SignupActivity.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                    // Navigate to login activity or perform any other action
+                } else {
+                    // Handle failed sign-up (error message should already be set in ViewModel)
+                    Toast.makeText(SignupActivity.this, "Đăng ký thất bại!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // Set click listeners
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,25 +80,9 @@ public class SignupActivity extends AppCompatActivity {
                     errorMessageTextView.setText("Mật khẩu nhập lại không khớp");
                     return;
                 }
-                signUpViewModel.signup(name,phoneNumber,address,password);
+                signUpViewModel.signup(name, phoneNumber, address, password);
             }
         });
-
-        signUpViewModel.getSignUpStatus().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean signUpStatus) {
-                if (signUpStatus) {
-                    Toast.makeText(SignupActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(SignupActivity.this, "Đăng ký thất bại. Vui lòng thử lại!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
 
         btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +92,4 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
