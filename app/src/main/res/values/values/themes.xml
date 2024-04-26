@@ -8,11 +8,8 @@
     </style>
 
     <style name="Theme.FoodOrderApp" parent="Base.Theme.FoodOrderApp" />
-
     <style name="SlideActivityAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
     </style>
-
-    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
