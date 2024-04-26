@@ -1,5 +1,4 @@
-package com.example.foodorderapp;
-import androidx.annotation.FloatRange;
+package com.example.foodorderapp.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,9 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.foodorderapp.HeartFragment;
+import com.example.foodorderapp.R;
 import com.example.foodorderapp.databinding.ActivityMainBinding;
 
-import com.example.foodorderapp.view.FoodFragment;
+import com.example.foodorderapp.view.HomeFragment;
 import com.example.foodorderapp.view.NotificationFragment;
 import com.example.foodorderapp.view.OrderFragment;
 import com.example.foodorderapp.view.ProfileFragment;

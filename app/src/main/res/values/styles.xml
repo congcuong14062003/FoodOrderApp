@@ -4,5 +4,4 @@
         <!-- Các thuộc tính của style ứng dụng của bạn -->
         <item name="android:windowFullscreen">true</item>
     </style>
-
 </resources>
