@@ -12,6 +12,10 @@ public interface ApiService {
 
     @GET("orders/list/{userId}")
     Call<OrderResponse> getOrders(@Path("userId") int userId);
+    // đặt hàng
+    @FormUrlEncoded
+    @POST("orders/post_orders")
+    Call<OrderFoodResponsive> postOrder(@Field("food_id") int food_id, @Field("user_id") int user_id,  @Field("quantity") int quantity,  @Field("total_price") double total_price);
 
     // danh sách món ăn
     @GET("foods")
