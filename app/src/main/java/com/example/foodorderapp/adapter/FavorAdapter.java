@@ -52,11 +52,13 @@ public class FavorAdapter extends RecyclerView.Adapter<FavorAdapter.FavorViewHol
             nameFood = itemView.findViewById(R.id.itemName);
             ingredientFood = itemView.findViewById(R.id.itemDescription);
             img_thumbnail = itemView.findViewById(R.id.itemImage);
+            totalReview = itemView.findViewById(R.id.itemReview);
         }
 
         public void bind(FoodDTO foodDTO) {
             nameFood.setText(foodDTO.getName());
             ingredientFood.setText(foodDTO.getIngredients());
+            totalReview.setText(String.valueOf(foodDTO.getTotal_reviews()));
             // Sử dụng Picasso để tải hình ảnh từ URL và hiển thị nó trong ImageView
             Picasso.get().load(foodDTO.getImageUrl()).into(img_thumbnail);
         }

@@ -35,6 +35,7 @@ public class ResultFragment extends Fragment {
 
     private FoodViewModel foodViewModel;
     private FoodFragment foodFragment;
+    private String userInput;
 
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,19 +63,20 @@ public class ResultFragment extends Fragment {
 
         Bundle args = getArguments();
         if (args != null && args.containsKey("userInput")) {
-            String userInput = args.getString("userInput");
+             userInput = args.getString("userInput");
 
             TextView txtResult =view.findViewById(R.id.textResult);
             txtResult.setText("Result for "+ userInput);
 
-            foodViewModel.getFoodList(userInput).observe(getViewLifecycleOwner(), orderDTOs -> {
-                adapter.setFoodList(orderDTOs);
-            });
+
 
 
 //            adapter.setFoodList(newList);
 //            adapter.notifyDataSetChanged();
         }
+        foodViewModel.getfoodList(userInput).observe(getViewLifecycleOwner(), orderDTOs -> {
+            adapter.setFoodList(orderDTOs);
+        });
 //
 //         Lắng nghe sự kiện click của nút "Cancel"
         TextView backBtn = view.findViewById(R.id.backbtn);

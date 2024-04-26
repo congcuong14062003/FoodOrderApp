@@ -6,11 +6,41 @@ public class FoodDTO {
     private String name;
     private String ingredients;
     private double price;
+    private String description;
+    private int total_reviews;
+    private String average_rating;
 
-    public FoodDTO(String img_thumbnail, String name, String ingredients) {
+    public FoodDTO(String img_thumbnail, String name, String ingredients,String average_rating, String description, int total_reviews) {
         this.img_thumbnail = img_thumbnail;
         this.name = name;
         this.ingredients = ingredients;
+        this.average_rating= average_rating;
+        this.description=description;
+        this.total_reviews=total_reviews;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getTotal_reviews() {
+        return total_reviews;
+    }
+
+    public void setTotal_reviews(int total_reviews) {
+        this.total_reviews = total_reviews;
+    }
+
+    public String getAverage_rating() {
+        return average_rating;
+    }
+
+    public void setAverage_rating(String average_rating) {
+        this.average_rating = average_rating;
     }
 
     public String getImageUrl() {

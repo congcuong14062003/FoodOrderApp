@@ -43,21 +43,25 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
     }
 
     static class ResultViewHolder extends RecyclerView.ViewHolder {
-        TextView nameFood;
-        TextView ingredientFood;
-        TextView totalReview;
+        TextView name;
+        TextView description;
+        TextView total_reviews;
         ImageView img_thumbnail;
+        TextView average_rating;
 
         public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameFood = itemView.findViewById(R.id.itemName);
-            ingredientFood = itemView.findViewById(R.id.itemDescription);
+            name = itemView.findViewById(R.id.itemName);
+            description = itemView.findViewById(R.id.itemDescription);
             img_thumbnail = itemView.findViewById(R.id.itemImage);
+            total_reviews = itemView.findViewById(R.id.countReview);
+
         }
 
         public void bind(FoodDTO foodDTO) {
-            nameFood.setText(foodDTO.getName());
-            ingredientFood.setText(foodDTO.getIngredients());
+            name.setText(foodDTO.getName());
+            description.setText(foodDTO.getDescription());
+            total_reviews.setText(String.valueOf(foodDTO.getTotal_reviews()));
             // Sử dụng Picasso để tải hình ảnh từ URL và hiển thị nó trong ImageView
             Picasso.get().load(foodDTO.getImageUrl()).into(img_thumbnail);
         }

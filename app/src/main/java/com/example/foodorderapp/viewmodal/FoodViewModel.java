@@ -11,6 +11,7 @@ import com.example.foodorderapp.object.OrderDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.ListFoodResponsive;
 import com.example.foodorderapp.retrofit.OrderResponse;
+import com.example.foodorderapp.retrofit.SearchRequest;
 
 import java.net.HttpCookie;
 import java.util.List;
@@ -32,22 +33,25 @@ public class FoodViewModel extends ViewModel {
         return foodList;
     }
 
-    public LiveData<List<FoodDTO>> getFoodList(String userInput) {
+    public LiveData<List<FoodDTO>> getfoodList(String userInput) {
         if (foodList == null) {
             foodList = new MutableLiveData<>();
-            loadFoodList(userInput);
+            loadfoodList(userInput);
         }
         return foodList;
     }
 
-    private void loadFoodList( String userInput) {
+    private void loadfoodList( String userInput) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<ListFoodResponsive> call = apiService.getFoodListByName(userInput);
+        String keyword = userInput;
+        SearchRequest searchRequest = new SearchRequest(keyword);
+        System.out.println(searchRequest.getKeyword());
+        Call<ListFoodResponsive> call = apiService.getFoodListByName(searchRequest);
         call.enqueue(new Callback<ListFoodResponsive>() {
             @Override
             public void onResponse(Call<ListFoodResponsive> call, Response<ListFoodResponsive> response) {

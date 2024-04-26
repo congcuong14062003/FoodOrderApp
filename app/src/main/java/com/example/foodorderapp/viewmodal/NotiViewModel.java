@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.object.NotiDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.NotiResponsive;
@@ -20,23 +21,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NotiViewModel extends ViewModel {
     private MutableLiveData<List<NotiDTO>> notiList;
+    int userId = UserManager.getInstance().getUserId();
+
 
     public LiveData<List<NotiDTO>> getNotiList(){
         if(notiList == null ){
             notiList = new MutableLiveData<>();
-            loadNotiList();
+            loadNotiList(userId);
         }
         return notiList;
     }
 
-    private void loadNotiList(){
+    private void loadNotiList( int userId){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<NotiResponsive> call = apiService.getNotis();
+        Call<NotiResponsive> call = apiService.getNotis(userId);
 
         call.enqueue(new Callback<NotiResponsive>() {
             @Override

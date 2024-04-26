@@ -3,14 +3,16 @@ package com.example.foodorderapp.object;
 public class ResultDTO {
     private String name;
     private String description;
-    private int countReview;
+    private int total_reviews;
+    private String average_rating;
     private int image;
 
-    public ResultDTO(String name, String description, int countReview, int image){
+    public ResultDTO(String name, String description, int total_reviews, int image, String average_rating){
         this.name=name;
         this.description=description;
-        this.countReview=countReview;
+        this.total_reviews=total_reviews;
         this.image=image;
+        this.average_rating= average_rating;
     }
 
     public String getName() {
@@ -29,12 +31,20 @@ public class ResultDTO {
         this.description = description;
     }
 
-    public int getCountReview() {
-        return countReview;
+    public int getTotal_reviews() {
+        return total_reviews;
     }
 
-    public void setCountReview(int countReview) {
-        this.countReview = countReview;
+    public void setTotal_reviews(int total_reviews) {
+        this.total_reviews = total_reviews;
+    }
+
+    public String getAverage_rating() {
+        return average_rating;
+    }
+
+    public void setAverage_rating(String average_rating) {
+        this.average_rating = average_rating;
     }
 
     public int getImage() {
