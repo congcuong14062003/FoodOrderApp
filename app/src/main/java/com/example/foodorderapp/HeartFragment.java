@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.foodorderapp.adapter.FavorAdapter;
 import com.example.foodorderapp.adapter.NotiAdapter;
@@ -43,15 +46,15 @@ public class HeartFragment extends Fragment {
             adapter.setFoodList(orderDTOS);
         });
 
-//        TextView cancelBtn = view.findViewById(R.id.backBtn);
-//        cancelBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Đóng FoodFragment và hiển thị lại HomeFragment
-//                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-//                fragmentManager.popBackStack();
-//            }
-//        });
+        ImageButton cancelBtn = view.findViewById(R.id.backFavorBtn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Đóng FoodFragment và hiển thị lại HomeFragment
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
 
         return view;
     }

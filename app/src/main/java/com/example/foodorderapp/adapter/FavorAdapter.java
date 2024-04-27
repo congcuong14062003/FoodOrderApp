@@ -1,5 +1,6 @@
 package com.example.foodorderapp.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class FavorAdapter extends RecyclerView.Adapter<FavorAdapter.FavorViewHol
         TextView nameFood;
         TextView ingredientFood;
         TextView totalReview;
+        ImageView[] starImages;
         ImageView img_thumbnail;
 
         public FavorViewHolder(@NonNull View itemView) {
@@ -53,14 +55,56 @@ public class FavorAdapter extends RecyclerView.Adapter<FavorAdapter.FavorViewHol
             ingredientFood = itemView.findViewById(R.id.itemDescription);
             img_thumbnail = itemView.findViewById(R.id.itemImage);
             totalReview = itemView.findViewById(R.id.itemReview);
+            starImages = new ImageView[5];
+            starImages[0]=itemView.findViewById(R.id.star1);
+            starImages[1]=itemView.findViewById(R.id.star2);
+            starImages[2]=itemView.findViewById(R.id.star3);
+            starImages[3]=itemView.findViewById(R.id.star4);
+            starImages[4]=itemView.findViewById(R.id.star5);
         }
 
         public void bind(FoodDTO foodDTO) {
             nameFood.setText(foodDTO.getName());
             ingredientFood.setText(foodDTO.getIngredients());
             totalReview.setText(String.valueOf(foodDTO.getTotal_reviews()));
+            setRatingStars(foodDTO.getAverage_rating());
             // Sử dụng Picasso để tải hình ảnh từ URL và hiển thị nó trong ImageView
             Picasso.get().load(foodDTO.getImageUrl()).into(img_thumbnail);
         }
+
+        private void setRatingStars(String averageRating){
+            // Kiểm tra nếu averageRating là null hoặc rỗng, thì mặc định toàn bộ sẽ là sao trắng
+            if (averageRating == null || averageRating.isEmpty()) {
+                Log.d("ListFoodAdapter", "Món ăn có đánh giá null");
+                setAllStarImage(false);
+            } else {
+                Log.d("ListFoodAdapter", "Món ăn có đánh giá " + averageRating);
+                // Kiểm tra xem chuỗi có chứa dấu chấm không
+                if (averageRating.contains(".")) {
+                    // Nếu có, cắt bỏ phần thập phân trước khi chuyển đổi
+                    averageRating = averageRating.split("\\.")[0];
+                }
+                try {
+                    int avgNumberRating = Integer.parseInt(averageRating);
+                    int minNumber = Math.min(avgNumberRating, 5);
+                    for (int i = 0; i < minNumber; i++) {
+                        starImages[i].setImageResource(R.drawable.pinkstar);
+                    }
+                } catch (NumberFormatException e) {
+                    // Xử lý nếu không thể chuyển đổi chuỗi thành số nguyên
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        private void setAllStarImage(boolean isFilled) {
+            int starResource = isFilled ? R.drawable.pinkstar : R.drawable.star;
+            for (ImageView starImage : starImages) {
+                starImage.setImageResource(starResource);
+            }
+        }
     }
+
+
+
 }
