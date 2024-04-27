@@ -29,8 +29,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Khởi tạo Fragment Home mặc định khi Activity được khởi chạy
-        replaceFragment(new HomeFragment());
         binding.bottomNavigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
+
+        String fragmentToShow = getIntent().getStringExtra("fragment");
+        if (fragmentToShow != null && fragmentToShow.equals("order")) {
+            replaceFragment(new OrderFragment());
+            binding.bottomNavigation.getMenu().findItem(R.id.navigation_receipt).setChecked(true);
+        } else {
+            // Nếu không có intent hoặc không phải là order fragment, hiển thị fragment mặc định
+            replaceFragment(new HomeFragment());
+        }
+
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

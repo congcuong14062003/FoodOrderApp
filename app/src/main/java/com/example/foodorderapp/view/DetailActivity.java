@@ -32,7 +32,6 @@ public class DetailActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         // Nhận ID của thức ăn từ Intent
         int foodId = getIntent().getIntExtra("foodId", -1);
-        Log.d("Màn Detail", "FoodId: " + foodId);
         if (foodId != -1) {
             getFetailFood(foodId);
         }
@@ -54,7 +53,6 @@ public class DetailActivity extends AppCompatActivity {
                     detailFoodResponse.setSuccess(true);
                     if (detailFoodResponse != null && detailFoodResponse.isSuccess()) {
                         DetailFoodDTO detailFoodDTO = detailFoodResponse.getData();
-                        Log.d("Màn Chi tiết", "Data đồ ăn: " + detailFoodDTO);
                         // Xử lý dữ liệu và cập nhật giao diện
                         updateUI(detailFoodDTO);
                     } else {
@@ -74,7 +72,6 @@ public class DetailActivity extends AppCompatActivity {
 
     private void updateUI(DetailFoodDTO detailFoodDTO) {
         setContentView(R.layout.activity_detail); // Gọi setContentView() sau khi dữ liệu đã được xử lý
-
         // Ánh xạ các view từ layout
         ImageView img_detail = findViewById(R.id.img_detail);
         TextView name_detail = findViewById(R.id.name_detail);
@@ -89,7 +86,6 @@ public class DetailActivity extends AppCompatActivity {
         starImages[2] = findViewById(R.id.star3);
         starImages[3] = findViewById(R.id.star4);
         starImages[4] = findViewById(R.id.star5);
-
         // Set dữ liệu cho các view
         Picasso.get().load(detailFoodDTO.getImg_thumbnail()).into(img_detail);
         name_detail.setText(detailFoodDTO.getName());
@@ -98,7 +94,6 @@ public class DetailActivity extends AppCompatActivity {
         price_detail.setText(String.valueOf(detailFoodDTO.getPrice())); // Chuyển đổi giá trị double sang String
         total_reviews.setText(String.valueOf(detailFoodDTO.getTotal_reviews())); // Chuyển đổi giá trị double sang String
         solds.setText(String.valueOf(detailFoodDTO.getTotal_orders())); // Chuyển đổi giá trị double sang String
-        Log.d("Màn chi tiết đồ ăn", "id đồ ăn: " +detailFoodDTO.getId());
         // Set số sao
         setRatingStars(detailFoodDTO.getAverage_rating(), starImages);
 
@@ -108,6 +103,10 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailActivity.this, OrderMainActivity.class);
                 intent.putExtra("foodId", detailFoodDTO.getId());
+//                intent.putExtra("name", detailFoodDTO.getName());
+//                intent.putExtra("imgorder", detailFoodDTO.getImg_thumbnail());
+//                intent.putExtra("price", detailFoodDTO.getPrice());
+//                intent.putExtra("ingredient", detailFoodDTO.getIngredients());
                 startActivity(intent);
                 finish();
             }
