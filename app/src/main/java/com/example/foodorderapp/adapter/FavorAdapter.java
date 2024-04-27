@@ -19,10 +19,15 @@ import java.util.List;
 
 public class FavorAdapter extends RecyclerView.Adapter<FavorAdapter.FavorViewHolder> {
     private List<FoodDTO> foodDTOList = new ArrayList<>();
+    private InFoodItemClickListener inFoodItemClickListener;
 
     public void setFoodList(List<FoodDTO> foodDTOList) {
         this.foodDTOList = foodDTOList;
         notifyDataSetChanged();
+    }
+
+    public void SetOnFoodItemClickListener(InFoodItemClickListener listener) {
+        this.inFoodItemClickListener = listener;
     }
 
     @NonNull
@@ -35,6 +40,7 @@ public class FavorAdapter extends RecyclerView.Adapter<FavorAdapter.FavorViewHol
     public void onBindViewHolder(@NonNull FavorAdapter.FavorViewHolder holder, int position) {
         FoodDTO foodDTO = foodDTOList.get(position);
         holder.bind(foodDTO);
+        holder.SetItemClickListeners(inFoodItemClickListener, foodDTO.getId());
     }
 
     @Override
@@ -72,6 +78,17 @@ public class FavorAdapter extends RecyclerView.Adapter<FavorAdapter.FavorViewHol
             Picasso.get().load(foodDTO.getImg_thumbnail()).into(img_thumbnail);
         }
 
+        public void SetItemClickListeners(final FavorAdapter.InFoodItemClickListener listener, final int foodId) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onFoodItemClick(foodId);
+                    }
+                }
+            });
+        }
+
         private void setRatingStars(String averageRating){
             // Kiểm tra nếu averageRating là null hoặc rỗng, thì mặc định toàn bộ sẽ là sao trắng
             if (averageRating == null || averageRating.isEmpty()) {
@@ -105,6 +122,9 @@ public class FavorAdapter extends RecyclerView.Adapter<FavorAdapter.FavorViewHol
         }
     }
 
+    public interface InFoodItemClickListener {
+        void onFoodItemClick(int foodId);
+    }
 
 
 }

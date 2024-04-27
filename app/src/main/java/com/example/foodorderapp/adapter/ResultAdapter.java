@@ -1,6 +1,5 @@
 package com.example.foodorderapp.adapter;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.object.FoodDTO;
+import com.example.foodorderapp.view.ResultFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -20,13 +20,15 @@ import java.util.List;
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> {
     private List<FoodDTO> foodDTOList = new ArrayList<>();
-    private OnFoodItemClickListener onFoodItemClickListener;
+    private InFoodItemClickListener inFoodItemClickListener;
+
+
     public void setFoodList(List<FoodDTO> foodDTOList) {
         this.foodDTOList = foodDTOList;
         notifyDataSetChanged();
     }
-    public void setOnFoodItemClickListener(OnFoodItemClickListener listener) {
-        this.onFoodItemClickListener = listener;
+    public void SetOnFoodItemClickListener(InFoodItemClickListener listener) {
+        this.inFoodItemClickListener = listener;
     }
 
 
@@ -39,8 +41,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
     public void onBindViewHolder(@NonNull ResultAdapter.ResultViewHolder holder, int position) {
         FoodDTO foodDTO = foodDTOList.get(position);
-        holder.setItemClickListeners(onFoodItemClickListener, foodDTO.getId());
         holder.bind(foodDTO);
+        holder.SetItemClickListeners(inFoodItemClickListener, foodDTO.getId());
     }
 
     @Override
@@ -80,7 +82,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
             Picasso.get().load(foodDTO.getImg_thumbnail()).into(img_thumbnail);
         }
 
-        public void setItemClickListeners(final OnFoodItemClickListener listener, final int foodId) {
+        public void SetItemClickListeners(final InFoodItemClickListener listener, final int foodId) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -124,7 +126,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         }
     
     }
-    public interface OnFoodItemClickListener {
+    public interface InFoodItemClickListener {
         void onFoodItemClick(int foodId);
     }
 

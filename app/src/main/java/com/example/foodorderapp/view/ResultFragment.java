@@ -32,10 +32,10 @@ import com.example.foodorderapp.viewmodal.FoodViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultFragment extends Fragment {
+public class ResultFragment extends Fragment implements ResultAdapter.InFoodItemClickListener {
 
     private FoodViewModel foodViewModel;
-    private FoodFragment foodFragment;
+
     private String userInput;
 
 
@@ -45,26 +45,19 @@ public class ResultFragment extends Fragment {
     }
 
     @Nullable
-// Trong FoodFragment
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_result, container, false);
+        Bundle args = getArguments();
 
         RecyclerView recyclerView = view.findViewById(resultRecycle);
         final ResultAdapter adapter = new ResultAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
-
-//        foodViewModel.getFoodList().observe(getViewLifecycleOwner(), orderDTOs -> {
-//               adapter.setFoodList(orderDTOs);
-//            });
-
-
-        Bundle args = getArguments();
+        adapter.SetOnFoodItemClickListener((ResultAdapter.InFoodItemClickListener) this);
         if (args != null && args.containsKey("userInput")) {
-             userInput = args.getString("userInput");
+            userInput = args.getString("userInput");
 
             TextView txtResult =view.findViewById(R.id.textResult);
             txtResult.setText("Result for "+ userInput);
@@ -93,18 +86,18 @@ public class ResultFragment extends Fragment {
         return view;
     }
 
-//    @NonNull
-//    @Override
-//    public CreationExtras getDefaultViewModelCreationExtras() {
-//        return super.getDefaultViewModelCreationExtras();
-//    }
-//
-//    @Override
-//    public void onFoodItemClick(int foodId) {
-////         Handle item click event here, e.g., navigate to the detail fragment with foodId
-//        Intent intent = new Intent(requireContext(), DetailActivity.class);
-//        intent.putExtra("foodId", foodId); // Truyền ID của thức ăn qua Intent
-//        startActivity(intent);
-//    }
+    @NonNull
+    @Override
+    public CreationExtras getDefaultViewModelCreationExtras() {
+        return super.getDefaultViewModelCreationExtras();
+    }
+
+
+    public void onFoodItemClick(int foodId) {
+//         Handle item click event here, e.g., navigate to the detail fragment with foodId
+        Intent intent = new Intent(requireContext(), DetailActivity.class);
+        intent.putExtra("foodId", foodId); // Truyền ID của thức ăn qua Intent
+        startActivity(intent);
+    }
 
 }

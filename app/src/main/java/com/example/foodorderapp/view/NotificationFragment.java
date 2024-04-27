@@ -3,11 +3,13 @@ package com.example.foodorderapp.view;
 import static com.example.foodorderapp.R.id.list_food_recycle;
 import static com.example.foodorderapp.R.id.notiRecycle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,15 +50,15 @@ public class NotificationFragment extends Fragment {
             adapter.setNotiList(notiDTOS);
         });
 
-//        TextView cancelBtn = view.findViewById(R.id.backBtn);
-//        cancelBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Đóng FoodFragment và hiển thị lại HomeFragment
-//                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-//                fragmentManager.popBackStack();
-//            }
-//        });
+        ImageButton cancelBtn = view.findViewById(R.id.backBtn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+
+                startActivity(intent);
+            }
+        });
 
     return view;
     }

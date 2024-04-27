@@ -68,8 +68,6 @@ public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItem
         // Yêu cầu focus cho EditText trong FoodFragment
         searchFood.requestFocus();
 
-
-
         searchFood.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 // Xử lý khi người dùng nhập liệu xong và nhấn Enter trên bàn phím ảo hoặc trên thiết bị thật
