@@ -3,6 +3,7 @@ package com.example.foodorderapp.view;
 import static com.example.foodorderapp.R.id.list_food_recycle;
 import static com.example.foodorderapp.R.id.resultRecycle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -91,5 +93,19 @@ public class ResultFragment extends Fragment {
 
         return view;
     }
+
+//    @NonNull
+//    @Override
+//    public CreationExtras getDefaultViewModelCreationExtras() {
+//        return super.getDefaultViewModelCreationExtras();
+//    }
+//
+//    @Override
+//    public void onFoodItemClick(int foodId) {
+////         Handle item click event here, e.g., navigate to the detail fragment with foodId
+//        Intent intent = new Intent(requireContext(), DetailActivity.class);
+//        intent.putExtra("foodId", foodId); // Truyền ID của thức ăn qua Intent
+//        startActivity(intent);
+//    }
 
 }

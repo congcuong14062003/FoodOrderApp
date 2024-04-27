@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> {
     private List<FoodDTO> foodDTOList = new ArrayList<>();
-
+    private OnFoodItemClickListener onFoodItemClickListener;
     public void setFoodList(List<FoodDTO> foodDTOList) {
         this.foodDTOList = foodDTOList;
         notifyDataSetChanged();
