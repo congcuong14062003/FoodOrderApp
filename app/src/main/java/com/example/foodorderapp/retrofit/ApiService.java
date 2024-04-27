@@ -12,19 +12,30 @@ import retrofit2.http.Query;
 public interface ApiService {
     String BASE_URL = "https://food-app-server-murex.vercel.app/";
 
-    @GET("orders/list/1")
-    Call<OrderResponse> getOrders();
+    @GET("orders/list/{userId}")
+    Call<OrderResponse> getOrders(@Path("userId") int userId);
+    // đặt hàng
+    @FormUrlEncoded
+    @POST("orders/post_orders")
+    Call<OrderFoodResponsive> postOrder(@Field("food_id") int food_id, @Field("user_id") int user_id,  @Field("quantity") int quantity,  @Field("total_price") double total_price);
 
+    // danh sách món ăn
     @GET("foods")
     Call<ListFoodResponsive> getFoods();
+    // chi tiết món ăn
+    @GET("foods/find/{foodId}")
+    Call<DetailFoodResponsive> getDetailFood(@Path("foodId") int foodId);
+    // thông tin người dùng
 
     @POST("foods/search")
     Call<ListFoodResponsive> getFoodListByName(@Body SearchRequest searchRequest);
 
     @GET("users/info/{userId}")
     Call<UserResponsive> getUserInfo(@Path("userId") int userId);
+
+    // đăng nhập
     @FormUrlEncoded
-    @POST("users/login") // Địa chỉ API cho đăng nhập
+    @POST("users/login")
     Call<LoginResponsive> login(@Field("phone_number") String phoneNumber, @Field("password") String password);
 
     @GET("notices/list_notices/{userId}")

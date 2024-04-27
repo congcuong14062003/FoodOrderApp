@@ -1,23 +1,29 @@
 package com.example.foodorderapp.object;
 
-public class FoodDTO {
+public class DetailFoodDTO {
     private int id;
     private String img_thumbnail;
     private String name;
-    private String description;
     private String ingredients;
+    private double price;
+
+    private String description;
+    private int total_orders;
     private String average_rating;
     private int total_reviews;
 
-    public FoodDTO(String img_thumbnail, String name, String ingredients,String average_rating, String description, int total_reviews,int id) {
+    public DetailFoodDTO(int id, String img_thumbnail, String name, String ingredients, double price, String description, int total_orders, String average_rating, int total_reviews) {
+        this.id = id;
         this.img_thumbnail = img_thumbnail;
-        this.id=id;
         this.name = name;
         this.ingredients = ingredients;
+        this.price = price;
+        this.description = description;
+        this.total_orders = total_orders;
         this.average_rating = average_rating;
         this.total_reviews = total_reviews;
-        this.description=description;
     }
+
     public int getId() {
         return id;
     }
@@ -50,6 +56,30 @@ public class FoodDTO {
         this.ingredients = ingredients;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getTotal_orders() {
+        return total_orders;
+    }
+
+    public void setTotal_orders(int total_orders) {
+        this.total_orders = total_orders;
+    }
+
     public String getAverage_rating() {
         return average_rating;
     }
@@ -64,13 +94,5 @@ public class FoodDTO {
 
     public void setTotal_reviews(int total_reviews) {
         this.total_reviews = total_reviews;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

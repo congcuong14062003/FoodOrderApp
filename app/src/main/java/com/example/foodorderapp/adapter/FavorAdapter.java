@@ -69,7 +69,7 @@ public class FavorAdapter extends RecyclerView.Adapter<FavorAdapter.FavorViewHol
             totalReview.setText(String.valueOf(foodDTO.getTotal_reviews()));
             setRatingStars(foodDTO.getAverage_rating());
             // Sử dụng Picasso để tải hình ảnh từ URL và hiển thị nó trong ImageView
-            Picasso.get().load(foodDTO.getImageUrl()).into(img_thumbnail);
+            Picasso.get().load(foodDTO.getImg_thumbnail()).into(img_thumbnail);
         }
 
         private void setRatingStars(String averageRating){
