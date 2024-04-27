@@ -4,12 +4,8 @@ import static com.example.foodorderapp.R.id.list_food_recycle;
 
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
->>>>>>> CUONG_NG
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,21 +25,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.ListFoodAdapter;
-<<<<<<< HEAD
-=======
 import com.example.foodorderapp.adapter.OrderAdapter;
 import com.example.foodorderapp.object.FoodDTO;
->>>>>>> CUONG_NG
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 
-<<<<<<< HEAD
-public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItemClickListener {
-=======
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodFragment extends Fragment {
->>>>>>> CUONG_NG
+public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItemClickListener {
     private FoodViewModel foodViewModel;
     private EditText searchFood;
     private HomeFragment homeFragment;
@@ -59,8 +49,6 @@ public class FoodFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString("userInput", userInput);
         resultFragment.setArguments(args);
-
-
 
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, resultFragment);
