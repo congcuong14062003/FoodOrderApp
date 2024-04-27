@@ -77,7 +77,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
             total_reviews.setText(String.valueOf(foodDTO.getTotal_reviews()));
             setRatingStars(foodDTO.getAverage_rating());
             // Sử dụng Picasso để tải hình ảnh từ URL và hiển thị nó trong ImageView
-            Picasso.get().load(foodDTO.getImageUrl()).into(img_thumbnail);
+            Picasso.get().load(foodDTO.getImg_thumbnail()).into(img_thumbnail);
         }
 
         public void setItemClickListeners(final OnFoodItemClickListener listener, final int foodId) {
