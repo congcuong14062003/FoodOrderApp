@@ -67,8 +67,6 @@ public class LoginViewModel {
                             // Đặt id người dùng khi đăng nhập thành công
                             UserManager.getInstance().setUserId(loginResponse.getData().getId());
                             Log.d("LoginViewModel", "User Name: " + loginResponse.getData().getName());
-
-
                         }
                     } else {
                         loginStatus.setValue(false);

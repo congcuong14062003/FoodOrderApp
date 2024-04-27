@@ -10,6 +10,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodorderapp.R;
+import com.example.foodorderapp.UserManager;
 
 public class ProfileFragment extends Fragment {
     @Override
@@ -22,9 +23,10 @@ public class ProfileFragment extends Fragment {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa tất cả các hoạt động trước đó và đặt LoginActivity làm hoạt động cực đỉnh mới
-                getContext().startActivity(intent);
+                UserManager.getInstance().clearUserId();
+                Intent intent = new Intent(rootView.getContext(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
         return rootView;

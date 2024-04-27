@@ -25,14 +25,13 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/white"
         android:hint="Họ và tên"
         android:paddingBottom="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -107,20 +106,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_custom"
         android:backgroundTint="@color/maincolor"
         android:text="Đăng ký"
         android:textColor="@color/white"
         android:textSize="@dimen/mainfontsize"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="20dp" />
+        tools:layout_editor_absoluteX="24dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
