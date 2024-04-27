@@ -29,6 +29,7 @@ public class NotificationFragment extends Fragment {
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         notiViewModel = new ViewModelProvider(this).get(NotiViewModel.class);
     }
 

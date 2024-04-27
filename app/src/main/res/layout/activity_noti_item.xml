@@ -51,7 +51,7 @@
                 android:orientation="vertical">
 
                 <TextView
-
+                    android:id="@+id/title_notifi"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
@@ -70,7 +70,7 @@
 
 
                         <TextView
-                            android:id="@+id/notiName"
+                            android:id="@+id/notices_message"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
@@ -83,33 +83,16 @@
 
 
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/notiQuantity"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginBottom="5dp"-->
-<!--                            android:gravity="top"-->
-<!--                            android:text="Goodfood makes cooking fun and easy."-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:textSize="15dp" />-->
 
 
-                        <TextView
-                            android:id="@+id/notiTotal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="top"
-                            android:text="Goodfood makes cooking fun and easy."
-                            android:textColor="@color/black"
-                            android:textSize="15dp" />
+
 
 
 
 
 
                 <TextView
-                    android:id="@+id/notiInsertTime"
+                    android:id="@+id/notices_datetime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="12dp"

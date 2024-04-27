@@ -1,11 +1,13 @@
 package com.example.foodorderapp.retrofit;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
     String BASE_URL = "https://food-app-server-murex.vercel.app/";
@@ -20,10 +22,17 @@ public interface ApiService {
     // danh sách món ăn
     @GET("foods")
     Call<ListFoodResponsive> getFoods();
+<<<<<<< HEAD
     // chi tiết món ăn
     @GET("foods/find/{foodId}")
     Call<DetailFoodResponsive> getDetailFood(@Path("foodId") int foodId);
     // thông tin người dùng
+=======
+
+    @POST("foods/search")
+    Call<ListFoodResponsive> getFoodListByName(@Body SearchRequest searchRequest);
+
+>>>>>>> CUONG_NG
     @GET("users/info/{userId}")
     Call<UserResponsive> getUserInfo(@Path("userId") int userId);
 
@@ -32,8 +41,13 @@ public interface ApiService {
     @POST("users/login")
     Call<LoginResponsive> login(@Field("phone_number") String phoneNumber, @Field("password") String password);
 
+<<<<<<< HEAD
 
     @GET("notices/list/1")
     Call<NotiResponsive> getNotis();
 
+=======
+    @GET("notices/list_notices/{userId}")
+    Call<NotiResponsive> getNotis(@Path("userId") int userId);
+>>>>>>> CUONG_NG
 }

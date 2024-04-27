@@ -1,57 +1,42 @@
 package com.example.foodorderapp.object;
 
 public class NotiDTO {
-    private String img_thumbnail;
-    private String name;
-    private int quantity;
-    private String order_datetime;
-    private double total_price;
 
-    public NotiDTO(String img_thumbnail, String name, int quantity, String order_datetime, float total_price) {
-        this.img_thumbnail = img_thumbnail;
-        this.name = name;
-        this.quantity = quantity;
-        this.order_datetime = order_datetime;
-        this.total_price=total_price;
+    private String title_notifi;
+    private String notices_message;
+    private String notices_datetime;
+
+
+    public NotiDTO(String title_notifi, String order_datetime, String notices_message) {
+
+        this.title_notifi = title_notifi;
+        this.notices_message = notices_message;
+        this.notices_datetime = notices_datetime;
     }
 
-    public String getImgNoti() {
-        return img_thumbnail;
+    public String getTitle_notifi() {
+        return title_notifi;
     }
 
-    public void setImgNoti(String img_thumbnail) {
-        this.img_thumbnail = img_thumbnail;
+    public void setTitle_notifi(String title_notifi) {
+        this.title_notifi = title_notifi;
     }
 
-    public String getName() {
-        return name;
+    public String getNotices_message() {
+        return notices_message;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNotices_message(String notices_message) {
+        this.notices_message = notices_message;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getNotices_datetime() {
+        return notices_datetime;
     }
 
-    public void setquantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getOrder_datetime() {
-        return order_datetime;
-    }
-
-    public void setorder_datetime(String order_datetime) {
-        this.order_datetime = order_datetime;
-    }
-
-    public double getTotal_price() {
-        return total_price;
-    }
-
-    public void settotal_price(float total_price) {
-        this.total_price = total_price;
+    public void setNotices_datetime(String notices_datetime) {
+        this.notices_datetime = notices_datetime;
     }
 }
+
+

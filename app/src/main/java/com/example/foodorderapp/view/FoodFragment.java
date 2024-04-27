@@ -4,9 +4,16 @@ import static com.example.foodorderapp.R.id.list_food_recycle;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+>>>>>>> CUONG_NG
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,9 +28,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.ListFoodAdapter;
+<<<<<<< HEAD
+=======
+import com.example.foodorderapp.adapter.OrderAdapter;
+import com.example.foodorderapp.object.FoodDTO;
+>>>>>>> CUONG_NG
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 
+<<<<<<< HEAD
 public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItemClickListener {
+=======
+import java.util.ArrayList;
+import java.util.List;
+
+public class FoodFragment extends Fragment {
+>>>>>>> CUONG_NG
     private FoodViewModel foodViewModel;
     private EditText searchFood;
     private HomeFragment homeFragment;
@@ -33,17 +52,46 @@ public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItem
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
     }
 
+    private void handleSubmit() {
+        String userInput = searchFood.getText().toString(); // Lấy dữ liệu người dùng nhập vào EditText
+
+        Fragment resultFragment = new ResultFragment();
+        Bundle args = new Bundle();
+        args.putString("userInput", userInput);
+        resultFragment.setArguments(args);
+
+
+
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, resultFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        // Xử lý dữ liệu userInput ở đây, ví dụ: tìm kiếm, lưu trữ, xử lý, vv.
+
+
+    }
+
     @Nullable
 // Trong FoodFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_detail, container, false);
-
-
-
         searchFood = view.findViewById(R.id.search_food);
         // Yêu cầu focus cho EditText trong FoodFragment
         searchFood.requestFocus();
+
+
+
+        searchFood.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // Xử lý khi người dùng nhập liệu xong và nhấn Enter trên bàn phím ảo hoặc trên thiết bị thật
+                // Gọi hàm xử lý submit
+                handleSubmit();
+                return true;
+            }
+            return false;
+        });
+
 
         RecyclerView recyclerView = view.findViewById(list_food_recycle);
         final ListFoodAdapter adapter = new ListFoodAdapter();
@@ -52,6 +100,34 @@ public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItem
         adapter.setOnFoodItemClickListener(this);
         foodViewModel.getFoodList().observe(getViewLifecycleOwner(), orderDTOs -> {
             adapter.setFoodList(orderDTOs);
+        });
+
+        // thay đổi theo sự kiện onchange của input
+        searchFood.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String newText = s.toString().toLowerCase();
+                List<FoodDTO> newList = new ArrayList<>();
+
+                for (FoodDTO food : foodViewModel.getFoodList().getValue() ){
+                    if(food.getName().toLowerCase().startsWith(newText)){
+                        newList.add(food);
+                    }
+                }
+
+                adapter.setFoodList(newList);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
 
         // Lắng nghe sự kiện click của nút "Cancel"

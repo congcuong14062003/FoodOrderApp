@@ -45,30 +45,28 @@ public class NotiAdapter extends RecyclerView.Adapter<NotiAdapter.NotiViewHolder
     }
 
     static class NotiViewHolder extends RecyclerView.ViewHolder {
-        TextView notiName;
-        TextView notiQuantity;
-        TextView notiTotal;
-        TextView notiInsertTime;
-        ImageView imgNoti;
+        TextView title_notifi ;
+        TextView notices_message;
+
+        TextView notices_datetime;
+
 
         @SuppressLint("WrongViewCast")
         public NotiViewHolder(@NonNull View itemView) {
             super(itemView);
-            notiName = itemView.findViewById(R.id.notiName);
-//            notiQuantity = itemView.findViewById(R.id.notiQuantity);
-            notiTotal = itemView.findViewById(R.id.notiTotal);
-            notiInsertTime = itemView.findViewById(R.id.notiInsertTime);
-            imgNoti = itemView.findViewById(R.id.notiImg);
+            title_notifi = itemView.findViewById(R.id.title_notifi);
+//
+            notices_message = itemView.findViewById(R.id.notices_message);
+            notices_datetime = itemView.findViewById(R.id.notices_datetime);
+
         }
 
         public void bind(NotiDTO notiDTO) {
-            notiName.setText( "Món ăn "+notiDTO.getName() + "(x"+String.valueOf(notiDTO.getQuantity())+")"+ " đang trên đường giao đến bạn." );
-//           notiQuantity.setText(String.valueOf(notiDTO.getQuantity()));
-            notiTotal.setText(  "Vui lòng thanh toán "+"$" + String.valueOf(notiDTO.getTotal_price())+ " cho người giao hàng." );
-            String formattedDateTime = DateTimeHelper.formatDateTime(notiDTO.getOrder_datetime());
-            notiInsertTime.setText(formattedDateTime);
-            // Sử dụng Picasso để tải hình ảnh từ URL và hiển thị nó trong ImageView
-//            Picasso.get().load(notiDTO.getImgNoti()).into(imgNoti);
+            title_notifi.setText( notiDTO.getTitle_notifi()  );
+            notices_message.setText(  notiDTO.getNotices_message() );
+            String formattedDateTime = DateTimeHelper.formatDateTime(notiDTO.getNotices_datetime());
+            notices_datetime.setText(formattedDateTime);
+
         }
     }
 }
