@@ -25,6 +25,10 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         this.foodDTOList = foodDTOList;
         notifyDataSetChanged();
     }
+    public void setOnFoodItemClickListener(OnFoodItemClickListener listener) {
+        this.onFoodItemClickListener = listener;
+    }
+
 
     @NonNull
     @Override
@@ -35,6 +39,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
     public void onBindViewHolder(@NonNull ResultAdapter.ResultViewHolder holder, int position) {
         FoodDTO foodDTO = foodDTOList.get(position);
+        holder.setItemClickListeners(onFoodItemClickListener, foodDTO.getId());
         holder.bind(foodDTO);
     }
 
@@ -74,6 +79,18 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
             // Sử dụng Picasso để tải hình ảnh từ URL và hiển thị nó trong ImageView
             Picasso.get().load(foodDTO.getImageUrl()).into(img_thumbnail);
         }
+
+        public void setItemClickListeners(final OnFoodItemClickListener listener, final int foodId) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onFoodItemClick(foodId);
+                    }
+                }
+            });
+        }
+
         private void setRatingStars(String averageRating){
             // Kiểm tra nếu averageRating là null hoặc rỗng, thì mặc định toàn bộ sẽ là sao trắng
             if (averageRating == null || averageRating.isEmpty()) {
@@ -107,4 +124,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         }
     
     }
+    public interface OnFoodItemClickListener {
+        void onFoodItemClick(int foodId);
+    }
+
 }
