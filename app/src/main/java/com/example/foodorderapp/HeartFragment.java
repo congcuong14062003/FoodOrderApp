@@ -1,5 +1,6 @@
 package com.example.foodorderapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,10 +20,12 @@ import android.widget.TextView;
 
 import com.example.foodorderapp.adapter.FavorAdapter;
 import com.example.foodorderapp.adapter.NotiAdapter;
+import com.example.foodorderapp.view.DetailActivity;
+import com.example.foodorderapp.view.MainActivity;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 import com.example.foodorderapp.viewmodal.NotiViewModel;
 
-public class HeartFragment extends Fragment {
+public class HeartFragment extends Fragment implements FavorAdapter.InFoodItemClickListener {
 
     // Inflate the layout for this fragment
     private FoodViewModel foodViewModel;
@@ -41,6 +45,7 @@ public class HeartFragment extends Fragment {
         final FavorAdapter adapter = new FavorAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.SetOnFoodItemClickListener(this);
 
         foodViewModel.getFoodList().observe(getViewLifecycleOwner(), orderDTOS -> {
             adapter.setFoodList(orderDTOS);
@@ -50,12 +55,25 @@ public class HeartFragment extends Fragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Đóng FoodFragment và hiển thị lại HomeFragment
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                fragmentManager.popBackStack();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+
+                startActivity(intent);
             }
         });
 
         return view;
+    }
+    @NonNull
+    @Override
+    public CreationExtras getDefaultViewModelCreationExtras() {
+        return super.getDefaultViewModelCreationExtras();
+    }
+
+
+    public void onFoodItemClick(int foodId) {
+//         Handle item click event here, e.g., navigate to the detail fragment with foodId
+        Intent intent = new Intent(requireContext(), DetailActivity.class);
+        intent.putExtra("foodId", foodId); // Truyền ID của thức ăn qua Intent
+        startActivity(intent);
     }
 }

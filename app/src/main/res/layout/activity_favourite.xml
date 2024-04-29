@@ -52,12 +52,14 @@
         android:layout_width="414dp"
         android:layout_height="match_parent"
         android:layout_marginTop="76dp"
-        android:paddingLeft="10dp"
+        android:layout_marginLeft="12dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
