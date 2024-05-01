@@ -1,5 +1,9 @@
 package com.example.foodorderapp;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 public class UserManager {
     private static UserManager instance;
     private int userId;
@@ -26,4 +30,5 @@ public class UserManager {
     public void clearUserId(){
         this.userId = -1;
     }
+
 }

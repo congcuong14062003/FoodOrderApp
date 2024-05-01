@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Khởi tạo Fragment Home mặc định khi Activity được khởi chạy
         replaceFragment(new HomeFragment());
         binding.bottomNavigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

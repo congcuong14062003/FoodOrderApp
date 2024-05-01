@@ -1,12 +1,12 @@
 package com.example.foodorderapp.object;
 
 public class UserDTO {
-    private int id;
-    private String name;
-    private String phoneNumber;
-    private String address;
-    private String password;
-    private String avatar_thumbnail;
+        private int id;
+        private String name;
+        private String phoneNumber;
+        private String address;
+        private String password;
+        private String avatar_thumbnail;
 
     public int getId() {
         return id;

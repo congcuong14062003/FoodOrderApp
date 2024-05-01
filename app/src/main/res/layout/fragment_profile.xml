@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topLayout"
-        android:layout_width="415dp"
+        android:layout_width="match_parent"
         android:layout_height="192dp"
         android:background="@color/maincolor"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
             tools:layout_editor_absoluteX="0dp">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/imageUser"
+                android:id="@+id/next_to_user_detail"
                 android:layout_width="60dp"
                 android:layout_height="46dp"
                 android:scaleType="fitCenter"
