@@ -14,11 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import com.example.foodorderapp.R;
+<<<<<<< HEAD
 import com.example.foodorderapp.SignupActivity;
+=======
+>>>>>>> 27f52d281d792286c69e24975784f87bddd3aec7
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
-
     private EditText txtUserName;
     private EditText txtPassWord;
     private Button btnsLogin;
@@ -50,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         loginViewModel.getLoginStatus().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean loginStatus) {
@@ -72,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

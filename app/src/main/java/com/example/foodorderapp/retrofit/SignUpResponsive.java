@@ -2,7 +2,7 @@ package com.example.foodorderapp.retrofit;
 
 import com.example.foodorderapp.object.UserDTO;
 
-public class UserResponsive {
+public class SignUpResponsive {
     private boolean success;
     private UserDTO data;
 

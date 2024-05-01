@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.object.LoginUser;
+import com.example.foodorderapp.object.UserDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.LoginResponsive;
 
@@ -16,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,6 +61,7 @@ public class LoginViewModel {
                         loginStatus.setValue(true);
                         Log.d("LoginViewModel", "API call successful."); // Log success message
                         // Log response data
+                        UserDTO user = new UserDTO();
                         if (loginResponse.getData() != null) {
                             Log.d("LoginViewModel", "User ID: " + loginResponse.getData().getId());
                             // Đặt id người dùng khi đăng nhập thành công
