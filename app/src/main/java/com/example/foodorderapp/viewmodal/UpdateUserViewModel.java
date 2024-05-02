@@ -42,7 +42,11 @@ import android.graphics.Bitmap;
 public class UpdateUserViewModel extends ViewModel {
     private Uri uri;
     private static String dataFile;
-    private MutableLiveData<Boolean> status;
+    private MutableLiveData<Boolean> status = new MutableLiveData<>();
+
+    public MutableLiveData<Boolean> getStatus() {
+        return status;
+    }
 
     // Method to upload image
     public void uploadImage(ActivityResultLauncher<Intent> launcher, Context context, ImageView selectImg) {
@@ -133,7 +137,6 @@ public class UpdateUserViewModel extends ViewModel {
                 status.setValue(false);
                 Log.e("User update", "API call failed: " + t.getMessage());
             }
-
         });
     }
 }

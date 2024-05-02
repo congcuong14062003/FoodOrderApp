@@ -29,13 +29,13 @@ public interface ApiService {
     @POST("users/signup")
     Call<SignUpResponsive> signup(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password);
     @Multipart
-    @POST("/upload/avartar/{userId}")
+    @POST("upload/avartar/{userId}")
     Call<UserResponsive> updateAvatar(
-            @Path("id") int id,
+            @Path("userId") int userId,
             @Part MultipartBody.Part file
     );
     @FormUrlEncoded
-    @POST("/upload/info")
+    @POST("upload/info")
     Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
 
 }

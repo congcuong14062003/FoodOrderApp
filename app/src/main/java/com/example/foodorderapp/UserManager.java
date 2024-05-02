@@ -27,8 +27,5 @@ public class UserManager {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-    public void clearUserId(){
-        this.userId = -1;
-    }
 
 }

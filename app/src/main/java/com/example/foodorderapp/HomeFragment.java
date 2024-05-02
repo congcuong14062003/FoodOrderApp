@@ -1,5 +1,6 @@
 package com.example.foodorderapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -15,11 +16,11 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.foodorderapp.databinding.ActivityMainBinding;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.UserResponsive;
 import com.example.foodorderapp.object.UserDTO;
 import com.example.foodorderapp.view.FoodFragment;
+import com.example.foodorderapp.view.UserUpdateActivity;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -43,6 +44,8 @@ public class HomeFragment extends Fragment {
         int userId = UserManager.getInstance().getUserId();
         userName = view.findViewById(R.id.nameUser);
         avtUser = view.findViewById(R.id.avtUser);
+
+
         // ấn vào nút search
         searchHome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -58,6 +61,11 @@ public class HomeFragment extends Fragment {
         });
         fetchUserInfo(userId);
         return view;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchUserInfo(UserManager.getInstance().getUserId());
     }
     private void fetchUserInfo(int userId) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
