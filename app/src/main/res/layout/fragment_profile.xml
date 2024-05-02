@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="192dp"
         android:background="@color/maincolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,337 +28,329 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_settings" />
 
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/imageView8"
-            android:layout_width="60dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="150dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/image_user"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius="30dp" />
-
         <LinearLayout
-            android:layout_width="154dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="150dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="0dp">
 
-            <TextView
-                android:id="@+id/text_Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Erik Walters"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/avatar_user"
+                android:layout_width="60dp"
+                android:layout_height="46dp"
+                android:scaleType="fitCenter"
+                app:riv_corner_radius="30dp" />
 
-            <TextView
-                android:id="@+id/text_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="0383 zedar park"
-                android:textColor="@color/white"
-                android:textSize="15dp"/>
+            <LinearLayout
+                android:layout_width="154dp"
+                android:layout_height="54dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <LinearLayout
-        android:id="@+id/next_order"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="44dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/next_payment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:background="#f9f9f9"
         app:layout_constraintTop_toBottomOf="@+id/topLayout"
-        app:layout_constraintVertical_bias="0.703">
+        tools:layout_editor_absoluteX="-1dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="30dp"
-            app:cardBackgroundColor="#4C8DE7"
-            app:cardCornerRadius="100dp">
+        <LinearLayout
+            android:id="@+id/next_history_order"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                app:cardBackgroundColor="#4C8DE7"
+                app:cardCornerRadius="100dp">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_ordered_white" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_ordered_white" />
+
+                </RelativeLayout>
 
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/text_history_order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:text="Lịch sử đơn hàng"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_history_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="Lịch sử đơn hàng"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/ic_next_history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_arrow_right" />
+            <ImageView
+                android:id="@+id/ic_next_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/next_payment"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                app:cardBackgroundColor="#8ABE4E"
+                app:cardCornerRadius="100dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_wallet" />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/text_credit"
+                android:layout_width="184dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="Phương thức thanh toán"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ic_next_payment"
+                android:layout_width="62dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/next_credit"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                app:cardBackgroundColor="#F55525"
+                app:cardCornerRadius="100dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_start_white" />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/payment"
+                android:layout_width="184dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="Phần thưởng tín dụng"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ic_next_credit"
+                android:layout_width="62dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/next_setting"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                app:cardBackgroundColor="#F8A627"
+                app:cardCornerRadius="100dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_settings" />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/text_setting"
+                android:layout_width="184dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="Cài đặt"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ic_next_setting"
+                android:layout_width="62dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/next_invite_friend"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                app:cardBackgroundColor="#52E3C2"
+                app:cardCornerRadius="100dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_user_white" />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/text_invite_friend"
+                android:layout_width="184dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="Mời bạn bè"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ic_next_invite_friend"
+                android:layout_width="62dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/next_payment"
+    <Button
+        android:id="@+id/button_logout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="24dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/next_credit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="30dp"
-            app:cardBackgroundColor="#8ABE4E"
-            app:cardCornerRadius="100dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/icon_wallet" />
-
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/text_credit"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:text="Phương thức thanh toán"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/ic_next_payment"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_arrow_right" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/next_credit"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/next_setting"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="30dp"
-            app:cardBackgroundColor="#F55525"
-            app:cardCornerRadius="100dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_start_white" />
-
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/payment"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:text="Phần thưởng tín dụng"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/ic_next_credit"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_arrow_right" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/next_invite_friend"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="36dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="30dp"
-            app:cardBackgroundColor="#52E3C2"
-            app:cardCornerRadius="100dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_user_white" />
-
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/text_invite_friend"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:text="Mời bạn bè"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/ic_next_invite_friend"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_arrow_right" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="68dp"
+        android:backgroundTint="@color/maincolor"
+        android:text="Đăng xuất"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/next_setting"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="24dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/next_invite_friend"
-        tools:layout_editor_absoluteX="0dp">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="30dp"
-            app:cardBackgroundColor="#F8A627"
-            app:cardCornerRadius="100dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_settings" />
-
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/text_setting"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:text="Cài đặt"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/ic_next_setting"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_arrow_right" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
