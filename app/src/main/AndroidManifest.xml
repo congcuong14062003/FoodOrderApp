@@ -18,13 +18,16 @@
             android:name=".view.OrderMainActivity"
             android:exported="false" />
         <activity
+            android:name=".view.UserUpdateActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="false" />
         <activity
             android:name=".view.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".view.SignupActivity"
             android:exported="false" />
         <activity
             android:name=".view.LoginActivity"

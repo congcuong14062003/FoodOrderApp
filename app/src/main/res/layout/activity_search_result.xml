@@ -110,7 +110,6 @@
         android:height="30dp"
         android:padding="3dp"
         android:src="@drawable/left_arrow"
-
         app:layout_constraintEnd_toStartOf="@+id/editText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view3"

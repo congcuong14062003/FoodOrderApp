@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import com.example.foodorderapp.R;
-import com.example.foodorderapp.SignupActivity;
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
