@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:outlineAmbientShadowColor= "@color/black"
-    android:translationZ ="20dp"
+    android:translationZ ="10dp"
     android:orientation="vertical">
 
 

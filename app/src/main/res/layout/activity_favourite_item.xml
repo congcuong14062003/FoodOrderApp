@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
+    android:layout_width="match_parent"
     android:background="@drawable/mainborder"
     android:layout_height="350dp"
     android:layout_margin="10dp"
     android:outlineAmbientShadowColor= "@color/black"
     android:translationZ ="20dp"
-    android:layout_gravity="center_horizontal"
+
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView

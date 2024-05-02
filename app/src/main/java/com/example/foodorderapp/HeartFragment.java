@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,19 +15,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.foodorderapp.adapter.FavorAdapter;
-import com.example.foodorderapp.adapter.NotiAdapter;
 import com.example.foodorderapp.view.DetailActivity;
 import com.example.foodorderapp.view.MainActivity;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
-import com.example.foodorderapp.viewmodal.NotiViewModel;
 
 public class HeartFragment extends Fragment implements FavorAdapter.InFoodItemClickListener {
 
     // Inflate the layout for this fragment
     private FoodViewModel foodViewModel;
+    private RecyclerView recyclerView;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +40,10 @@ public class HeartFragment extends Fragment implements FavorAdapter.InFoodItemCl
 
         RecyclerView recyclerView = view.findViewById(R.id.favorRecycle);
         final FavorAdapter adapter = new FavorAdapter();
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         adapter.SetOnFoodItemClickListener(this);
 
         foodViewModel.getFoodList().observe(getViewLifecycleOwner(), orderDTOS -> {
@@ -61,8 +60,11 @@ public class HeartFragment extends Fragment implements FavorAdapter.InFoodItemCl
             }
         });
 
+       
+
         return view;
     }
+
     @NonNull
     @Override
     public CreationExtras getDefaultViewModelCreationExtras() {
