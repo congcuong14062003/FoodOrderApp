@@ -29,7 +29,7 @@ public class IntroActivity extends AppCompatActivity {
                     Intent intent = new Intent(IntroActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                }else{
+                } else {
                     Toast.makeText(IntroActivity.this, "Vui lòng kết nối mạng", Toast.LENGTH_SHORT).show();
                 }
             }

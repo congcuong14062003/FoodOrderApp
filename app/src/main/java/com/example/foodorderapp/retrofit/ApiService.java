@@ -37,5 +37,4 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("upload/info")
     Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
-
 }

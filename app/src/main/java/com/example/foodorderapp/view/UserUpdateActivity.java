@@ -67,12 +67,10 @@ public class UserUpdateActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean isSuccess) {
                 if (isSuccess) {
-                    // Handle successful sign-up
                     Toast.makeText(UserUpdateActivity.this, "Update successful!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(UserUpdateActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                    // Navigate to login activity or perform any other action
                 } else {
                     // Handle failed sign-up (error message should already be set in ViewModel)
                     Toast.makeText(UserUpdateActivity.this, "Update thất bại!", Toast.LENGTH_SHORT).show();
@@ -83,13 +81,13 @@ public class UserUpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (uri != null) {
-                    //updateViewModel.callApiUpdateAvatar(UserUpdateActivity.this, editImage);
-                    String name = editName.getText().toString();
-                    String phoneNumber = editSdt.getText().toString();
-                    String password = editPass.getText().toString();
-                    String address = editAddress.getText().toString();
-                    updateViewModel.update(name, phoneNumber, address, password);
+                    updateViewModel.callApiUpdateAvatar(UserUpdateActivity.this, editImage);
                 }
+                String name = editName.getText().toString();
+                String phoneNumber = editSdt.getText().toString();
+                String password = editPass.getText().toString();
+                String address = editAddress.getText().toString();
+                updateViewModel.update(name, phoneNumber, address, password);
             }
         });
         backMainActivity.setOnClickListener(new View.OnClickListener() {

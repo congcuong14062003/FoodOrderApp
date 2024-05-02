@@ -14,6 +14,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -42,9 +43,12 @@ import android.graphics.Bitmap;
 public class UpdateUserViewModel extends ViewModel {
     private Uri uri;
     private static String dataFile;
-    private MutableLiveData<Boolean> status = new MutableLiveData<>();
+    private MutableLiveData<Boolean> status;
 
-    public MutableLiveData<Boolean> getStatus() {
+    public LiveData<Boolean> getStatus() {
+        if (status == null) {
+            status = new MutableLiveData<>();
+        }
         return status;
     }
 
