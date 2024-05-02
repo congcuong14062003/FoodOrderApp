@@ -49,7 +49,7 @@ public class ResultFragment extends Fragment implements ResultAdapter.InFoodItem
     }
 
     @Nullable
-// Trong FoodFragment
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_result, container, false);
@@ -79,17 +79,21 @@ public class ResultFragment extends Fragment implements ResultAdapter.InFoodItem
                     recyclerView.setVisibility(View.VISIBLE);
                     adapter.setFoodList(orderDTOs);
                 }
-
-
         });
 
-//
-//
-        ImageView backBtn = view.findViewById(R.id.backbtn);
+        ImageView imageView = view.findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
+
+       ImageView backBtn = view.findViewById(R.id.backbtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Đóng FoodFragment và hiển thị lại HomeFragment
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 fragmentManager.popBackStack();
             }
