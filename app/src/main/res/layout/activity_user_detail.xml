@@ -143,7 +143,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/backMainActivity"
             android:layout_width="44dp"
             android:layout_height="32dp"
             app:layout_constraintBottom_toBottomOf="parent"

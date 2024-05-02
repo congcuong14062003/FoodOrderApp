@@ -41,7 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class UserUpdateActivity extends AppCompatActivity {
     private EditText editName, editSdt, editPass, editAddress;
     private Button btnSave;
-    private ImageView editImage;
+    private ImageView editImage, backMainActivity;
     private Uri uri;
     private static String dataFile;
     private UpdateUserViewModel updateViewModel;
@@ -92,6 +92,14 @@ public class UserUpdateActivity extends AppCompatActivity {
                 }
             }
         });
+        backMainActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserUpdateActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void init() {
@@ -101,6 +109,7 @@ public class UserUpdateActivity extends AppCompatActivity {
         editAddress = findViewById(R.id.updateAddress);
         btnSave = findViewById(R.id.buttonSaveUpdate);
         editImage = findViewById(R.id.updateImage);
+        backMainActivity = findViewById(R.id.backMainActivity);
     }
 
     private void displaySelectedImage(Uri imageUri) {
