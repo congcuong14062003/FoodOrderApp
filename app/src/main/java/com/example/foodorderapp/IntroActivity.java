@@ -8,6 +8,10 @@ import android.os.CountDownTimer;
 import android.widget.Toast;
 
 import com.example.foodorderapp.view.LoginActivity;
+<<<<<<< HEAD
+=======
+import com.example.foodorderapp.view.MainActivity;
+>>>>>>> b9ad88c6b6543931e462649936d63b3c31c58bcd
 
 public class IntroActivity extends AppCompatActivity {
 

@@ -69,25 +69,25 @@
                         android:id="@+id/star1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pinkstar" />
+                        android:src="@drawable/star" />
 
                     <ImageView
                         android:id="@+id/star2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pinkstar" />
+                        android:src="@drawable/star" />
 
                     <ImageView
                         android:id="@+id/star3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pinkstar" />
+                        android:src="@drawable/star" />
 
                     <ImageView
                         android:id="@+id/star4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/pinkstar" />
+                        android:src="@drawable/star" />
 
                     <ImageView
                         android:id="@+id/star5"
@@ -100,7 +100,7 @@
                     android:id="@+id/total_reviews"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"

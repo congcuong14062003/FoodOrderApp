@@ -5,5 +5,12 @@
     <string name="emptyphonenumber">Phone number must input.</string>
     <string name="emptypassword">Password must input.</string>
     <string name="phonenumberformat">Phone number must be 11 .</string>
+<<<<<<< HEAD
     <string name="title_activity_update_in4_users">activity_update_in4_users</string>
+=======
+    <string name="title_activity_order">OrderActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+>>>>>>> b9ad88c6b6543931e462649936d63b3c31c58bcd
 </resources>

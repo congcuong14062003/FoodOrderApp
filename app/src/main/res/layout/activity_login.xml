@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgourndlogin"
+    tools:context=".view.LoginActivity"
     >
 
     <ImageView
@@ -63,23 +63,28 @@
         app:layout_constraintTop_toBottomOf="@id/txtPassword"
         app:layout_constraintStart_toStartOf="@id/txtPassword"
         app:layout_constraintEnd_toEndOf="@id/txtPassword"/>
-
     <!-- TextView hiển thị thông báo lỗi -->
-
-
     <!-- Button để thực hiện đăng nhập -->
+<<<<<<< HEAD
 
 
     <!-- LinearLayout chứa thông báo và nút đăng ký -->
 
+=======
+>>>>>>> b9ad88c6b6543931e462649936d63b3c31c58bcd
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+<<<<<<< HEAD
         android:layout_marginTop="136dp"
         android:background="@drawable/button_custom"
+=======
+        android:layout_marginTop="40dp"
+>>>>>>> b9ad88c6b6543931e462649936d63b3c31c58bcd
         android:backgroundTint="@color/maincolor"
+        android:background="@drawable/button_custom"
         android:text="Đăng nhập"
         android:textColor="@color/white"
         android:textSize="@dimen/mainfontsize"

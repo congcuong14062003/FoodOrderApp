@@ -11,7 +11,9 @@ import com.example.foodorderapp.object.OrderDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.ListFoodResponsive;
 import com.example.foodorderapp.retrofit.OrderResponse;
+import com.example.foodorderapp.retrofit.SearchRequest;
 
+import java.net.HttpCookie;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodViewModel extends ViewModel {
     private MutableLiveData<List<FoodDTO>> foodList;
+    private MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
     public LiveData<List<FoodDTO>> getFoodList() {
         if (foodList == null) {
@@ -30,6 +33,60 @@ public class FoodViewModel extends ViewModel {
         }
         return foodList;
     }
+
+    public LiveData<List<FoodDTO>> getfoodList(String userInput) {
+        if (foodList == null) {
+            foodList = new MutableLiveData<>();
+
+            loadfoodList(userInput);
+        }
+        return foodList;
+    }
+
+    public void setError(String message) {
+        errorMessage.setValue(message);
+    }
+
+    public LiveData<String> getErrorMessage() {
+        return errorMessage;
+    }
+
+    private void loadfoodList( String userInput) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiService.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        String keyword = userInput;
+        SearchRequest searchRequest = new SearchRequest(keyword);
+        System.out.println(searchRequest.getKeyword());
+        Call<ListFoodResponsive> call = apiService.getFoodListByName(searchRequest);
+        call.enqueue(new Callback<ListFoodResponsive>() {
+            @Override
+            public void onResponse(Call<ListFoodResponsive> call, Response<ListFoodResponsive> response) {
+                if (response.isSuccessful()) {
+                    ListFoodResponsive listFoodResponsive = response.body();
+                    if ( listFoodResponsive.isStatus() && listFoodResponsive !=null ) {
+                        foodList.setValue(listFoodResponsive.getData());
+                        Log.d("OrderViewModel", "API call successful."); // Log success message
+                    } else {
+                        Log.e("OrderViewModel", "API call failed: Invalid response."); // Log error message
+                    }
+                } else {
+                    Log.e("OrderViewModel", "API call failed: " + response.message()); // Log error message
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ListFoodResponsive> call, Throwable t) {
+                Log.e("OrderViewModel", "API call failed: " + t.getMessage()); // Log failure message
+            }
+        });
+    }
+
+
+
 
     private void loadFoodList() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -61,4 +118,6 @@ public class FoodViewModel extends ViewModel {
             }
         });
     }
+
+
 }
