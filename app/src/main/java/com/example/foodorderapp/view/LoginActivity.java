@@ -12,12 +12,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-
 import com.example.foodorderapp.R;
-<<<<<<< HEAD
-import com.example.foodorderapp.SignupActivity;
-=======
->>>>>>> 27f52d281d792286c69e24975784f87bddd3aec7
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {

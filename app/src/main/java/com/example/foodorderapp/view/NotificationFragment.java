@@ -2,14 +2,15 @@ package com.example.foodorderapp.view;
 
 import static com.example.foodorderapp.R.id.list_food_recycle;
 import static com.example.foodorderapp.R.id.notiRecycle;
-
 import android.content.Intent;
+import android.graphics.drawable.PictureDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,6 +52,7 @@ public class NotificationFragment extends Fragment {
         });
 
         ImageButton cancelBtn = view.findViewById(R.id.backBtn);
+
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

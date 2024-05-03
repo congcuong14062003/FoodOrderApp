@@ -17,7 +17,9 @@ public class FoodDTO {
         this.average_rating = average_rating;
         this.total_reviews = total_reviews;
         this.description=description;
+
     }
+
     public int getId() {
         return id;
     }

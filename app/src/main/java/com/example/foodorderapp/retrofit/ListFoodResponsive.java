@@ -9,6 +9,7 @@ public class ListFoodResponsive {
     private boolean status;
     private List<FoodDTO> data;
 
+
     public boolean isStatus() {
         return status;
     }

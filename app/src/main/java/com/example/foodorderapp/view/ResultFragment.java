@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +29,7 @@ import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.ListFoodAdapter;
 import com.example.foodorderapp.adapter.ResultAdapter;
 import com.example.foodorderapp.object.FoodDTO;
+import com.example.foodorderapp.retrofit.ListFoodResponsive;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 
 import java.util.ArrayList;
@@ -39,13 +42,14 @@ public class ResultFragment extends Fragment implements ResultAdapter.InFoodItem
     private String userInput;
 
 
+
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
     }
 
     @Nullable
-// Trong FoodFragment
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_result, container, false);
@@ -59,22 +63,37 @@ public class ResultFragment extends Fragment implements ResultAdapter.InFoodItem
         Bundle args = getArguments();
         if (args != null && args.containsKey("userInput")) {
              userInput = args.getString("userInput");
-
             TextView txtResult =view.findViewById(R.id.textResult);
             txtResult.setText("Result for "+ userInput);
-
-
         }
+
+        TextView message = view.findViewById(R.id.message);
+        message.setText("Không tìm thấy món ăn");
         foodViewModel.getfoodList(userInput).observe(getViewLifecycleOwner(), orderDTOs -> {
-            adapter.setFoodList(orderDTOs);
+                if (orderDTOs.isEmpty()==true) {
+                    recyclerView.setVisibility(View.GONE);
+                    message.setVisibility(View.VISIBLE);
+                }
+                else{
+                    message.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    adapter.setFoodList(orderDTOs);
+                }
         });
-//
-//         Lắng nghe sự kiện click của nút "Cancel"
-        TextView backBtn = view.findViewById(R.id.backbtn);
+
+        ImageView imageView = view.findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
+
+       ImageView backBtn = view.findViewById(R.id.backbtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Đóng FoodFragment và hiển thị lại HomeFragment
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 fragmentManager.popBackStack();
             }

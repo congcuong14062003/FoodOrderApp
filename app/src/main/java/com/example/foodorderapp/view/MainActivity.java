@@ -27,12 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-<<<<<<< HEAD:app/src/main/java/com/example/foodorderapp/view/MainActivity.java
-        // Khởi tạo Fragment Home mặc định khi Activity được khởi chạy
-=======
         replaceFragment(new HomeFragment());
->>>>>>> 27f52d281d792286c69e24975784f87bddd3aec7:app/src/main/java/com/example/foodorderapp/MainActivity.java
         binding.bottomNavigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
 
         String fragmentToShow = getIntent().getStringExtra("fragment");

@@ -2,41 +2,8 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-<<<<<<< HEAD
-      <entry key="DetailActivity">
-        <State />
-      </entry>
-      <entry key="IntroActivity">
-        <State />
-      </entry>
-      <entry key="MainActivity">
-        <State />
-      </entry>
-      <entry key="NotiActivity">
-        <State />
-      </entry>
-      <entry key="SignupActivity">
-        <State />
-      </entry>
       <entry key="app">
         <State />
-=======
-      <entry key="app">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\vuhai\.android\avd\Pixel_5_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-28T11:31:10.457020Z" />
-        </State>
->>>>>>> 27f52d281d792286c69e24975784f87bddd3aec7
       </entry>
     </value>
   </component>

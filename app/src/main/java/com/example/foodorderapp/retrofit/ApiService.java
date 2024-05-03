@@ -40,23 +40,21 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("users/login")
     Call<LoginResponsive> login(@Field("phone_number") String phoneNumber, @Field("password") String password);
-
-<<<<<<< HEAD
-    @GET("notices/list_notices/{userId}")
-    Call<NotiResponsive> getNotis(@Path("userId") int userId);
-=======
     @FormUrlEncoded
     @POST("users/signup")
     Call<SignUpResponsive> signup(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password);
+
     @Multipart
-    @POST("/upload/avartar/{userId}")
+    @POST("upload/avartar/{userId}")
     Call<UserResponsive> updateAvatar(
-            @Path("id") int id,
+            @Path("userId") int userId,
             @Part MultipartBody.Part file
     );
     @FormUrlEncoded
-    @POST("/upload/info")
+    @POST("upload/info")
     Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
+    @GET("notices/list_notices/{userId}")
+    Call<NotiResponsive> getNotis(@Path("userId") int userId);
 
->>>>>>> 27f52d281d792286c69e24975784f87bddd3aec7
+
 }

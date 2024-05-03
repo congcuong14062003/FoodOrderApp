@@ -14,6 +14,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -44,6 +45,12 @@ public class UpdateUserViewModel extends ViewModel {
     private static String dataFile;
     private MutableLiveData<Boolean> status;
 
+    public LiveData<Boolean> getStatus() {
+        if (status == null) {
+            status = new MutableLiveData<>();
+        }
+        return status;
+    }
     // Method to upload image
     public void uploadImage(ActivityResultLauncher<Intent> launcher, Context context, ImageView selectImg) {
         ActivityResultLauncher<Intent> mActivityResultLauncher = launcher;
@@ -133,7 +140,6 @@ public class UpdateUserViewModel extends ViewModel {
                 status.setValue(false);
                 Log.e("User update", "API call failed: " + t.getMessage());
             }
-
         });
     }
 }

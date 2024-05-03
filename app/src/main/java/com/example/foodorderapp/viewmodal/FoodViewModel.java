@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodViewModel extends ViewModel {
     private MutableLiveData<List<FoodDTO>> foodList;
+    private MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
     public LiveData<List<FoodDTO>> getFoodList() {
         if (foodList == null) {
@@ -36,9 +37,18 @@ public class FoodViewModel extends ViewModel {
     public LiveData<List<FoodDTO>> getfoodList(String userInput) {
         if (foodList == null) {
             foodList = new MutableLiveData<>();
+
             loadfoodList(userInput);
         }
         return foodList;
+    }
+
+    public void setError(String message) {
+        errorMessage.setValue(message);
+    }
+
+    public LiveData<String> getErrorMessage() {
+        return errorMessage;
     }
 
     private void loadfoodList( String userInput) {
@@ -57,7 +67,7 @@ public class FoodViewModel extends ViewModel {
             public void onResponse(Call<ListFoodResponsive> call, Response<ListFoodResponsive> response) {
                 if (response.isSuccessful()) {
                     ListFoodResponsive listFoodResponsive = response.body();
-                    if (listFoodResponsive != null && listFoodResponsive.isStatus()) {
+                    if ( listFoodResponsive.isStatus() && listFoodResponsive !=null ) {
                         foodList.setValue(listFoodResponsive.getData());
                         Log.d("OrderViewModel", "API call successful."); // Log success message
                     } else {
