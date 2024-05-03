@@ -45,13 +45,13 @@ public interface ApiService {
     Call<SignUpResponsive> signup(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password);
 
     @Multipart
-    @POST("upload/avartar/{userId}")
+    @POST("users/upload/avartar/{userId}")
     Call<UserResponsive> updateAvatar(
             @Path("userId") int userId,
             @Part MultipartBody.Part file
     );
     @FormUrlEncoded
-    @POST("upload/info")
+    @POST("users/update/info")
     Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
     @GET("notices/list_notices/{userId}")
     Call<NotiResponsive> getNotis(@Path("userId") int userId);

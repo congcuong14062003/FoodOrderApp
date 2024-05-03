@@ -38,16 +38,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
             View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
             RoundedImageView nextToUpdateUser = rootView.findViewById(R.id.avatar_user);
-            nextToUpdateUser.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    UserUpdateFragment userUpdateFragment = new UserUpdateFragment();
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.next_update_user, userUpdateFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                }
-            });
+//            nextToUpdateUser.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    UserUpdateActivity userUpdateFragment = new UserUpdateFragment();
+//                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                    transaction.replace(R.id.next_update_user, userUpdateFragment);
+//                    transaction.addToBackStack(null);
+//                    transaction.commit();
+//                }
+//            });
             int userId = UserManager.getInstance().getUserId();
             textName = rootView.findViewById(R.id.text_Name);
             textAddress = rootView.findViewById(R.id.text_address);
@@ -117,7 +117,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
                         Toast.makeText(getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
                     }
                 }
-
                 @Override
                 public void onFailure(Call<UserResponsive> call, Throwable t) {
                     Toast.makeText(getContext(), "Network error", Toast.LENGTH_SHORT).show();

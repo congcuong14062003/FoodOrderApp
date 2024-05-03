@@ -80,7 +80,7 @@ public class UserUpdateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (uri != null) {
                     updateViewModel.callApiUpdateAvatar(UserUpdateActivity.this, editImage);
-                }
+               }
                 String name = editName.getText().toString();
                 String phoneNumber = editSdt.getText().toString();
                 String password = editPass.getText().toString();
@@ -139,13 +139,13 @@ public class UserUpdateActivity extends AppCompatActivity {
             @Override
            public void onResponse(Call<UserResponsive> call, Response<UserResponsive> response) {
                 if(response.isSuccessful()) {
-                    UserDTO userData = response.body().getData();
+                    UserResponsive userData = response.body();
                     if(userData != null) {
-                        editName.setText(userData.getName());
-                        editAddress.setText(userData.getAddress());
-                        editSdt.setText(userData.getPhoneNumber());
-                        editPass.setText(userData.getPassword());
-                        String avatarUser = userData.getAvatar_thumbnail();
+                        editName.setText(userData.getData().getName());
+                        editSdt.setText(userData.getData().getPhoneNumber());
+                        editAddress.setText(userData.getData().getAddress());
+                        editPass.setText(userData.getData().getPassword());
+                        String avatarUser = userData.getData().getAvatar_thumbnail();
                         Picasso.get().load(avatarUser).into(editImage, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
