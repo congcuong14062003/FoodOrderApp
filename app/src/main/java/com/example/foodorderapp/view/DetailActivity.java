@@ -1,5 +1,7 @@
 package com.example.foodorderapp.view;
 
+import static com.example.foodorderapp.R.id.list_food_recycle;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +12,17 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorderapp.R;
+import com.example.foodorderapp.adapter.ListFoodAdapter;
+import com.example.foodorderapp.adapter.ReviewAdapter;
 import com.example.foodorderapp.object.DetailFoodDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.DetailFoodResponsive;
+import com.example.foodorderapp.viewmodal.ReviewViewModel;
 import com.squareup.picasso.Picasso;
 
 
@@ -25,6 +33,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DetailActivity extends AppCompatActivity {
+    ReviewViewModel reviewViewModel;
     Button btn_order_food;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +63,7 @@ public class DetailActivity extends AppCompatActivity {
                     if (detailFoodResponse != null && detailFoodResponse.isSuccess()) {
                         DetailFoodDTO detailFoodDTO = detailFoodResponse.getData();
                         // Xử lý dữ liệu và cập nhật giao diện
-                        updateUI(detailFoodDTO);
+                        updateUI(detailFoodDTO, foodId);
                     } else {
                         Log.e("DetailActivity", "API call failed: Invalid response.");
                     }
@@ -70,7 +79,7 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUI(DetailFoodDTO detailFoodDTO) {
+    private void updateUI(DetailFoodDTO detailFoodDTO, int foodId) {
         setContentView(R.layout.activity_detail); // Gọi setContentView() sau khi dữ liệu đã được xử lý
         // Ánh xạ các view từ layout
         ImageView img_detail = findViewById(R.id.img_detail);
@@ -86,6 +95,21 @@ public class DetailActivity extends AppCompatActivity {
         starImages[2] = findViewById(R.id.star3);
         starImages[3] = findViewById(R.id.star4);
         starImages[4] = findViewById(R.id.star5);
+
+
+        // danh sách đánh giá
+        RecyclerView recyclerView = findViewById(R.id.recycle_view_reviews);
+        final ReviewAdapter adapter = new ReviewAdapter();
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // Gọi phương thức getReviewList() trong ReviewViewModel để lấy danh sách đánh giá
+        reviewViewModel = new ViewModelProvider(this).get(ReviewViewModel.class);
+        reviewViewModel.getReviewList(foodId).observe(this, reviewDTOs -> {
+            adapter.setReviewList(reviewDTOs);
+        });
+
+
+
         // Set dữ liệu cho các view
         Picasso.get().load(detailFoodDTO.getImg_thumbnail()).into(img_detail);
         name_detail.setText(detailFoodDTO.getName());
@@ -103,10 +127,6 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailActivity.this, OrderMainActivity.class);
                 intent.putExtra("foodId", detailFoodDTO.getId());
-//                intent.putExtra("name", detailFoodDTO.getName());
-//                intent.putExtra("imgorder", detailFoodDTO.getImg_thumbnail());
-//                intent.putExtra("price", detailFoodDTO.getPrice());
-//                intent.putExtra("ingredient", detailFoodDTO.getIngredients());
                 startActivity(intent);
                 finish();
             }

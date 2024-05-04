@@ -50,10 +50,14 @@ public interface ApiService {
             @Path("userId") int userId,
             @Part MultipartBody.Part file
     );
+    // cập nhật thông tin người dùng
     @FormUrlEncoded
     @POST("upload/info")
     Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
-
+    // danh sách thông báo
     @GET("notices/list_notices/{userId}")
     Call<NotiResponsive> getNotis(@Path("userId") int userId);
+    // danh sách đánh giá
+    @GET("reviews/food_id/{foodId}")
+    Call<ReviewsResponsive> getReviews(@Path("foodId") int foodId);
 }
