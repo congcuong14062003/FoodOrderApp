@@ -46,9 +46,9 @@ public interface ApiService {
 
     @Multipart
     @POST("users/upload/avartar/{userId}")
-    Call<UserResponsive> updateAvatar(
-            @Path("userId") int userId,
-            @Part MultipartBody.Part file
+    Call<UserResponsive> uploadAvatar(
+            @Part MultipartBody.Part avatar_thumbnail,
+            @Path("userId") int id_user
     );
     @FormUrlEncoded
     @POST("users/update/info")

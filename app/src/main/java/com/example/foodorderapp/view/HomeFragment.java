@@ -17,7 +17,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.UserManager;
-import com.example.foodorderapp.databinding.ActivityMainBinding;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.UserResponsive;
 import com.example.foodorderapp.object.UserDTO;
@@ -87,13 +86,13 @@ public class HomeFragment extends Fragment {
                         Log.d("Màn Home", "ảnh đại diện: " + avatarUser); // Log success message
                     }
                 } else {
-                    Toast.makeText(getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireView().getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
                 }
             }
             // khi không thành công
             @Override
             public void onFailure(Call<UserResponsive> call, Throwable t) {
-                Toast.makeText(getContext(), "Network error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireView().getContext(), "Network error", Toast.LENGTH_SHORT).show();
             }
         });
     }
