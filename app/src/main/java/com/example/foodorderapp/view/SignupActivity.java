@@ -21,9 +21,9 @@ import com.example.foodorderapp.viewmodal.SignUpViewModel;
 
 public class SignupActivity extends AppCompatActivity {
     private EditText txtName, txtPhoneNumber, txtAddress, txtPassword, txtRepeatPassword;
+    private TextView errTextName, errSDT, errAddress, errPassword, errRepeatPassword;
     private Button btnSignUp;
     private TextView btnToLogin;
-    private TextView errorMessageTextView;
     private SignUpViewModel signUpViewModel;
 
     @Override
@@ -36,15 +36,8 @@ public class SignupActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        init();
         // Initialize views
-        txtName = findViewById(R.id.editTextName);
-        txtPhoneNumber = findViewById(R.id.editSDT);
-        txtAddress = findViewById(R.id.editAddress);
-        txtPassword = findViewById(R.id.editPassword);
-        txtRepeatPassword = findViewById(R.id.editRepeatPassword);
-        btnSignUp = findViewById(R.id.buttonResign);
-        btnToLogin = findViewById(R.id.buttonToLogin);
 
         // Initialize ViewModel
         signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
@@ -67,6 +60,78 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+        txtName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(txtName.getText().toString().trim().isEmpty()){
+                        errTextName.setText("Vui lòng nhập họ và tên!");
+                    } else {
+                        errTextName.setText("");
+                    }
+                }
+
+            }
+        });
+
+        txtPhoneNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(txtPhoneNumber.getText().toString().trim().isEmpty()){
+                        errSDT.setText("Vui lòng nhập số điện thoại!");
+                    } else if (!isNumeric(txtPhoneNumber.getText().toString())) {
+                        errSDT.setText("Số điện thoại không chứa kí tự số hoặc ký tự đặc biệt");
+                    }else{
+                        errSDT.setText("");
+                    }
+                }
+
+            }
+        });
+        txtAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(txtAddress.getText().toString().trim().isEmpty()){
+                        errAddress.setText("Vui lòng nhập địa chỉ của bạn!");
+                    }else {
+                        errAddress.setText("");
+                    }
+                }
+
+            }
+        });
+        txtPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(txtPassword.getText().toString().trim().isEmpty()){
+                        errPassword.setText("Vui lòng nhập mật khẩu!");
+                    } else if (txtPassword.getText().toString().trim().length() < 6) {
+                        errPassword.setText("Mật khẩu tối thiểu phải có 6 ký tự");
+                    } else {
+                        errPassword.setText("");
+                    }
+                }
+
+            }
+        });
+        txtRepeatPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(txtRepeatPassword.getText().toString().trim().isEmpty()){
+                        errRepeatPassword.setText("Vui lòng nhập trường nhắc lại mật khẩu!");
+                    } else if (txtPassword.getText().toString().trim() != txtRepeatPassword.getText().toString().trim()) {
+                        errRepeatPassword.setText("Mật khẩu không khớp");
+                    } else {
+                        errRepeatPassword.setText("");
+                    }
+                }
+
+            }
+        });
         // Set click listeners
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,11 +141,21 @@ public class SignupActivity extends AppCompatActivity {
                 String address = txtAddress.getText().toString().trim();
                 String password = txtPassword.getText().toString().trim();
                 String repeatPassword = txtRepeatPassword.getText().toString().trim();
-                if (!password.equals(repeatPassword)) {
-                    errorMessageTextView.setText("Mật khẩu nhập lại không khớp");
-                    return;
+                if(name.isEmpty() && phoneNumber.isEmpty() && address.isEmpty() &&password.isEmpty() && repeatPassword.isEmpty()){
+                    errTextName.setText("Vui lòng nhập họ và tên!");
+                    errSDT.setText("Vui lòng nhập số điện thoại!");
+                    errAddress.setText("Vui lòng nhập địa chỉ của bạn!");
+                    errPassword.setText("Vui lòng nhập mật khẩu!");
+                    errRepeatPassword.setText("Vui lòng nhập trường nhắc lại mật khẩu!");
+                } else if (!isNumeric(phoneNumber)) {
+                    errSDT.setText("Số điện thoại không chứa kí tự số hoặc ký tự đặc biệt");
+                } else if (password.length() < 6) {
+                    errPassword.setText("Mật khẩu tối thiểu phải có 6 ký tự");
+                } else if (repeatPassword != password) {
+                    errRepeatPassword.setText("Mật khẩu không khớp");
+                } else {
+                    signUpViewModel.signup(name, phoneNumber, address, password);
                 }
-                signUpViewModel.signup(name, phoneNumber, address, password);
             }
         });
 
@@ -92,4 +167,28 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+    private void init(){
+        txtName = findViewById(R.id.editTextName);
+        txtPhoneNumber = findViewById(R.id.editSDT);
+        txtAddress = findViewById(R.id.editAddress);
+        txtPassword = findViewById(R.id.editPassword);
+        txtRepeatPassword = findViewById(R.id.editRepeatPassword);
+        errTextName = findViewById(R.id.errorMessageName);
+        errAddress = findViewById(R.id.errorMessageAddress);
+        errSDT = findViewById(R.id.errorMessageSDT);
+        errPassword = findViewById(R.id.errorMessagePassword);
+        errRepeatPassword = findViewById(R.id.errorMessageRepeatPassword);
+        btnSignUp = findViewById(R.id.buttonResign);
+        btnToLogin = findViewById(R.id.buttonToLogin);
+    }
+    private boolean isNumeric(String str) {
+
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
