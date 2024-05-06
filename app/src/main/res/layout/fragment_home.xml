@@ -23,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:src="@drawable/cuong"
             android:id="@+id/avtUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -66,7 +67,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/mainborder"
-        android:hint="Search for food"
+        android:hint="Tìm kiếm món ăn..."
         android:inputType="text"
         android:paddingLeft="50dp"
         android:textColor="@color/secondarycolor"

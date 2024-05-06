@@ -1,44 +1,33 @@
 package com.example.foodorderapp.object;
 
-public class ReviewDTO {
-    private int id;
-    private String name;
-    private String avatar_thumbnail;
+public class PostReviewDTO {
+    private int food_id;
+    private int user_id;
     private String comment;
     private int rate;
-    private String reviews_datetime;
 
-    public ReviewDTO(int id, String name, String avatar_thumbnail, String comment, int rate, String reviews_datetime) {
-        this.id = id;
-        this.name = name;
-        this.avatar_thumbnail = avatar_thumbnail;
+
+    public PostReviewDTO(int food_id, int user_id, String comment, int rate) {
+        this.food_id = food_id;
+        this.user_id = user_id;
         this.comment = comment;
         this.rate = rate;
-        this.reviews_datetime = reviews_datetime;
     }
 
-    public int getId() {
-        return id;
+    public int getFood_id() {
+        return food_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setFood_id(int food_id) {
+        this.food_id = food_id;
     }
 
-    public String getName() {
-        return name;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAvatar_thumbnail() {
-        return avatar_thumbnail;
-    }
-
-    public void setAvatar_thumbnail(String avatar_thumbnail) {
-        this.avatar_thumbnail = avatar_thumbnail;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getComment() {
@@ -55,13 +44,5 @@ public class ReviewDTO {
 
     public void setRate(int rate) {
         this.rate = rate;
-    }
-
-    public String getReviews_datetime() {
-        return reviews_datetime;
-    }
-
-    public void setReviews_datetime(String reviews_datetime) {
-        this.reviews_datetime = reviews_datetime;
     }
 }

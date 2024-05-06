@@ -18,6 +18,9 @@
             android:name=".view.OrderMainActivity"
             android:exported="false" />
         <activity
+            android:name=".view.PostReviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.UserUpdateActivity"
             android:exported="false" />
         <activity

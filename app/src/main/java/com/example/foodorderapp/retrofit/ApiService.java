@@ -60,4 +60,9 @@ public interface ApiService {
     // danh sách đánh giá
     @GET("reviews/food_id/{foodId}")
     Call<ReviewsResponsive> getReviews(@Path("foodId") int foodId);
+
+    // post bài đánh giá
+    @FormUrlEncoded
+    @POST("reviews/post_reviews")
+    Call<PostReviewResponsive> postReview(@Field("food_id") int food_id, @Field("user_id") int user_id, @Field("comment") String comment,@Field("rate") int rate);
 }

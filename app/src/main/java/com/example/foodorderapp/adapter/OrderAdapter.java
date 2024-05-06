@@ -1,5 +1,6 @@
 package com.example.foodorderapp.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodorderapp.DateTimeHelper;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.object.OrderDTO;
+import com.example.foodorderapp.view.PostReviewActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,8 +31,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_history, parent, false);
-        return new OrderViewHolder(view);
+        final OrderViewHolder viewHolder = new OrderViewHolder(view);
+        viewHolder.rateFood = view.findViewById(R.id.rateFood);
+        viewHolder.rateFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Sử dụng getContext() từ parent để lấy Context của Fragment và khởi tạo Intent
+                Intent intent = new Intent(parent.getContext(), PostReviewActivity.class);
+                parent.getContext().startActivity(intent); // Khởi chạy Intent
+            }
+        });
+        return viewHolder;
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
@@ -51,6 +64,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         TextView txtQuantityHistoryOrder;
         TextView txtOrderDateTime;
         ImageView imgHistoryOrder;
+        TextView rateFood;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +75,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             txtQuantityHistoryOrder = itemView.findViewById(R.id.quantityItemHistoryOrder);
             txtOrderDateTime = itemView.findViewById(R.id.purchaseDateTextView);
             txtTotalPriceHistoryOrder = itemView.findViewById(R.id.totalPriceTextView);
+            rateFood = itemView.findViewById(R.id.rateFood);
         }
 
         public void bind(OrderDTO order) {
