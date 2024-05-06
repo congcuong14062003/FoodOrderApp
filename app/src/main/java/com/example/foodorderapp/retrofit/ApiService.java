@@ -40,20 +40,21 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("users/login")
     Call<LoginResponsive> login(@Field("phone_number") String phoneNumber, @Field("password") String password);
-
     @FormUrlEncoded
     @POST("users/signup")
     Call<SignUpResponsive> signup(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password);
+
     @Multipart
-    @POST("upload/avartar/{userId}")
-    Call<UserResponsive> updateAvatar(
-            @Path("userId") int userId,
-            @Part MultipartBody.Part file
+    @POST("users/upload/avartar/{userId}")
+    Call<UserResponsive> uploadAvatar(
+            @Part MultipartBody.Part avatar_thumbnail,
+            @Path("userId") int id_user
     );
     // cập nhật thông tin người dùng
     @FormUrlEncoded
-    @POST("upload/info")
+    @POST("users/update/info")
     Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
+<<<<<<< HEAD
     // danh sách thông báo
     @GET("notices/list_notices/{userId}")
     Call<NotiResponsive> getNotis(@Path("userId") int userId);
@@ -65,4 +66,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("reviews/post_reviews")
     Call<PostReviewResponsive> postReview(@Field("food_id") int food_id, @Field("user_id") int user_id, @Field("comment") String comment,@Field("rate") int rate);
+=======
+    @GET("notices/list_notices/{userId}")
+    Call<NotiResponsive> getNotis(@Path("userId") int userId);
+
+
+>>>>>>> 0721e32468dbb699a2b0363cdee508611a302b0a
 }

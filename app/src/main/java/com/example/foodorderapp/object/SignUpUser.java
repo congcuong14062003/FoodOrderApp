@@ -1,20 +1,10 @@
 package com.example.foodorderapp.object;
 
-public class UserDTO {
-        private int id;
-        private String name;
-        private String phoneNumber;
-        private String address;
-        private String password;
-        private String avatar_thumbnail;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+public class SignUpUser {
+    private String name;
+    private String phoneNumber;
+    private String address;
+    private String password;
 
     public String getName() {
         return name;
@@ -46,13 +36,5 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getAvatar_thumbnail() {
-        return avatar_thumbnail;
-    }
-
-    public void setAvatar_thumbnail(String avatar_thumbnail) {
-        this.avatar_thumbnail = avatar_thumbnail;
     }
 }

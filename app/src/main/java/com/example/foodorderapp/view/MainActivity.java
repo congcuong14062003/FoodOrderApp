@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // Khởi tạo Fragment Home mặc định khi Activity được khởi chạy
+        replaceFragment(new HomeFragment());
         binding.bottomNavigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
 
         String fragmentToShow = getIntent().getStringExtra("fragment");

@@ -12,12 +12,10 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
-
     private EditText txtUserName;
     private EditText txtPassWord;
     private Button btnsLogin;
@@ -49,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         loginViewModel.getLoginStatus().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean loginStatus) {
@@ -71,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

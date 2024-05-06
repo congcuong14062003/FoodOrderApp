@@ -9,18 +9,13 @@ public class UserResponsive {
     public boolean isSuccess() {
         return success;
     }
-
     public void setSuccess(boolean success) {
         this.success = success;
     }
-
     public UserDTO getData() {
         return data;
     }
-
     public void setData(UserDTO data) {
         this.data = data;
     }
-
-
 }
