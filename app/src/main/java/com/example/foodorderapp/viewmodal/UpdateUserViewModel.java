@@ -26,6 +26,8 @@ import com.example.foodorderapp.object.UserDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.SignUpResponsive;
 import com.example.foodorderapp.retrofit.UserResponsive;
+import com.example.foodorderapp.view.UserUpdateActivity;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,41 +47,34 @@ public class UpdateUserViewModel extends ViewModel {
     private MutableLiveData<Boolean> updateUserStatus;
     private MutableLiveData<Boolean> uploadAvtStatus;
 
+    public UpdateUserViewModel() {
+        updateUserStatus = new MutableLiveData<>();
+        uploadAvtStatus = new MutableLiveData<>();
+    }
+
     public LiveData<Boolean> getUpdateUserStatus() {
-        if (updateUserStatus == null) {
-            updateUserStatus = new MutableLiveData<>();
-        }
         return updateUserStatus;
     }
+
     public LiveData<Boolean> getUploadAvtStatus() {
-        if (uploadAvtStatus == null) {
-            uploadAvtStatus = new MutableLiveData<>();
-        }
         return uploadAvtStatus;
     }
-    public void uploadImage(int id, File avtFile){
+
+    public void uploadImage(int id, File avtFile) {
         UserDTO user = new UserDTO();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService api = retrofit.create(ApiService.class);
-//        String realPath = RealPathUtil.getRealPath(context, uri);
-//        user.setAvatar_thumbnail(realPath);
-//        Log.e("abc", realPath);
 
-        // Convert Uri to String
-       // String uriString = uri.toString();
-
-        // Create RequestBody from uriString
         RequestBody requestAvt = RequestBody.create(MediaType.parse("image/*"), avtFile);
-
         MultipartBody.Part multipartBodyAvt = MultipartBody.Part.createFormData("avatar_thumbnail", avtFile.getName(), requestAvt);
         Call<UserResponsive> call = api.uploadAvatar(multipartBodyAvt, id);
         call.enqueue(new Callback<UserResponsive>() {
             @Override
             public void onResponse(Call<UserResponsive> call, Response<UserResponsive> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     uploadAvtStatus.setValue(true);
                 } else {
                     uploadAvtStatus.setValue(false);
@@ -96,7 +91,7 @@ public class UpdateUserViewModel extends ViewModel {
     public void update(String name, String phoneNumber, String address, String password) {
         UserDTO user = new UserDTO();
         user.setName(name);
-        user.setPhoneNumber(phoneNumber);
+        user.setPhone_number(phoneNumber);
         user.setAddress(address);
         user.setPassword(password);
 
@@ -106,7 +101,7 @@ public class UpdateUserViewModel extends ViewModel {
                 .build();
 
         ApiService api = retrofit.create(ApiService.class);
-        Call<UserResponsive> call = api.updateUser(name,phoneNumber,address,password,UserManager.getInstance().getUserId());
+        Call<UserResponsive> call = api.updateUser(name, phoneNumber, address, password, UserManager.getInstance().getUserId());
         call.enqueue(new Callback<UserResponsive>() {
             @Override
             public void onResponse(Call<UserResponsive> call, Response<UserResponsive> response) {
@@ -121,6 +116,7 @@ public class UpdateUserViewModel extends ViewModel {
                     updateUserStatus.setValue(false);
                 }
             }
+
             @Override
             public void onFailure(Call<UserResponsive> call, Throwable t) {
                 updateUserStatus.setValue(false);
@@ -128,5 +124,5 @@ public class UpdateUserViewModel extends ViewModel {
             }
         });
     }
-
 }
+

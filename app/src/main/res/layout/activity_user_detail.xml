@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:background="@color/maincolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thông tin người dùng"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -29,15 +30,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/backMainActivity"
-            android:layout_width="44dp"
-            android:layout_height="32dp"
+            android:id="@+id/backUser"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/left_arrow" />
+            app:srcCompat="@drawable/arrow_left" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -121,8 +123,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/updateSDT"
             android:layout_width="match_parent"
-            android:hint="Số điện thoại"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:hint="Số điện thoại" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

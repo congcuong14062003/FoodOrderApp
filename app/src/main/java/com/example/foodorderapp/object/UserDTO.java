@@ -3,7 +3,7 @@ package com.example.foodorderapp.object;
 public class UserDTO {
         private int id;
         private String name;
-        private String phoneNumber;
+        private String phone_number;
         private String address;
         private String password;
         private String avatar_thumbnail;
@@ -24,12 +24,12 @@ public class UserDTO {
         this.name = name;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 
     public String getAddress() {

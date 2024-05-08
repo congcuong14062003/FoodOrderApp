@@ -58,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     // Đăng nhập không thành công, hiển thị thông báo lỗi
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại. Vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+                    txtUserName.setText("");
+                    txtPassWord.setText("");
                 }
             }
         });

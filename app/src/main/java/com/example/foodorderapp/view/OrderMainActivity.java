@@ -39,6 +39,7 @@ public class OrderMainActivity extends AppCompatActivity {
     ImageView food_img_order;
     PostOrderViewModel postOrderViewModel;
     private TextView quantityOrder, priceFoodOrder, totalPriceOrder, nameOrder, ingredientOrder, priceOrder, shipping_fee, btnPay;
+    TextView errorQuantity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +98,7 @@ public class OrderMainActivity extends AppCompatActivity {
         priceOrder = findViewById(R.id.priceOrder);
         shipping_fee = findViewById(R.id.shipping_fee);
         btnPay = findViewById(R.id.btnPayment);
+        errorQuantity = findViewById(R.id.errorQuantity);
 
         // Set dữ liệu cho các view
         Picasso.get().load(detailFoodDTO.getImg_thumbnail()).into(food_img_order);
@@ -155,19 +157,26 @@ public class OrderMainActivity extends AppCompatActivity {
         if (!newQuantityString.isEmpty()) {
             // Lấy số lượng mới từ newQuantityString
             int newQuantity = Integer.parseInt(newQuantityString);
+            if (newQuantity > 0 ) {
+                // Lấy giá sản phẩm từ priceOrder
+                double productPrice = Double.parseDouble(priceOrder.getText().toString());
 
-            // Lấy giá sản phẩm từ priceOrder
-            double productPrice = Double.parseDouble(priceOrder.getText().toString());
+                // Lấy phí vận chuyển từ shipping_fee
+                double shippingFee = Double.parseDouble(shipping_fee.getText().toString());
 
-            // Lấy phí vận chuyển từ shipping_fee
-            double shippingFee = Double.parseDouble(shipping_fee.getText().toString());
+                // Tính toán tổng giá mới dựa trên số lượng mới, giá của sản phẩm và phí vận chuyển
+                double totalPrice = (newQuantity * productPrice) + shippingFee;
 
-            // Tính toán tổng giá mới dựa trên số lượng mới, giá của sản phẩm và phí vận chuyển
-            double totalPrice = (newQuantity * productPrice) + shippingFee;
-
-            // Cập nhật số lượng và tổng giá trên giao diện
-            quantityOrder.setText(String.valueOf(newQuantity));
-            totalPriceOrder.setText(String.valueOf(totalPrice));
+                // Cập nhật số lượng và tổng giá trên giao diện
+                quantityOrder.setText(String.valueOf(newQuantity));
+                totalPriceOrder.setText(String.valueOf(totalPrice));
+                errorQuantity.setText("");
+                btnPay.setEnabled(true);
+            } else {
+                errorQuantity.setText("Vui lòng nhập số lượng lớn hơn 0");
+//                btnPay = findViewById(R.id.btnPayment);
+                btnPay.setEnabled(false);
+            }
         }
     }
 

@@ -49,7 +49,7 @@
         app:cardCornerRadius="10dp"
         >
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submitBtn"
             android:layout_width="363dp"
             android:layout_height="match_parent"

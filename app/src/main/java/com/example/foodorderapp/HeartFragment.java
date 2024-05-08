@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.foodorderapp.adapter.FavorAdapter;
 import com.example.foodorderapp.view.DetailActivity;
@@ -50,7 +51,7 @@ public class HeartFragment extends Fragment implements FavorAdapter.InFoodItemCl
             adapter.setFoodList(orderDTOS);
         });
 
-        ImageButton cancelBtn = view.findViewById(R.id.backFavorBtn);
+        ImageView cancelBtn = view.findViewById(R.id.backFavorBtn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

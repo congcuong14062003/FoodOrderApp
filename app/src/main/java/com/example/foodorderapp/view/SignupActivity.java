@@ -123,7 +123,7 @@ public class SignupActivity extends AppCompatActivity {
                 if(!hasFocus){
                     if(txtRepeatPassword.getText().toString().trim().isEmpty()){
                         errRepeatPassword.setText("Vui lòng nhập trường nhắc lại mật khẩu!");
-                    } else if (txtPassword.getText().toString().trim() != txtRepeatPassword.getText().toString().trim()) {
+                    } else if (!txtPassword.getText().toString().trim().equals(txtRepeatPassword.getText().toString().trim())) {
                         errRepeatPassword.setText("Mật khẩu không khớp");
                     } else {
                         errRepeatPassword.setText("");
@@ -151,7 +151,7 @@ public class SignupActivity extends AppCompatActivity {
                     errSDT.setText("Số điện thoại không chứa kí tự số hoặc ký tự đặc biệt");
                 } else if (password.length() < 6) {
                     errPassword.setText("Mật khẩu tối thiểu phải có 6 ký tự");
-                } else if (repeatPassword != password) {
+                } else if (!repeatPassword.equals(password)) {
                     errRepeatPassword.setText("Mật khẩu không khớp");
                 } else {
                     signUpViewModel.signup(name, phoneNumber, address, password);
