@@ -71,16 +71,16 @@ public class OrderMainActivity extends AppCompatActivity {
                         // Xử lý dữ liệu và cập nhật giao diện
                         updateUI(detailFoodDTO);
                     } else {
-                        Log.e("DetailActivity", "API call failed: Invalid response.");
+                        Log.e("OrderMainActivity", "API call failed: Invalid response.");
                     }
                 } else {
-                    Log.e("DetailActivity", "API call failed: " + response.message());
+                    Log.e("OrderMainActivity", "API call failed: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<DetailFoodResponsive> call, Throwable t) {
-                Log.e("DetailActivity", "API call failed: " + t.getMessage());
+                Log.e("OrderMainActivity", "API call failed: " + t.getMessage());
             }
         });
     }
@@ -141,6 +141,7 @@ public class OrderMainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean postOrderStatus) {
                 if (postOrderStatus) {
+                    Toast.makeText(OrderMainActivity.this, "Đặt hàng thành công, vui lòng kiểm tra thông báo để xem chi tiết", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(OrderMainActivity.this, MainActivity.class);
                     intent.putExtra("fragment", "order");
                     startActivity(intent);
@@ -172,7 +173,8 @@ public class OrderMainActivity extends AppCompatActivity {
                 totalPriceOrder.setText(String.valueOf(totalPrice));
                 errorQuantity.setText("");
                 btnPay.setEnabled(true);
-            } else {
+            }
+            else {
                 errorQuantity.setText("Vui lòng nhập số lượng lớn hơn 0");
 //                btnPay = findViewById(R.id.btnPayment);
                 btnPay.setEnabled(false);

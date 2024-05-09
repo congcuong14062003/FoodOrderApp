@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.foodorderapp.LoadingManager;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.object.UserDTO;
@@ -37,6 +39,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
             // Inflate the layout for this fragment
 
             View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+            LoadingManager.showLoading(requireActivity());
             RoundedImageView nextToUpdateUser = rootView.findViewById(R.id.avatar_user);
 //            nextToUpdateUser.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -113,6 +117,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
                             });
                             Log.d("Màn Home", "ảnh đại diện: " + avatarUser); // Log success message
                         }
+                        LoadingManager.hideLoading();
                     } else {
                         Toast.makeText(getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
                     }

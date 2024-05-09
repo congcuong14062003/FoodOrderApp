@@ -65,9 +65,5 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("reviews/post_reviews")
     Call<PostReviewResponsive> postReview(@Field("food_id") int food_id, @Field("user_id") int user_id, @Field("comment") String comment,@Field("rate") int rate);
-//=======
-//    @GET("notices/list_notices/{userId}")
-//    Call<NotiResponsive> getNotis(@Path("userId") int userId);
-
 
 }

@@ -8,14 +8,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.foodorderapp.HeartFragment;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.databinding.ActivityMainBinding;
 
-import com.example.foodorderapp.view.HomeFragment;
-import com.example.foodorderapp.view.NotificationFragment;
-import com.example.foodorderapp.view.OrderFragment;
-import com.example.foodorderapp.view.ProfileFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {

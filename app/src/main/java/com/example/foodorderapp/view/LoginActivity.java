@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+
+import com.example.foodorderapp.NetworkUtils;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
@@ -41,6 +43,10 @@ public class LoginActivity extends AppCompatActivity {
         btnsLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!NetworkUtils.isNetworkAvailable(LoginActivity.this)) {
+                    Toast.makeText(LoginActivity.this, "Vui lòng kiểm tra kết nối mạng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String phoneNumber = txtUserName.getText().toString().trim();
                 String password = txtPassWord.getText().toString().trim();
                 loginViewModel.login(phoneNumber, password);

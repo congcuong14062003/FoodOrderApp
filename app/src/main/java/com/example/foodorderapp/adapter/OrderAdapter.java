@@ -31,24 +31,22 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_history, parent, false);
-        final OrderViewHolder viewHolder = new OrderViewHolder(view);
-        viewHolder.rateFood = view.findViewById(R.id.rateFood);
-        viewHolder.rateFood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Sử dụng getContext() từ parent để lấy Context của Fragment và khởi tạo Intent
-                Intent intent = new Intent(parent.getContext(), PostReviewActivity.class);
-                parent.getContext().startActivity(intent); // Khởi chạy Intent
-            }
-        });
-        return viewHolder;
+        return new OrderViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         OrderDTO order = orderList.get(position);
         holder.bind(order);
+        holder.rateFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int foodId = order.getFood_id(); // Lấy foodId từ OrderDTO
+                Intent intent = new Intent(v.getContext(), PostReviewActivity.class);
+                intent.putExtra("foodId", foodId); // Truyền foodId qua Intent
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -23,6 +23,7 @@ import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodorderapp.LoadingManager;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.ListFoodAdapter;
 import com.example.foodorderapp.adapter.OrderAdapter;
@@ -64,12 +65,13 @@ public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItem
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_detail, container, false);
+        LoadingManager.showLoading(requireActivity());
+
         searchFood = view.findViewById(R.id.search_food);
         // Yêu cầu focus cho EditText trong FoodFragment
         searchFood.requestFocus();
 
-
-
+        // Hiển thị màn hình loading khi bắt đầu tải dữ liệu
         searchFood.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 // Xử lý khi người dùng nhập liệu xong và nhấn Enter trên bàn phím ảo hoặc trên thiết bị thật
@@ -81,13 +83,14 @@ public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItem
         });
 
 
-        RecyclerView recyclerView = view.findViewById(list_food_recycle);
+        RecyclerView recyclerView = view.findViewById(R.id.list_food_recycle);
         final ListFoodAdapter adapter = new ListFoodAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setOnFoodItemClickListener(this);
         foodViewModel.getFoodList().observe(getViewLifecycleOwner(), orderDTOs -> {
             adapter.setFoodList(orderDTOs);
+            LoadingManager.hideLoading();
         });
 
         // thay đổi theo sự kiện onchange của input

@@ -1,5 +1,6 @@
 package com.example.foodorderapp.view;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -12,15 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.foodorderapp.LoadingManager;
+import com.example.foodorderapp.NetworkUtils;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.UserResponsive;
 import com.example.foodorderapp.object.UserDTO;
-import com.example.foodorderapp.view.FoodFragment;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -38,7 +39,16 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        // Hiển thị màn hình loading khi bắt đầu tải dữ liệu
+        LoadingManager.showLoading(requireActivity());
 
+        if (!NetworkUtils.isNetworkAvailable(requireContext())) {
+            view = inflater.inflate(R.layout.network, container, false);
+            Toast.makeText(requireContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
+        } else {
+            view = inflater.inflate(R.layout.fragment_home, container, false);
+            Toast.makeText(requireContext(), "Đã có mạng trở lại", Toast.LENGTH_SHORT).show();
+        }
         searchHome = view.findViewById(R.id.search_home);
         // Lấy id người dùng từ bất kỳ đâu trong ứng dụng
         int userId = UserManager.getInstance().getUserId();
@@ -68,10 +78,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<UserResponsive> call, Response<UserResponsive> response) {
                 if(response.isSuccessful()) {
+
                     UserDTO userData = response.body().getData();
                     if(userData != null) {
-
-                        userName.setText(userData.getName());
+                        userName.setText("Xin chào, " + userData.getName());
                         String avatarUser = userData.getAvatar_thumbnail();
                         Picasso.get().load(avatarUser).into(avtUser, new com.squareup.picasso.Callback() {
                             @Override
@@ -85,8 +95,10 @@ public class HomeFragment extends Fragment {
                         });
                         Log.d("Màn Home", "ảnh đại diện: " + avatarUser); // Log success message
                     }
+                    LoadingManager.hideLoading();
                 } else {
                     Toast.makeText(requireView().getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
+                    LoadingManager.hideLoading();
                 }
             }
             // khi không thành công
@@ -96,4 +108,5 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 }
