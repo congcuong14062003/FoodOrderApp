@@ -28,8 +28,6 @@ public class OrderFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
-
-
     }
     @Nullable
     @Override

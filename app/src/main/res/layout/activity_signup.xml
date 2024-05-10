@@ -209,7 +209,7 @@
                     style="@style/MyTextInputEditTextStyle"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
-                    android:singleLine="true"
+                    android:singleLine="true" android:imeOptions="actionDone"
                     android:layout_height="wrap_content"
                     android:hint="Nhắc lại mật khẩu" />
             </com.google.android.material.textfield.TextInputLayout>

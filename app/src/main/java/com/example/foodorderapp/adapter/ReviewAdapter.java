@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodorderapp.DateTimeHelper;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.object.FoodDTO;
 import com.example.foodorderapp.object.ReviewDTO;
@@ -67,7 +68,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
             name.setText(reviewDTO.getName());
             comment.setText(reviewDTO.getComment());
             Picasso.get().load(reviewDTO.getAvatar_thumbnail()).into(avatar_thumbnail);
-            reviews_datetime.setText(String.valueOf(reviewDTO.getReviews_datetime()));
+//            Picasso.get().load(reviewDTO.getAvatar_thumbnail()).into(avatar_thumbnail);
+            String formattedDateTime = DateTimeHelper.formatDateTime(reviewDTO.getReviews_datetime());
+            reviews_datetime.setText(formattedDateTime);
+
             setRatingStars(reviewDTO.getRate());
         }
         private void setRatingStars(int averageRating) {

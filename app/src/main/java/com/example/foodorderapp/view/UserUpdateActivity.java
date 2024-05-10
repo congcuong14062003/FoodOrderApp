@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.foodorderapp.R;
@@ -51,10 +52,10 @@ public class UserUpdateActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 200;
     private TextInputEditText editName, editSdt, editPass, editAddress;
     private Button btnSave, btnSelectImage;
-    private ShapeableImageView editImage;
+    private ImageView editImage;
     private ImageView backUser;
     private UpdateUserViewModel updateViewModel;
-    private ShapeableImageView updateImage;
+    private ImageView updateImage;
     private Button buttonSelectImage, buttonSaveUpdate;
     private Uri imageUri;
 
@@ -99,11 +100,25 @@ public class UserUpdateActivity extends AppCompatActivity {
                     String password = editPass.getText().toString();
                     String address = editAddress.getText().toString();
                     updateViewModel.update(name, phoneNumber, address, password);
-//                    imageUri = null;
+                    imageUri = null;
                 } else {
                     // No image selected, handle accordingly
                     Toast.makeText(UserUpdateActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
                 }
+                updateViewModel.getUpdateUserStatus().observe(UserUpdateActivity.this, new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean postOrderStatus) {
+                        if (postOrderStatus) {
+                            Toast.makeText(UserUpdateActivity.this, "Cập nhật thông tin thành công", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(UserUpdateActivity.this, MainActivity.class);
+                            intent.putExtra("fragment", "profile");
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(UserUpdateActivity.this, "Cập nhật thông tin thất bại", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
     }

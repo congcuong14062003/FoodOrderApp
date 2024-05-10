@@ -40,15 +40,15 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         // Hiển thị màn hình loading khi bắt đầu tải dữ liệu
-        LoadingManager.showLoading(requireActivity());
+            LoadingManager.showLoading(requireActivity());
 
-        if (!NetworkUtils.isNetworkAvailable(requireContext())) {
-            view = inflater.inflate(R.layout.network, container, false);
-            Toast.makeText(requireContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
-        } else {
-            view = inflater.inflate(R.layout.fragment_home, container, false);
-            Toast.makeText(requireContext(), "Đã có mạng trở lại", Toast.LENGTH_SHORT).show();
-        }
+//        if (!NetworkUtils.isNetworkAvailable(requireContext())) {
+//            LoadingManager.showLoading(requireActivity());
+//            Toast.makeText(requireContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
+//        } else {
+//            LoadingManager.hideLoading();
+//
+//        }
         searchHome = view.findViewById(R.id.search_home);
         // Lấy id người dùng từ bất kỳ đâu trong ứng dụng
         int userId = UserManager.getInstance().getUserId();
@@ -86,25 +86,26 @@ public class HomeFragment extends Fragment {
                         Picasso.get().load(avatarUser).into(avtUser, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
-                                Log.d("Picasso", "Hình ảnh đã được tải thành công.");
+                                Log.d("Màn Home", "Hình ảnh đã được tải thành công.");
                             }
                             @Override
                             public void onError(Exception e) {
-                                Log.e("Picasso", "Lỗi khi tải hình ảnh: " + e.getMessage());
+                                Log.e("Màn Home", "Lỗi khi tải hình ảnh: " + e.getMessage());
                             }
                         });
                         Log.d("Màn Home", "ảnh đại diện: " + avatarUser); // Log success message
                     }
                     LoadingManager.hideLoading();
+
                 } else {
-                    Toast.makeText(requireView().getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
                     LoadingManager.hideLoading();
+                    Toast.makeText(requireView().getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
                 }
             }
             // khi không thành công
             @Override
             public void onFailure(Call<UserResponsive> call, Throwable t) {
-                Toast.makeText(requireView().getContext(), "Network error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireView().getContext(), "Lỗi mạng", Toast.LENGTH_SHORT).show();
             }
         });
     }

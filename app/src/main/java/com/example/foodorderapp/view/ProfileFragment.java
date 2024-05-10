@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,6 @@ import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.object.UserDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.UserResponsive;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -31,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
     public class ProfileFragment extends Fragment {
         TextView textName;
         TextView textAddress;
-        RoundedImageView avtUser;
+        ImageView avtUser;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
             View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
             LoadingManager.showLoading(requireActivity());
-            RoundedImageView nextToUpdateUser = rootView.findViewById(R.id.avatar_user);
+            ImageView nextToUpdateUser = rootView.findViewById(R.id.avatar_user);
 //            nextToUpdateUser.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {

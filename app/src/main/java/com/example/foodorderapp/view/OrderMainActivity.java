@@ -158,7 +158,7 @@ public class OrderMainActivity extends AppCompatActivity {
         if (!newQuantityString.isEmpty()) {
             // Lấy số lượng mới từ newQuantityString
             int newQuantity = Integer.parseInt(newQuantityString);
-            if (newQuantity > 0 ) {
+            if (newQuantity > 0) {
                 // Lấy giá sản phẩm từ priceOrder
                 double productPrice = Double.parseDouble(priceOrder.getText().toString());
 
@@ -173,13 +173,13 @@ public class OrderMainActivity extends AppCompatActivity {
                 totalPriceOrder.setText(String.valueOf(totalPrice));
                 errorQuantity.setText("");
                 btnPay.setEnabled(true);
-            }
-            else {
-                errorQuantity.setText("Vui lòng nhập số lượng lớn hơn 0");
-//                btnPay = findViewById(R.id.btnPayment);
+            } else {
+                errorQuantity.setText("Vui lòng nhập số lượng lớn hơn 0!");
                 btnPay.setEnabled(false);
             }
+        } else {
+            errorQuantity.setText("Vui lòng nhập số lượng!");
+            btnPay.setEnabled(false);
         }
     }
-
 }

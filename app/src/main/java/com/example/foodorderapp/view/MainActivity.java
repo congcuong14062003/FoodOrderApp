@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
         if (fragmentToShow != null && fragmentToShow.equals("order")) {
             replaceFragment(new OrderFragment());
             binding.bottomNavigation.getMenu().findItem(R.id.navigation_receipt).setChecked(true);
-        } else {
+        } else if (fragmentToShow != null && fragmentToShow.equals("profile")) {
+            replaceFragment(new ProfileFragment());
+            binding.bottomNavigation.getMenu().findItem(R.id.navigation_profile).setChecked(true);
+        } else  {
             // Nếu không có intent hoặc không phải là order fragment, hiển thị fragment mặc định
             replaceFragment(new HomeFragment());
         }
