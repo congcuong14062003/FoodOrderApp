@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/border_background.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent"/>
+            <stroke
+                android:width="2dp"
+                android:color="@color/maincolor"/> <!-- Màu sắc đường viền -->
+            <corners android:radius="4dp"/> <!-- Độ cong của các góc -->
+        </shape>
+    </item>
+</selector>

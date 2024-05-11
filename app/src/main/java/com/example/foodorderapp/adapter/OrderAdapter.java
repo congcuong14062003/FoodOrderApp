@@ -1,5 +1,6 @@
 package com.example.foodorderapp.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodorderapp.DateTimeHelper;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.object.OrderDTO;
+import com.example.foodorderapp.view.PostReviewActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,6 +38,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         OrderDTO order = orderList.get(position);
         holder.bind(order);
+        holder.rateFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int foodId = order.getFood_id(); // Lấy foodId từ OrderDTO
+                Intent intent = new Intent(v.getContext(), PostReviewActivity.class);
+                intent.putExtra("foodId", foodId); // Truyền foodId qua Intent
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -51,6 +62,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         TextView txtQuantityHistoryOrder;
         TextView txtOrderDateTime;
         ImageView imgHistoryOrder;
+        TextView rateFood;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +73,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             txtQuantityHistoryOrder = itemView.findViewById(R.id.quantityItemHistoryOrder);
             txtOrderDateTime = itemView.findViewById(R.id.purchaseDateTextView);
             txtTotalPriceHistoryOrder = itemView.findViewById(R.id.totalPriceTextView);
+            rateFood = itemView.findViewById(R.id.rateFood);
         }
 
         public void bind(OrderDTO order) {

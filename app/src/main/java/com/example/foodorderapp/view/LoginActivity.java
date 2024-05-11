@@ -13,11 +13,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
+import com.example.foodorderapp.LoadingManager;
+import com.example.foodorderapp.NetworkUtils;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
-
     private EditText txtUserName;
     private EditText txtPassWord;
     private Button btnsLogin;
@@ -43,12 +44,15 @@ public class LoginActivity extends AppCompatActivity {
         btnsLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!NetworkUtils.isNetworkAvailable(LoginActivity.this)) {
+                    Toast.makeText(LoginActivity.this, "Vui lòng kiểm tra kết nối mạng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String phoneNumber = txtUserName.getText().toString().trim();
                 String password = txtPassWord.getText().toString().trim();
                 loginViewModel.login(phoneNumber, password);
             }
         });
-
 
         loginViewModel.getLoginStatus().observe(this, new Observer<Boolean>() {
             @Override
@@ -61,7 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     // Đăng nhập không thành công, hiển thị thông báo lỗi
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại. Vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+                    txtUserName.setText("");
+                    txtPassWord.setText("");
                 }
             }
         });
@@ -71,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

@@ -51,7 +51,7 @@ public class NotificationFragment extends Fragment {
             adapter.setNotiList(notiDTOS);
         });
 
-        ImageButton cancelBtn = view.findViewById(R.id.backBtn);
+        ImageView cancelBtn = view.findViewById(R.id.backBtn);
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

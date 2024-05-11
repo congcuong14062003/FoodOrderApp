@@ -14,23 +14,36 @@
         android:layout_width="match_parent"
         android:layout_height="102dp"
         android:background="#DB166E"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
 
+
+
+    </View>
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
+        android:layout_marginBottom="10dp"
         android:id="@+id/editText"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_below="@+id/view3"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/border"
-        android:ems="10"
         android:clickable="true"
         android:focusable="true"
         android:hint="Search for food, address..."
@@ -53,12 +66,11 @@
         android:background="@color/white"
         android:layout_marginLeft="15dp"
 
-
         app:layout_constraintBottom_toBottomOf="@+id/editText"
         app:layout_constraintStart_toStartOf="@+id/editText"
         app:layout_constraintTop_toTopOf="@+id/editText"
         app:layout_constraintVertical_bias="0.428"
-        app:srcCompat="@drawable/search_glass1"
+        app:srcCompat="@drawable/search"
         tools:ignore="MissingConstraints" />
 
     <View
@@ -76,8 +88,8 @@
 
     <TextView
         android:id="@+id/textResult"
-        android:layout_width="348dp"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:gravity="center"
         android:textColor="@color/white"
         android:text="Result for 'chè' (6 results)"
@@ -103,19 +115,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view4"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/backbtn"
-        android:layout_width="70dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="35dp"
-        android:width="30dp"
-        android:height="30dp"
-        android:padding="3dp"
-        android:src="@drawable/left_arrow"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/view3"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
 
     <TextView
         android:id="@+id/message"

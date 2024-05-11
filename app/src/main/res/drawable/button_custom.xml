@@ -1,4 +1,4 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <corners android:radius="60dp" /> <!-- Điều chỉnh độ cong của góc -->
+    <corners android:radius="50dp" /> <!-- Điều chỉnh độ cong của góc -->
 </shape>

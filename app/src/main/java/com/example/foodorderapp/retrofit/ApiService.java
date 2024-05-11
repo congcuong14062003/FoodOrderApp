@@ -40,20 +40,30 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("users/login")
     Call<LoginResponsive> login(@Field("phone_number") String phoneNumber, @Field("password") String password);
-
     @FormUrlEncoded
     @POST("users/signup")
     Call<SignUpResponsive> signup(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password);
-    @Multipart
-    @POST("upload/avartar/{userId}")
-    Call<UserResponsive> updateAvatar(
-            @Path("userId") int userId,
-            @Part MultipartBody.Part file
-    );
-    @FormUrlEncoded
-    @POST("upload/info")
-    Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
 
+    @Multipart
+    @POST("users/upload/avartar/{userId}")
+    Call<UserResponsive> uploadAvatar(
+            @Part MultipartBody.Part avatar_thumbnail,
+            @Path("userId") int id_user
+    );
+    // cập nhật thông tin người dùng
+    @FormUrlEncoded
+    @POST("users/update/info")
+    Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
+    // danh sách thông báo
     @GET("notices/list_notices/{userId}")
     Call<NotiResponsive> getNotis(@Path("userId") int userId);
+    // danh sách đánh giá
+    @GET("reviews/food_id/{foodId}")
+    Call<ReviewsResponsive> getReviews(@Path("foodId") int foodId);
+
+    // post bài đánh giá
+    @FormUrlEncoded
+    @POST("reviews/post_reviews")
+    Call<PostReviewResponsive> postReview(@Field("food_id") int food_id, @Field("user_id") int user_id, @Field("comment") String comment,@Field("rate") int rate);
+
 }

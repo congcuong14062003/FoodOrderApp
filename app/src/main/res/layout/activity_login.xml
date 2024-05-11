@@ -8,91 +8,103 @@
     android:background="@drawable/backgourndlogin"
     tools:context=".view.LoginActivity"
     >
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="412dp"
-        android:layout_height="241dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="60dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logopanda" />
 
-    <EditText
-        android:id="@+id/txtPhoneNumber"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFildPhone"
+        style="@style/MyTextInputLayoutStyle"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="96dp"
-        android:backgroundTint="@color/white"
-        android:hint="Số điện thoại"
-        android:paddingBottom="8dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/maincolor"
+        app:counterEnabled="false"
+        app:hintTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+        app:layout_constraintTop_toBottomOf="@id/imageView">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPhoneNumber"
+            style="@style/MyTextInputEditTextStyle"
+            android:inputType="number"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số điện thoại" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- EditText để nhập mật khẩu -->
-    <EditText
-        android:id="@+id/txtPassword"
+        <!-- EditText để nhập mật khẩu -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFildPass"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/white"
-        android:hint="Mật khẩu"
-        android:inputType="textPassword"
-        android:paddingBottom="8dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@id/txtPhoneNumber"
-        app:layout_constraintStart_toStartOf="@id/txtPhoneNumber"
-        app:layout_constraintTop_toBottomOf="@id/txtPhoneNumber" />
-    <!-- TextView hiển thị thông báo lỗi -->
+        android:layout_height="wrap_content"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/maincolor"
+        app:counterEnabled="false"
+        app:hintTextColor="@color/white"
+        style="@style/MyTextInputLayoutStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textFildPhone"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPassword"
+            style="@style/MyTextInputEditTextStyle"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:hint="Mật khẩu" />
+    </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:id="@+id/errorMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/maincolor"
         android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/txtPassword"
-        app:layout_constraintStart_toStartOf="@id/txtPassword"
-        app:layout_constraintEnd_toEndOf="@id/txtPassword"/>
-    <!-- TextView hiển thị thông báo lỗi -->
+        app:layout_constraintTop_toBottomOf="@id/textFildPass"
+        app:layout_constraintStart_toStartOf="@id/textFildPass"
+        app:layout_constraintEnd_toEndOf="@id/textFildPass"/>
+
     <!-- Button để thực hiện đăng nhập -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/maincolor"
+        android:layout_marginTop="60dp"
         android:background="@drawable/button_custom"
+        android:backgroundTint="@color/maincolor"
         android:text="Đăng nhập"
         android:textColor="@color/white"
         android:textSize="@dimen/mainfontsize"
-        app:layout_constraintEnd_toEndOf="@id/txtPassword"
+        app:layout_constraintEnd_toEndOf="@id/textFildPass"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@id/txtPassword"
-        app:layout_constraintTop_toBottomOf="@id/txtPassword" />
-
+        app:layout_constraintStart_toStartOf="@id/textFildPass"
+        app:layout_constraintTop_toBottomOf="@id/textFildPass" />
     <!-- LinearLayout chứa thông báo và nút đăng ký -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/btnLogin"
         app:layout_constraintStart_toStartOf="@id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin"
-        app:layout_constraintVertical_bias="0.888">
+        app:layout_constraintTop_toBottomOf="@id/btnLogin">
         <!-- TextView hiển thị thông báo -->
         <TextView
             android:id="@+id/textView3"

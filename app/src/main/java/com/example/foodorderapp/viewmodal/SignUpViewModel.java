@@ -29,7 +29,7 @@ public class SignUpViewModel extends ViewModel {
     public void signup(String name, String phoneNumber, String address, String password) {
         UserDTO user = new UserDTO();
         user.setName(name);
-        user.setPhoneNumber(phoneNumber);
+        user.setPhone_number(phoneNumber);
         user.setAddress(address);
         user.setPassword(password);
 

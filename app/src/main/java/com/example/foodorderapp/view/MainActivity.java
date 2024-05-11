@@ -8,14 +8,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.foodorderapp.HeartFragment;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.databinding.ActivityMainBinding;
 
-import com.example.foodorderapp.view.HomeFragment;
-import com.example.foodorderapp.view.NotificationFragment;
-import com.example.foodorderapp.view.OrderFragment;
-import com.example.foodorderapp.view.ProfileFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,15 +22,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // Khởi tạo Fragment Home mặc định khi Activity được khởi chạy
+        replaceFragment(new HomeFragment());
         binding.bottomNavigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
 
         String fragmentToShow = getIntent().getStringExtra("fragment");
         if (fragmentToShow != null && fragmentToShow.equals("order")) {
             replaceFragment(new OrderFragment());
             binding.bottomNavigation.getMenu().findItem(R.id.navigation_receipt).setChecked(true);
-        } else {
+        } else if (fragmentToShow != null && fragmentToShow.equals("profile")) {
+            replaceFragment(new ProfileFragment());
+            binding.bottomNavigation.getMenu().findItem(R.id.navigation_profile).setChecked(true);
+        } else  {
             // Nếu không có intent hoặc không phải là order fragment, hiển thị fragment mặc định
             replaceFragment(new HomeFragment());
         }

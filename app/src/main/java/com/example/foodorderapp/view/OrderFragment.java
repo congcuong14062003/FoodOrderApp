@@ -1,9 +1,11 @@
 package com.example.foodorderapp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodorderapp.LoadingManager;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.OrderAdapter;
 import com.example.foodorderapp.viewmodal.OrderViewModel;
@@ -26,12 +29,11 @@ public class OrderFragment extends Fragment {
         super.onCreate(savedInstanceState);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_order_history, container, false);
-
+        LoadingManager.showLoading(requireActivity());
         RecyclerView recyclerView = view.findViewById(R.id.recycle_view_history);
         final OrderAdapter adapter = new OrderAdapter();
         recyclerView.setAdapter(adapter);
@@ -39,6 +41,7 @@ public class OrderFragment extends Fragment {
 
         orderViewModel.getOrderList().observe(getViewLifecycleOwner(), orderDTOs -> {
             adapter.setOrderList(orderDTOs);
+            LoadingManager.hideLoading();
         });
 
         return view;

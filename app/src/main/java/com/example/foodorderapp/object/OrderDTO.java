@@ -1,6 +1,7 @@
 package com.example.foodorderapp.object;
 
 public class OrderDTO {
+    private int food_id;
     private String img_thumbnail;
     private int quantity;
     private String name;
@@ -9,7 +10,7 @@ public class OrderDTO {
     private String order_datetime;
     private  double total_price;
 
-    public OrderDTO(String img_thumbnail, int quantity, String name, String ingredients, double price, String order_datetime, double total_price) {
+    public OrderDTO(int food_id, String img_thumbnail, int quantity, String name, String ingredients, double price, String order_datetime, double total_price) {
         this.img_thumbnail = img_thumbnail;
         this.quantity = quantity;
         this.name = name;
@@ -17,6 +18,7 @@ public class OrderDTO {
         this.price = price;
         this.order_datetime = order_datetime;
         this.total_price = total_price;
+        this.food_id = food_id;
     }
 
     public String getImageUrl() {
@@ -73,5 +75,13 @@ public class OrderDTO {
 
     public void setTotalPrice(double total_price) {
         this.total_price = total_price;
+    }
+
+    public int getFood_id() {
+        return food_id;
+    }
+
+    public void setFood_id(int food_id) {
+        this.food_id = food_id;
     }
 }

@@ -94,21 +94,41 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField"
+            style="@style/MyTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Enter quantity"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/textcolor"
+            app:boxStrokeColor="@color/maincolor"
+            app:endIconTint="@color/maincolor"
+            app:hintTextColor="@color/maincolor"
             app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/relativeLayout"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/quantityEditText"
+                style="@style/MyTextInputEditTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Enter quantity"
+                android:inputType="number"
+                android:textColor="@color/maincolor" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/errorQuantity"
+            android:textColor="@color/maincolor"
+            app:layout_constraintStart_toStartOf="@id/outlinedTextField"
+            app:layout_constraintTop_toBottomOf="@id/outlinedTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginBottom="10dp"
+            />
         <LinearLayout
+            android:layout_marginTop="40dp"
             android:id="@+id/inforOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -291,26 +311,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-
-        <!--        <TextView-->
-<!--            android:id="@+id/btnPayment"-->
-<!--            android:backgroundTint="@color/maincolor"-->
-<!--            android:background="@drawable/button_custom"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="@dimen/twentyfour"-->
-<!--            android:text="payment now"-->
-<!--            android:textAllCaps="true"-->
-<!--            android:gravity="center"-->
-<!--            android:paddingBottom="15dp"-->
-<!--            android:paddingTop="15dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/imageView2"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            />-->
-
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
@@ -323,7 +323,7 @@
             app:layout_constraintTop_toBottomOf="@+id/total_text"
             app:srcCompat="@drawable/img_order" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -333,11 +333,11 @@
             android:text="payment now"
             android:textColor="@color/white"
             android:textSize="@dimen/mainfontsize"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
             app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:background="#fcf9f9"
+    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fcf9f9"
     tools:context=".view.DetailActivity">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/img_detail"
         android:layout_width="match_parent"
@@ -65,7 +69,7 @@
             >
             <TextView
                 android:id="@+id/textview"
-                android:textSize="@dimen/twentyfour"
+                android:textSize="28sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/maincolor"
@@ -76,7 +80,7 @@
                 android:layout_marginBottom="5dp"
                 />
             <TextView
-                android:textSize="24sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:textColor="@color/maincolor"
                 android:id="@+id/price_detail"
@@ -144,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:text="100"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/mainfontsize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -169,7 +173,7 @@
                     android:layout_height="match_parent"
                     android:text="100"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/mainfontsize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -180,7 +184,7 @@
                     android:text="Đã bán" />
             </LinearLayout>
         </LinearLayout>
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/book_food_btn"
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/phonebook"
@@ -191,15 +195,17 @@
             android:backgroundTint="@color/maincolor"
             android:background="@drawable/button_custom"
             android:textColor="@color/white"
-            android:text="booking now"
+            android:text="Mua ngay"
+            android:textSize="@dimen/mainfontsize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             >
-        </Button>
+        </androidx.appcompat.widget.AppCompatButton>
 
     </LinearLayout>
-    
+
     <LinearLayout
+        android:id="@+id/inforDes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -230,4 +236,39 @@
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inforDes">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đánh giá"
+            android:id="@+id/reviewText"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            android:textColor="@color/secondarycolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_view_reviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reviewText"
+            app:layout_constraintVertical_bias="0.0">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

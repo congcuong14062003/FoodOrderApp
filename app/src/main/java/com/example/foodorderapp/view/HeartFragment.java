@@ -1,4 +1,4 @@
-package com.example.foodorderapp;
+package com.example.foodorderapp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.example.foodorderapp.LoadingManager;
+import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.FavorAdapter;
 import com.example.foodorderapp.view.DetailActivity;
 import com.example.foodorderapp.view.MainActivity;
@@ -37,7 +40,7 @@ public class HeartFragment extends Fragment implements FavorAdapter.InFoodItemCl
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_favourite, container, false);
-
+        LoadingManager.showLoading(requireActivity());
         RecyclerView recyclerView = view.findViewById(R.id.favorRecycle);
         final FavorAdapter adapter = new FavorAdapter();
 
@@ -48,9 +51,10 @@ public class HeartFragment extends Fragment implements FavorAdapter.InFoodItemCl
 
         foodViewModel.getFoodList().observe(getViewLifecycleOwner(), orderDTOS -> {
             adapter.setFoodList(orderDTOS);
+            LoadingManager.hideLoading();
         });
 
-        ImageButton cancelBtn = view.findViewById(R.id.backFavorBtn);
+        ImageView cancelBtn = view.findViewById(R.id.backFavorBtn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

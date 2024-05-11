@@ -58,7 +58,6 @@ public class ListFoodAdapter extends RecyclerView.Adapter<ListFoodAdapter.FoodVi
 
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nameFood = itemView.findViewById(R.id.foodName);
             ingredientFood = itemView.findViewById(R.id.foodIngredient);
             img_thumbnail = itemView.findViewById(R.id.foodImgList);

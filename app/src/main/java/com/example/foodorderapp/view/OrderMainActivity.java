@@ -39,6 +39,7 @@ public class OrderMainActivity extends AppCompatActivity {
     ImageView food_img_order;
     PostOrderViewModel postOrderViewModel;
     private TextView quantityOrder, priceFoodOrder, totalPriceOrder, nameOrder, ingredientOrder, priceOrder, shipping_fee, btnPay;
+    TextView errorQuantity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,16 +71,16 @@ public class OrderMainActivity extends AppCompatActivity {
                         // Xử lý dữ liệu và cập nhật giao diện
                         updateUI(detailFoodDTO);
                     } else {
-                        Log.e("DetailActivity", "API call failed: Invalid response.");
+                        Log.e("OrderMainActivity", "API call failed: Invalid response.");
                     }
                 } else {
-                    Log.e("DetailActivity", "API call failed: " + response.message());
+                    Log.e("OrderMainActivity", "API call failed: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<DetailFoodResponsive> call, Throwable t) {
-                Log.e("DetailActivity", "API call failed: " + t.getMessage());
+                Log.e("OrderMainActivity", "API call failed: " + t.getMessage());
             }
         });
     }
@@ -97,6 +98,7 @@ public class OrderMainActivity extends AppCompatActivity {
         priceOrder = findViewById(R.id.priceOrder);
         shipping_fee = findViewById(R.id.shipping_fee);
         btnPay = findViewById(R.id.btnPayment);
+        errorQuantity = findViewById(R.id.errorQuantity);
 
         // Set dữ liệu cho các view
         Picasso.get().load(detailFoodDTO.getImg_thumbnail()).into(food_img_order);
@@ -139,6 +141,7 @@ public class OrderMainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean postOrderStatus) {
                 if (postOrderStatus) {
+                    Toast.makeText(OrderMainActivity.this, "Đặt hàng thành công, vui lòng kiểm tra thông báo để xem chi tiết", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(OrderMainActivity.this, MainActivity.class);
                     intent.putExtra("fragment", "order");
                     startActivity(intent);
@@ -155,20 +158,28 @@ public class OrderMainActivity extends AppCompatActivity {
         if (!newQuantityString.isEmpty()) {
             // Lấy số lượng mới từ newQuantityString
             int newQuantity = Integer.parseInt(newQuantityString);
+            if (newQuantity > 0) {
+                // Lấy giá sản phẩm từ priceOrder
+                double productPrice = Double.parseDouble(priceOrder.getText().toString());
 
-            // Lấy giá sản phẩm từ priceOrder
-            double productPrice = Double.parseDouble(priceOrder.getText().toString());
+                // Lấy phí vận chuyển từ shipping_fee
+                double shippingFee = Double.parseDouble(shipping_fee.getText().toString());
 
-            // Lấy phí vận chuyển từ shipping_fee
-            double shippingFee = Double.parseDouble(shipping_fee.getText().toString());
+                // Tính toán tổng giá mới dựa trên số lượng mới, giá của sản phẩm và phí vận chuyển
+                double totalPrice = (newQuantity * productPrice) + shippingFee;
 
-            // Tính toán tổng giá mới dựa trên số lượng mới, giá của sản phẩm và phí vận chuyển
-            double totalPrice = (newQuantity * productPrice) + shippingFee;
-
-            // Cập nhật số lượng và tổng giá trên giao diện
-            quantityOrder.setText(String.valueOf(newQuantity));
-            totalPriceOrder.setText(String.valueOf(totalPrice));
+                // Cập nhật số lượng và tổng giá trên giao diện
+                quantityOrder.setText(String.valueOf(newQuantity));
+                totalPriceOrder.setText(String.valueOf(totalPrice));
+                errorQuantity.setText("");
+                btnPay.setEnabled(true);
+            } else {
+                errorQuantity.setText("Vui lòng nhập số lượng lớn hơn 0!");
+                btnPay.setEnabled(false);
+            }
+        } else {
+            errorQuantity.setText("Vui lòng nhập số lượng!");
+            btnPay.setEnabled(false);
         }
     }
-
 }
