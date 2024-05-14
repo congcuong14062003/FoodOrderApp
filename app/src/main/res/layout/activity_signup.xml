@@ -237,7 +237,6 @@
         android:text="Đăng ký"
         android:textColor="@color/white"
         android:textSize="@dimen/mainfontsize"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
