@@ -4,15 +4,19 @@
 
     <uses-feature
         android:name="android.hardware.camera"
+        android:importantForAutofill="no"
         android:required="false" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 
+=======
+    
+>>>>>>> 84dbad130fc810893d47f5dae28865e4d170b260
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
