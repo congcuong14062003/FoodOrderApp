@@ -35,7 +35,7 @@ import com.example.foodorderapp.viewmodal.FoodViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultFragment extends Fragment implements ResultAdapter.InFoodItemClickListener {
+public class ResultFragment extends BaseFragment implements ResultAdapter.InFoodItemClickListener {
 
     private FoodViewModel foodViewModel;
     private FoodFragment foodFragment;

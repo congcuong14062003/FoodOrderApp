@@ -33,7 +33,7 @@ import com.example.foodorderapp.viewmodal.FoodViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodFragment extends Fragment implements ListFoodAdapter.OnFoodItemClickListener {
+public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFoodItemClickListener {
     private FoodViewModel foodViewModel;
     private EditText searchFood;
     private HomeFragment homeFragment;

@@ -27,7 +27,7 @@ import com.example.foodorderapp.adapter.NotiAdapter;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 import com.example.foodorderapp.viewmodal.NotiViewModel;
 
-public class NotificationFragment extends Fragment {
+public class NotificationFragment extends BaseFragment {
     private NotiViewModel notiViewModel;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {

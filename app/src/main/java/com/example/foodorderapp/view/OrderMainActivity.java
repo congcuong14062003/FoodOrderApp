@@ -34,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class OrderMainActivity extends AppCompatActivity {
+public class OrderMainActivity extends BaseActivity {
     private TextInputLayout outlinedTextField;
     ImageView food_img_order;
     PostOrderViewModel postOrderViewModel;

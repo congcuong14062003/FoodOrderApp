@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
         binding.bottomNavigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
 
+
         String fragmentToShow = getIntent().getStringExtra("fragment");
         if (fragmentToShow != null && fragmentToShow.equals("order")) {
             replaceFragment(new OrderFragment());

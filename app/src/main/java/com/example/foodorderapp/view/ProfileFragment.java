@@ -28,7 +28,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-    public class ProfileFragment extends Fragment {
+    public class ProfileFragment extends BaseFragment {
         TextView textName;
         TextView textAddress;
         ImageView avtUser;

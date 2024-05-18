@@ -30,7 +30,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
     private EditText searchHome;
     private FoodFragment foodFragment;
     TextView userName;
