@@ -84,7 +84,6 @@ public class UserUpdateActivity extends AppCompatActivity {
                 selectImage();
             }
         });
-
         buttonSaveUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
