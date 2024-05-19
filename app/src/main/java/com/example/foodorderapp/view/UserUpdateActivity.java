@@ -49,7 +49,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class UserUpdateActivity extends AppCompatActivity {
+public class UserUpdateActivity extends BaseActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 101;
     private static final int REQUEST_IMAGE_PICK = 102;
     private static final int PERMISSION_REQUEST_CODE = 200;

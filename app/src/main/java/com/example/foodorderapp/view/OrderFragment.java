@@ -21,7 +21,7 @@ import com.example.foodorderapp.viewmodal.OrderViewModel;
 
 import java.util.List;
 
-public class OrderFragment extends Fragment {
+public class OrderFragment extends BaseFragment {
     private OrderViewModel orderViewModel;
 
     @Override

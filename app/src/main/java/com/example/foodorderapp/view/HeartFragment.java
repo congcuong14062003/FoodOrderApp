@@ -24,7 +24,7 @@ import com.example.foodorderapp.view.DetailActivity;
 import com.example.foodorderapp.view.MainActivity;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 
-public class HeartFragment extends Fragment implements FavorAdapter.InFoodItemClickListener {
+public class HeartFragment extends BaseFragment implements FavorAdapter.InFoodItemClickListener {
 
     // Inflate the layout for this fragment
     private FoodViewModel foodViewModel;

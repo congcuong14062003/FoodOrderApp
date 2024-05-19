@@ -18,7 +18,7 @@ import com.example.foodorderapp.NetworkUtils;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private EditText txtUserName;
     private EditText txtPassWord;
     private Button btnsLogin;

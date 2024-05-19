@@ -48,7 +48,7 @@ public interface ApiService {
     @POST("users/upload/avartar/{userId}")
     Call<UserResponsive> uploadAvatar(
             @Part MultipartBody.Part avatar_thumbnail,
-            @Path("userId") int id_user
+            @Path("userId") int userId
     );
     // cập nhật thông tin người dùng
     @FormUrlEncoded

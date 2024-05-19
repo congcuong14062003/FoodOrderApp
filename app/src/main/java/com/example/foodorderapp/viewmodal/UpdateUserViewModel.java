@@ -26,8 +26,7 @@ import com.example.foodorderapp.object.UserDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.SignUpResponsive;
 import com.example.foodorderapp.retrofit.UserResponsive;
-import com.example.foodorderapp.view.UserUpdateActivity;
-import com.squareup.picasso.Picasso;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -125,4 +124,3 @@ public class UpdateUserViewModel extends ViewModel {
         });
     }
 }
-

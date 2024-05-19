@@ -17,7 +17,7 @@ import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.viewmodal.PostReviewViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class PostReviewActivity extends AppCompatActivity {
+public class PostReviewActivity extends BaseActivity {
 
     private ImageView star1, star2, star3, star4, star5 , backBtn;
     Button btnSubmitReview;

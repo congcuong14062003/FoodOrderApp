@@ -19,7 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.viewmodal.SignUpViewModel;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends BaseActivity {
     private EditText txtName, txtPhoneNumber, txtAddress, txtPassword, txtRepeatPassword;
     private TextView errTextName, errSDT, errAddress, errPassword, errRepeatPassword;
     private Button btnSignUp;
