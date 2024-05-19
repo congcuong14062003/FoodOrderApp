@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -94,16 +97,13 @@ public class UserUpdateActivity extends AppCompatActivity {
                     String realPath = RealPathUtil.getRealPath(UserUpdateActivity.this, imageUri);
                     File file = new File(realPath);
                     updateViewModel.uploadImage(userId, file);
-                    String name = editName.getText().toString();
-                    String phoneNumber = editSdt.getText().toString();
-                    String password = editPass.getText().toString();
-                    String address = editAddress.getText().toString();
-                    updateViewModel.update(name, phoneNumber, address, password);
                     imageUri = null;
-                } else {
-                    // No image selected, handle accordingly
-                    Toast.makeText(UserUpdateActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
                 }
+                String name = editName.getText().toString();
+                String phoneNumber = editSdt.getText().toString();
+                String password = editPass.getText().toString();
+                String address = editAddress.getText().toString();
+                updateViewModel.update(name, phoneNumber, address, password);
                 updateViewModel.getUpdateUserStatus().observe(UserUpdateActivity.this, new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean postOrderStatus) {
@@ -139,6 +139,13 @@ public class UserUpdateActivity extends AppCompatActivity {
                         dispatchTakePictureIntent();
                     }
                 } else if (options[item].equals("Choose from Gallery")) {
+                    if (Build.VERSION.SDK_INT >= 30){
+                        if (!Environment.isExternalStorageManager()){
+                            Intent getpermission = new Intent();
+                            getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                            startActivity(getpermission);
+                        }
+                    }
                     Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, REQUEST_IMAGE_PICK);
                 } else if (options[item].equals("Cancel")) {
