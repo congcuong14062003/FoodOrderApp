@@ -31,6 +31,7 @@ import com.example.foodorderapp.adapter.OrderAdapter;
 import com.example.foodorderapp.object.FoodDTO;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,12 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
         // Xử lý dữ liệu userInput ở đây, ví dụ: tìm kiếm, lưu trữ, xử lý, vv.
 
 
+    }
+
+    public static String removeAccents(String input) {
+        String regex = "\\p{InCombiningDiacriticalMarks}+";
+        String temp = Normalizer.normalize(input, Normalizer.Form.NFD);
+        return temp.replaceAll(regex, "");
     }
 
     @Nullable
@@ -107,7 +114,13 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
                 List<FoodDTO> newList = new ArrayList<>();
 
                 for (FoodDTO food : foodViewModel.getFoodList().getValue() ){
-                    if(food.getName().toLowerCase().startsWith(newText) || food.getDescription().toLowerCase().contains(newText) || food.getIngredients().toLowerCase().contains(newText)){
+                    String normalizedName = removeAccents(food.getName().toLowerCase());
+                    String normalizedDescription = removeAccents(food.getDescription().toLowerCase());
+                    String normalizedIngredient = removeAccents(food.getIngredients().toLowerCase());
+                    String normalizedSearchText = removeAccents(newText.toLowerCase());
+                    if(normalizedName.contains(normalizedSearchText) ||
+                             normalizedDescription.contains(normalizedSearchText) ||
+                            normalizedIngredient.contains(normalizedSearchText)){
                         newList.add(food);
                     }
                 }
