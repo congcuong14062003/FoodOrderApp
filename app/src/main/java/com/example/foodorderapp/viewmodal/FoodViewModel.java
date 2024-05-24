@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodViewModel extends ViewModel {
     private MutableLiveData<List<FoodDTO>> foodList;
-    private MutableLiveData<String> errorMessage = new MutableLiveData<>();
+    private MutableLiveData<Boolean> errorLiveData = new MutableLiveData<>();
 
     public LiveData<List<FoodDTO>> getFoodList() {
         if (foodList == null) {
@@ -43,13 +43,10 @@ public class FoodViewModel extends ViewModel {
         return foodList;
     }
 
-    public void setError(String message) {
-        errorMessage.setValue(message);
+    public LiveData<Boolean> getErrorLiveData() {
+        return errorLiveData;
     }
 
-    public LiveData<String> getErrorMessage() {
-        return errorMessage;
-    }
 
     private void loadfoodList( String userInput) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -70,11 +67,13 @@ public class FoodViewModel extends ViewModel {
                     if ( listFoodResponsive.isStatus() && listFoodResponsive !=null ) {
                         foodList.setValue(listFoodResponsive.getData());
                         Log.d("OrderViewModel", "API call successful."); // Log success message
+                        errorLiveData.setValue(false);
                     } else {
                         Log.e("OrderViewModel", "API call failed: Invalid response."); // Log error message
                     }
                 } else {
-                    Log.e("OrderViewModel", "API call failed: " + response.message()); // Log error message
+                    Log.e("FoodViewModel", "API call failed: " + response.message()); // Log error message
+                    errorLiveData.setValue(true);
                 }
             }
 
@@ -103,12 +102,12 @@ public class FoodViewModel extends ViewModel {
                     ListFoodResponsive listFoodResponsive = response.body();
                     if (listFoodResponsive != null && listFoodResponsive.isStatus()) {
                         foodList.setValue(listFoodResponsive.getData());
-                        Log.d("OrderViewModel", "API call successful."); // Log success message
+                        Log.d("FoodViewModel", "API call successful."); // Log success message
                     } else {
-                        Log.e("OrderViewModel", "API call failed: Invalid response."); // Log error message
+                        Log.e("FoodViewModel", "API call failed: Invalid response."); // Log error message
                     }
                 } else {
-                    Log.e("OrderViewModel", "API call failed: " + response.message()); // Log error message
+                    Log.e("FoodViewModel", "API call failed: " + response.message()); // Log error message
                 }
             }
 

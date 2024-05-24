@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NotiViewModel extends ViewModel {
     private MutableLiveData<List<NotiDTO>> notiList;
     int userId = UserManager.getInstance().getUserId();
+    private MutableLiveData<Boolean> errorLiveData = new MutableLiveData<>();
 
 
     public LiveData<List<NotiDTO>> getNotiList(){
@@ -30,6 +31,10 @@ public class NotiViewModel extends ViewModel {
             loadNotiList(userId);
         }
         return notiList;
+    }
+
+    public LiveData<Boolean> getErrorLiveData() {
+        return errorLiveData;
     }
 
     private void loadNotiList( int userId){
@@ -49,11 +54,13 @@ public class NotiViewModel extends ViewModel {
                     if(notiResponsive != null && notiResponsive.isStatus()){
                         notiList.setValue(notiResponsive.getData());
                         Log.d("NotiViewModel","API call successful.");
+                        errorLiveData.setValue(false);
                     } else{
                         Log.e("NotiViewModel","API call failed");
                     }
                 } else{
                     Log.e("NotiViewModel", "API call failed: " + response.message()); // Log error message
+                    errorLiveData.setValue(true);
                 }
             }
 

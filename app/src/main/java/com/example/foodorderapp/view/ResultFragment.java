@@ -5,6 +5,7 @@ import static com.example.foodorderapp.R.id.resultRecycle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,16 +70,18 @@ public class ResultFragment extends BaseFragment implements ResultAdapter.InFood
 
         TextView message = view.findViewById(R.id.message);
         message.setText("Không tìm thấy món ăn");
+//        message.setVisibility(View.VISIBLE);
+
+        foodViewModel.getErrorLiveData().observe(getViewLifecycleOwner(), isError -> {
+            if (isError != null && isError) {
+               message.setVisibility(View.VISIBLE);
+            }
+        });
+
         foodViewModel.getfoodList(userInput).observe(getViewLifecycleOwner(), orderDTOs -> {
-                if (orderDTOs.isEmpty()==true) {
-                    recyclerView.setVisibility(View.GONE);
-                    message.setVisibility(View.VISIBLE);
-                }
-                else{
-                    message.setVisibility(View.GONE);
-                    recyclerView.setVisibility(View.VISIBLE);
+
                     adapter.setFoodList(orderDTOs);
-                }
+
         });
 
         ImageView imageView = view.findViewById(R.id.imageView);
@@ -101,6 +104,8 @@ public class ResultFragment extends BaseFragment implements ResultAdapter.InFood
 
         return view;
     }
+
+
 
     @NonNull
     @Override
