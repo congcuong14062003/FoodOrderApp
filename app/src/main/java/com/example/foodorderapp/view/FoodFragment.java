@@ -107,7 +107,7 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
                 List<FoodDTO> newList = new ArrayList<>();
 
                 for (FoodDTO food : foodViewModel.getFoodList().getValue() ){
-                    if(food.getName().toLowerCase().startsWith(newText)){
+                    if(food.getName().toLowerCase().startsWith(newText) || food.getDescription().toLowerCase().contains(newText) || food.getIngredients().toLowerCase().contains(newText)){
                         newList.add(food);
                     }
                 }
