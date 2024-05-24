@@ -1,6 +1,7 @@
 package com.example.foodorderapp.view;
 
 import static com.example.foodorderapp.R.id.list_food_recycle;
+import static com.example.foodorderapp.R.id.message;
 import static com.example.foodorderapp.R.id.notiRecycle;
 import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
@@ -47,7 +48,16 @@ public class NotificationFragment extends BaseFragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        TextView message = view.findViewById(R.id.message);
+
+        notiViewModel.getErrorLiveData().observe(getViewLifecycleOwner(), isError -> {
+            if (isError != null && isError) {
+                message.setVisibility(View.VISIBLE);
+            }
+        });
+
         notiViewModel.getNotiList().observe(getViewLifecycleOwner(), notiDTOS -> {
+
             adapter.setNotiList(notiDTOS);
         });
 

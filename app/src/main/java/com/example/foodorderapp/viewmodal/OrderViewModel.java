@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class OrderViewModel extends ViewModel {
     private MutableLiveData<List<OrderDTO>> orderList;
     int userId = UserManager.getInstance().getUserId();
+    private MutableLiveData<Boolean> errorLiveData = new MutableLiveData<>();
 
     public LiveData<List<OrderDTO>> getOrderList() {
         if (orderList == null) {
@@ -29,6 +30,10 @@ public class OrderViewModel extends ViewModel {
             loadOrderList(userId);
         }
         return orderList;
+    }
+
+    public LiveData<Boolean> getErrorLiveData() {
+        return errorLiveData;
     }
 
     private void loadOrderList(int userId) {
@@ -45,6 +50,7 @@ public class OrderViewModel extends ViewModel {
                     OrderResponse orderResponse = response.body();
                     if (orderResponse != null && orderResponse.isStatus()) {
                         orderList.setValue(orderResponse.getData());
+                        errorLiveData.setValue(false);
                         Log.d("OrderViewModel", "API call successful."); // Log success message
                     } else {
                         Log.e("OrderViewModel", "API call failed: Invalid response."); // Log error message
@@ -53,6 +59,7 @@ public class OrderViewModel extends ViewModel {
                 } else {
                     Log.e("OrderViewModel", "API call failed: " + response.message()); // Log error message
                     // Xử lý lỗi khi không nhận được dữ liệu thành công từ API
+                    errorLiveData.setValue(true);
                 }
             }
 

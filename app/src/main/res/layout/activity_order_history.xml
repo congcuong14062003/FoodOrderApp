@@ -57,4 +57,20 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/ordermessage"
+        android:layout_width="246dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="84dp"
+        android:gravity="center"
+        android:text="Không có đơn hàng nào"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleOrder" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

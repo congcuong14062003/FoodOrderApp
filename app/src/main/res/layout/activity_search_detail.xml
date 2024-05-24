@@ -23,6 +23,7 @@
         android:layout_height="50dp"
         android:background="@drawable/border"
         android:ems="10"
+        android:imeOptions="actionDone"
         android:hint="Search for food, address..."
         android:inputType="text"
         android:paddingLeft="50dp"
