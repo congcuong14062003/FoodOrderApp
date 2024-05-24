@@ -167,6 +167,7 @@ public class SignupActivity extends BaseActivity {
             }
         });
     }
+
     private void init(){
         txtName = findViewById(R.id.editTextName);
         txtPhoneNumber = findViewById(R.id.editSDT);

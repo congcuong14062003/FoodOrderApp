@@ -6,8 +6,6 @@ import android.net.NetworkInfo;
 
 public class NetworkUtils {
 
-    // Phương thức kiểm tra kết nối mạng
-    // Phương thức kiểm tra kết nối internet
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {

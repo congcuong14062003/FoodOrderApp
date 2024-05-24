@@ -124,6 +124,7 @@ public class UserUpdateActivity extends BaseActivity {
 
 
 
+
     private void selectImage() {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(UserUpdateActivity.this);

@@ -46,6 +46,7 @@ public class DetailActivity extends BaseActivity {
         }
     }
 
+
     private void getFetailFood(int foodId) {
         // Gọi API để nhận dữ liệu chi tiết của món ăn
         Retrofit retrofit = new Retrofit.Builder()

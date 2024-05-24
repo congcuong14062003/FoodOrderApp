@@ -11,13 +11,17 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodorderapp.NetworkUtils;
+import com.example.foodorderapp.view.NoNetworkActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 public abstract class BaseActivity extends AppCompatActivity {
+    private boolean isActivityVisible = false;
+
     private BroadcastReceiver networkReceiver = new BroadcastReceiver() {
+
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!NetworkUtils.isNetworkAvailable(context)) {
+            if (isActivityVisible && !NetworkUtils.isNetworkAvailable(context)) {
                 showNetworkSnackbar();
             }
         }
@@ -34,14 +38,32 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         unregisterReceiver(networkReceiver);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isActivityVisible = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isActivityVisible = false;
+    }
+
     private void showNetworkSnackbar() {
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Mất kết nối mạng", Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Mất kết nối mạng", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("OK", view -> {
+            snackbar.dismiss();
+        });
         snackbar.show();
 
         new Handler().postDelayed(() -> {
-            Intent noNetworkIntent = new Intent(this, NoNetworkActivity.class);
-            startActivity(noNetworkIntent);
-            finish();
+            if (isActivityVisible) {
+                Intent noNetworkIntent = new Intent(this, NoNetworkActivity.class);
+                startActivity(noNetworkIntent);
+
+            }
         }, 5000); // 5000 milliseconds = 5 seconds
     }
 }

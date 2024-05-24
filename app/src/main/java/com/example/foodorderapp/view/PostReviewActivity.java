@@ -116,6 +116,8 @@ public class PostReviewActivity extends BaseActivity {
         // postReview(currentRating);
     }
 
+
+
     private void setRating(int rating) {
         // Cập nhật giá trị của biến currentRating
         currentRating = rating;
