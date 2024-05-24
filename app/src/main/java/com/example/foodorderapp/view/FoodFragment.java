@@ -66,7 +66,7 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_detail, container, false);
-        LoadingManager.showLoading(requireActivity());
+//        LoadingManager.showLoading(requireActivity());
 
         searchFood = view.findViewById(R.id.search_food);
         // Yêu cầu focus cho EditText trong FoodFragment
@@ -91,7 +91,7 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
         adapter.setOnFoodItemClickListener(this);
         foodViewModel.getFoodList().observe(getViewLifecycleOwner(), orderDTOs -> {
             adapter.setFoodList(orderDTOs);
-            LoadingManager.hideLoading();
+//            LoadingManager.hideLoading();
         });
 
         // thay đổi theo sự kiện onchange của input

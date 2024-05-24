@@ -37,11 +37,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OrderMainActivity extends BaseActivity {
-    TextInputLayout quantityOutline;
-    ImageView food_img_order;
-    PostOrderViewModel postOrderViewModel;
+    private TextInputLayout quantityOutline;
+    private ImageView food_img_order;
+    private PostOrderViewModel postOrderViewModel;
     private TextView quantityOrder, priceFoodOrder, totalPriceOrder, nameOrder, ingredientOrder, priceOrder, shipping_fee, btnPay;
-    TextView errorQuantity;
+    private TextView errorQuantity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,10 +113,8 @@ public class OrderMainActivity extends BaseActivity {
         priceOrder.setText(String.valueOf(detailFoodDTO.getPrice()));
         priceFoodOrder.setText(String.valueOf(detailFoodDTO.getPrice()));
         double total = Double.parseDouble(priceOrder.getText().toString()) + Double.parseDouble(shipping_fee.getText().toString());
-        // Làm tròn tổng giá về 2 chữ số thập phân
-        DecimalFormat df = new DecimalFormat("#.##");
-        String totalPriceFormatted = df.format(total);
-        totalPriceOrder.setText(String.valueOf(totalPriceFormatted));
+        double roundedPrice = Math.round(total * 100.0) / 100.0;
+        totalPriceOrder.setText(String.valueOf(roundedPrice));
         // Get input text
 
         quantityOutline.getEditText().addTextChangedListener(new TextWatcher() {
@@ -127,7 +125,10 @@ public class OrderMainActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                if (s.toString().equals("0")) {
+                    // Nếu văn bản là số 0, bạn có thể xử lý ở đây
+                    quantityOutline.getEditText().setText(""); // Xóa văn bản
+                }
             }
 
             @Override
@@ -164,35 +165,23 @@ public class OrderMainActivity extends BaseActivity {
     }
     private void updateQuantityAndTotalPrice(String newQuantityString) {
         if (!newQuantityString.isEmpty()) {
-            int newQuantity;
-            try {
-                newQuantity = Integer.parseInt(newQuantityString);
-                if (newQuantity >= 1000) {
-                    errorQuantity.setText("Vui lòng nhập số lượng nhỏ hơn 1000!");
-                    btnPay.setEnabled(false);
-                    return; // Ngưng việc tiếp tục xử lý
-                }
-            } catch (NumberFormatException e) {
-                Log.e("OrderMainActivity", "NumberFormatException: " + e.getMessage());
-                // Xử lý ngoại lệ số không hợp lệ ở đây nếu cần thiết
-                return; // Ngưng việc tiếp tục xử lý
-            }
-
-            if (newQuantity > 0) {
-                double productPrice = Double.valueOf(priceOrder.getText().toString().replace(",", ""));
-                double shippingFee = Double.valueOf(shipping_fee.getText().toString().replace(",", ""));
+            int newQuantity = Integer.parseInt(newQuantityString);
+            if (newQuantity >= 1000) {
+                errorQuantity.setText("Vui lòng nhập số lượng nhỏ hơn 1000!");
+                btnPay.setEnabled(false);
+            } else if (newQuantity > 0) {
+                double productPrice = Double.parseDouble(priceOrder.getText().toString());
+                double shippingFee = Double.parseDouble(shipping_fee.getText().toString());
                 double totalPrice = (newQuantity * productPrice) + shippingFee;
-                // Làm tròn tổng giá về 2 chữ số thập phân
-                DecimalFormat df = new DecimalFormat("#.##");
-                String totalPriceFormatted = df.format(totalPrice);
+                double roundedPrice = Math.round(totalPrice * 100.0) / 100.0;
 
                 // Cập nhật số lượng và tổng giá trên giao diện
                 quantityOrder.setText(String.valueOf(newQuantity));
-                totalPriceOrder.setText(totalPriceFormatted);
+                totalPriceOrder.setText(String.valueOf(roundedPrice));
                 errorQuantity.setText("");
                 btnPay.setEnabled(true);
-            } else {
-                errorQuantity.setText("Vui lòng nhập số lượng lớn hơn 0!");
+            }
+            else {
                 btnPay.setEnabled(false);
             }
         } else {
@@ -200,7 +189,5 @@ public class OrderMainActivity extends BaseActivity {
             btnPay.setEnabled(false);
         }
     }
-
-
 
 }
