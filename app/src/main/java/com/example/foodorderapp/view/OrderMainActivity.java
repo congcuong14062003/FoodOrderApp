@@ -28,6 +28,8 @@ import com.example.foodorderapp.viewmodal.PostOrderViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +37,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OrderMainActivity extends BaseActivity {
-    private TextInputLayout outlinedTextField;
+    TextInputLayout quantityOutline;
     ImageView food_img_order;
     PostOrderViewModel postOrderViewModel;
     private TextView quantityOrder, priceFoodOrder, totalPriceOrder, nameOrder, ingredientOrder, priceOrder, shipping_fee, btnPay;
@@ -50,9 +52,6 @@ public class OrderMainActivity extends BaseActivity {
             getFetailFood(foodId);
         }
     }
-
-
-
 
     private void getFetailFood(int foodId) {
         // Gọi API để nhận dữ liệu chi tiết của món ăn
@@ -90,17 +89,22 @@ public class OrderMainActivity extends BaseActivity {
         postOrderViewModel = new PostOrderViewModel();
         setContentView(R.layout.activity_order_main); // Gọi setContentView() sau khi dữ liệu đã được xử lý
         // Ánh xạ các view từ layout
+
         nameOrder = findViewById(R.id.nameOrder);
         food_img_order = findViewById(R.id.food_img_order);
         priceFoodOrder = findViewById(R.id.priceFoodOrder);
         ingredientOrder = findViewById(R.id.ingredientOrder);
-        outlinedTextField = findViewById(R.id.outlinedTextField);
         quantityOrder = findViewById(R.id.quantityOrder);
         totalPriceOrder = findViewById(R.id.totalPriceOrder);
         priceOrder = findViewById(R.id.priceOrder);
         shipping_fee = findViewById(R.id.shipping_fee);
         btnPay = findViewById(R.id.btnPayment);
         errorQuantity = findViewById(R.id.errorQuantity);
+        quantityOutline = findViewById(R.id.quantityOutline);
+
+        // Thiết lập giá trị mặc định cho quantityOrder
+        quantityOrder.setText("1");
+        quantityOutline.getEditText().setText("1");
 
         // Set dữ liệu cho các view
         Picasso.get().load(detailFoodDTO.getImg_thumbnail()).into(food_img_order);
@@ -109,10 +113,13 @@ public class OrderMainActivity extends BaseActivity {
         priceOrder.setText(String.valueOf(detailFoodDTO.getPrice()));
         priceFoodOrder.setText(String.valueOf(detailFoodDTO.getPrice()));
         double total = Double.parseDouble(priceOrder.getText().toString()) + Double.parseDouble(shipping_fee.getText().toString());
-        totalPriceOrder.setText(String.valueOf(total));
+        // Làm tròn tổng giá về 2 chữ số thập phân
+        DecimalFormat df = new DecimalFormat("#.##");
+        String totalPriceFormatted = df.format(total);
+        totalPriceOrder.setText(String.valueOf(totalPriceFormatted));
         // Get input text
-        String inputText = outlinedTextField.getEditText().getText().toString();
-        outlinedTextField.getEditText().addTextChangedListener(new TextWatcher() {
+
+        quantityOutline.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -156,23 +163,32 @@ public class OrderMainActivity extends BaseActivity {
         });
     }
     private void updateQuantityAndTotalPrice(String newQuantityString) {
-        // Kiểm tra nếu newQuantityString không rỗng
         if (!newQuantityString.isEmpty()) {
-            // Lấy số lượng mới từ newQuantityString
-            int newQuantity = Integer.parseInt(newQuantityString);
+            int newQuantity;
+            try {
+                newQuantity = Integer.parseInt(newQuantityString);
+                if (newQuantity >= 1000) {
+                    errorQuantity.setText("Vui lòng nhập số lượng nhỏ hơn 1000!");
+                    btnPay.setEnabled(false);
+                    return; // Ngưng việc tiếp tục xử lý
+                }
+            } catch (NumberFormatException e) {
+                Log.e("OrderMainActivity", "NumberFormatException: " + e.getMessage());
+                // Xử lý ngoại lệ số không hợp lệ ở đây nếu cần thiết
+                return; // Ngưng việc tiếp tục xử lý
+            }
+
             if (newQuantity > 0) {
-                // Lấy giá sản phẩm từ priceOrder
-                double productPrice = Double.parseDouble(priceOrder.getText().toString());
-
-                // Lấy phí vận chuyển từ shipping_fee
-                double shippingFee = Double.parseDouble(shipping_fee.getText().toString());
-
-                // Tính toán tổng giá mới dựa trên số lượng mới, giá của sản phẩm và phí vận chuyển
+                double productPrice = Double.valueOf(priceOrder.getText().toString().replace(",", ""));
+                double shippingFee = Double.valueOf(shipping_fee.getText().toString().replace(",", ""));
                 double totalPrice = (newQuantity * productPrice) + shippingFee;
+                // Làm tròn tổng giá về 2 chữ số thập phân
+                DecimalFormat df = new DecimalFormat("#.##");
+                String totalPriceFormatted = df.format(totalPrice);
 
                 // Cập nhật số lượng và tổng giá trên giao diện
                 quantityOrder.setText(String.valueOf(newQuantity));
-                totalPriceOrder.setText(String.valueOf(totalPrice));
+                totalPriceOrder.setText(totalPriceFormatted);
                 errorQuantity.setText("");
                 btnPay.setEnabled(true);
             } else {
@@ -184,4 +200,7 @@ public class OrderMainActivity extends BaseActivity {
             btnPay.setEnabled(false);
         }
     }
+
+
+
 }
