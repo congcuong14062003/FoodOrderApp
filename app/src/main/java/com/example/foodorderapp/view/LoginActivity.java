@@ -18,7 +18,7 @@ import com.example.foodorderapp.NetworkUtils;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.viewmodal.LoginViewModel;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends AppCompatActivity {
     private EditText txtUserName;
     private EditText txtPassWord;
     private Button btnsLogin;
@@ -40,7 +40,7 @@ public class LoginActivity extends BaseActivity {
         buttonToRegister = findViewById(R.id.buttonToRegister);
         errorMessageTextView = findViewById(R.id.errorMessage);
         loginViewModel = new LoginViewModel(errorMessageTextView);
-
+        CheckInternet();
         btnsLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,12 +74,20 @@ public class LoginActivity extends BaseActivity {
         buttonToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!NetworkUtils.isNetworkAvailable(LoginActivity.this)) {
+                    Toast.makeText(LoginActivity.this, "Vui lòng kiểm tra kết nối mạng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
     }
-
+    private void CheckInternet(){
+        if(!NetworkUtils.isNetworkAvailable(this)){
+            Toast.makeText(this, "Vui lòng kết nối lại mạng", Toast.LENGTH_SHORT);
+        }
+    }
 
 }

@@ -57,10 +57,11 @@ public abstract class BaseFragment extends Fragment {
         snackbar.show();
 
         new Handler().postDelayed(() -> {
+            snackbar.dismiss();
             if (isActivityVisible) {
                 Intent noNetworkIntent = new Intent(requireContext(), NoNetworkActivity.class);
                 startActivity(noNetworkIntent);
             }
-        }, 5000); // 5000 milliseconds = 5 seconds
+        }, 400);
     }
 }

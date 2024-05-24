@@ -59,11 +59,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         snackbar.show();
 
         new Handler().postDelayed(() -> {
+            snackbar.dismiss();
             if (isActivityVisible) {
                 Intent noNetworkIntent = new Intent(this, NoNetworkActivity.class);
                 startActivity(noNetworkIntent);
 
             }
-        }, 5000); // 5000 milliseconds = 5 seconds
+        }, 400);
     }
 }

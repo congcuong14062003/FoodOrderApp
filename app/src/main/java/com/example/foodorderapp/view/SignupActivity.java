@@ -16,10 +16,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.foodorderapp.NetworkUtils;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.viewmodal.SignUpViewModel;
 
-public class SignupActivity extends BaseActivity {
+public class SignupActivity extends AppCompatActivity {
     private EditText txtName, txtPhoneNumber, txtAddress, txtPassword, txtRepeatPassword;
     private TextView errTextName, errSDT, errAddress, errPassword, errRepeatPassword;
     private Button btnSignUp;
@@ -37,8 +38,6 @@ public class SignupActivity extends BaseActivity {
             return insets;
         });
         init();
-        // Initialize views
-
         // Initialize ViewModel
         signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
@@ -136,6 +135,10 @@ public class SignupActivity extends BaseActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!NetworkUtils.isNetworkAvailable(SignupActivity.this)) {
+                    Toast.makeText(SignupActivity.this, "Vui lòng kiểm tra kết nối mạng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String name = txtName.getText().toString().trim();
                 String phoneNumber = txtPhoneNumber.getText().toString().trim();
                 String address = txtAddress.getText().toString().trim();
@@ -162,6 +165,10 @@ public class SignupActivity extends BaseActivity {
         btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!NetworkUtils.isNetworkAvailable(SignupActivity.this)) {
+                    Toast.makeText(SignupActivity.this, "Vui lòng kiểm tra kết nối mạng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

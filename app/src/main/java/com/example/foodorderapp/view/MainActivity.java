@@ -17,7 +17,7 @@ import com.example.foodorderapp.databinding.ActivityMainBinding;
 
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
