@@ -40,15 +40,7 @@ public class HomeFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         // Hiển thị màn hình loading khi bắt đầu tải dữ liệu
-            LoadingManager.showLoading(requireActivity());
-
-//        if (!NetworkUtils.isNetworkAvailable(requireContext())) {
-//            LoadingManager.showLoading(requireActivity());
-//            Toast.makeText(requireContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
-//        } else {
-//            LoadingManager.hideLoading();
-//
-//        }
+        LoadingManager.showLoading(requireActivity());
         searchHome = view.findViewById(R.id.search_home);
         // Lấy id người dùng từ bất kỳ đâu trong ứng dụng
         int userId = UserManager.getInstance().getUserId();
@@ -78,7 +70,6 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onResponse(Call<UserResponsive> call, Response<UserResponsive> response) {
                 if(response.isSuccessful()) {
-
                     UserDTO userData = response.body().getData();
                     if(userData != null) {
                         userName.setText("Xin chào, " + userData.getName());
@@ -96,7 +87,6 @@ public class HomeFragment extends BaseFragment {
                         Log.d("Màn Home", "ảnh đại diện: " + avatarUser); // Log success message
                     }
                     LoadingManager.hideLoading();
-
                 } else {
                     LoadingManager.hideLoading();
                     Toast.makeText(requireView().getContext(), "Failed to fetch user info", Toast.LENGTH_SHORT).show();
@@ -106,6 +96,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onFailure(Call<UserResponsive> call, Throwable t) {
                 Toast.makeText(requireView().getContext(), "Lỗi mạng", Toast.LENGTH_SHORT).show();
+                LoadingManager.hideLoading();
             }
         });
     }

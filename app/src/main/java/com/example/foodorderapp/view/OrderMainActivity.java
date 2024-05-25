@@ -24,6 +24,7 @@ import com.example.foodorderapp.UserManager;
 import com.example.foodorderapp.object.DetailFoodDTO;
 import com.example.foodorderapp.retrofit.ApiService;
 import com.example.foodorderapp.retrofit.DetailFoodResponsive;
+import com.example.foodorderapp.viewmodal.PostNoticeViewModel;
 import com.example.foodorderapp.viewmodal.PostOrderViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
@@ -40,13 +41,14 @@ public class OrderMainActivity extends BaseActivity {
     private TextInputLayout quantityOutline;
     private ImageView food_img_order;
     private PostOrderViewModel postOrderViewModel;
+    private PostNoticeViewModel postNoticeViewModel;
     private TextView quantityOrder, priceFoodOrder, totalPriceOrder, nameOrder, ingredientOrder, priceOrder, shipping_fee, btnPay;
     private TextView errorQuantity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-
         int foodId = getIntent().getIntExtra("foodId", -1);
         if (foodId != -1) {
             getFetailFood(foodId);
@@ -87,6 +89,9 @@ public class OrderMainActivity extends BaseActivity {
     }
     private void updateUI(DetailFoodDTO detailFoodDTO) {
         postOrderViewModel = new PostOrderViewModel();
+
+        postNoticeViewModel = new PostNoticeViewModel();
+
         setContentView(R.layout.activity_order_main); // Gọi setContentView() sau khi dữ liệu đã được xử lý
         // Ánh xạ các view từ layout
 
@@ -151,6 +156,17 @@ public class OrderMainActivity extends BaseActivity {
             @Override
             public void onChanged(Boolean postOrderStatus) {
                 if (postOrderStatus) {
+                    int user_id = UserManager.getInstance().getUserId();
+                    int quantity = Integer.parseInt(quantityOrder.getText().toString());
+                    double total_price = Double.parseDouble(totalPriceOrder.getText().toString());
+
+                    // Định dạng chuỗi thông báo
+                    String notificationMessage = String.format("Món ăn %s (x%d) đang trên đường giao đến bạn.\nVui lòng thanh toán $ %.2f cho người vận chuyển",
+                            nameOrder.getText().toString(), quantity, total_price);
+
+                    // Gọi phương thức postNotice với chuỗi thông báo
+                    postNoticeViewModel.postNotices(user_id, "Đơn hàng đã được đặt thành công", notificationMessage);
+
                     Toast.makeText(OrderMainActivity.this, "Đặt hàng thành công, vui lòng kiểm tra thông báo để xem chi tiết", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(OrderMainActivity.this, MainActivity.class);
                     intent.putExtra("fragment", "order");

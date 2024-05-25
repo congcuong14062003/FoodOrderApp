@@ -54,9 +54,16 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("users/update/info")
     Call<UserResponsive> updateUser(@Field("name") String name, @Field("phone_number") String phoneNumber, @Field("address") String address,@Field("password") String password,@Field("id") int id);
+
     // danh sách thông báo
     @GET("notices/list_notices/{userId}")
     Call<NotiResponsive> getNotis(@Path("userId") int userId);
+
+    @FormUrlEncoded
+    @POST("notices/post_notices")
+    Call<PostNoticeResponsive> postNotice(@Field("user_id") int user_id, @Field("title_notifi") String title_notifi, @Field("notices_message") String notices_message);
+
+
     // danh sách đánh giá
     @GET("reviews/food_id/{foodId}")
     Call<ReviewsResponsive> getReviews(@Path("foodId") int foodId);

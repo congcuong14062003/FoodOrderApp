@@ -47,9 +47,7 @@ public class NotiAdapter extends RecyclerView.Adapter<NotiAdapter.NotiViewHolder
     static class NotiViewHolder extends RecyclerView.ViewHolder {
         TextView title_notifi ;
         TextView notices_message;
-
         TextView notices_datetime;
-
 
         @SuppressLint("WrongViewCast")
         public NotiViewHolder(@NonNull View itemView) {

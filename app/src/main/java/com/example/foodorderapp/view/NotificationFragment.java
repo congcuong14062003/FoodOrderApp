@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodorderapp.LoadingManager;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.ListFoodAdapter;
 import com.example.foodorderapp.adapter.NotiAdapter;
@@ -42,7 +43,7 @@ public class NotificationFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_notification, container, false);
-
+        LoadingManager.showLoading(requireActivity());
         RecyclerView recyclerView = view.findViewById(R.id.notiRecycle);
         final NotiAdapter adapter = new NotiAdapter();
         recyclerView.setAdapter(adapter);
@@ -53,12 +54,13 @@ public class NotificationFragment extends BaseFragment {
         notiViewModel.getErrorLiveData().observe(getViewLifecycleOwner(), isError -> {
             if (isError != null && isError) {
                 message.setVisibility(View.VISIBLE);
+                LoadingManager.hideLoading();
             }
         });
 
         notiViewModel.getNotiList().observe(getViewLifecycleOwner(), notiDTOS -> {
-
             adapter.setNotiList(notiDTOS);
+            LoadingManager.hideLoading();
         });
 
         ImageView cancelBtn = view.findViewById(R.id.backBtn);

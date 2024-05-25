@@ -33,23 +33,22 @@ public class OrderFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_order_history, container, false);
-//        LoadingManager.showLoading(requireActivity());
+        LoadingManager.showLoading(requireActivity());
         RecyclerView recyclerView = view.findViewById(R.id.recycle_view_history);
         final OrderAdapter adapter = new OrderAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         TextView message = view.findViewById(R.id.ordermessage);
-
         orderViewModel.getErrorLiveData().observe(getViewLifecycleOwner(), isError -> {
             if (isError != null && isError) {
                 message.setVisibility(View.VISIBLE);
+                LoadingManager.hideLoading();
             }
         });
 
         orderViewModel.getOrderList().observe(getViewLifecycleOwner(), orderDTOs -> {
             adapter.setOrderList(orderDTOs);
-//            LoadingManager.hideLoading();
+            LoadingManager.hideLoading();
         });
 
         return view;

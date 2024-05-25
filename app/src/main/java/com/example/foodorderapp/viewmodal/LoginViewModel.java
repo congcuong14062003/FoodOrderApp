@@ -54,6 +54,7 @@ public class LoginViewModel {
         call.enqueue(new Callback<LoginResponsive>() {
             @Override
             public void onResponse(Call<LoginResponsive> call, Response<LoginResponsive> response) {
+
                 Log.d("LoginViewModel", "Response nè: " + response.code()); // Log response code
                 if (response.code() == 200) {
                     LoginResponsive loginResponse = response.body();
@@ -76,7 +77,8 @@ public class LoginViewModel {
                         errorMessageTextView.setText(errorMessage);
                         Log.e("LoginViewModel", "API call failed: " + errorMessage); // Log error message
                     }
-                } else {
+                }
+                else {
                     loginStatus.setValue(false);
                     String errorMessage;
                     if (response.errorBody() != null) {
@@ -100,6 +102,7 @@ public class LoginViewModel {
             @Override
             public void onFailure(Call<LoginResponsive> call, Throwable t) {
                 loginStatus.setValue(false);
+                Log.d("LoginViewModel", "Vào đây"); // Log response code
                 Log.e("LoginViewModel", "API call failed: " + t.getMessage()); // Log failure message
             }
         });

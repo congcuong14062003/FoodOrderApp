@@ -33,25 +33,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
         TextView textAddress;
         ImageView avtUser;
 
+        LinearLayout next_history_order;
+
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-
             View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-
             LoadingManager.showLoading(requireActivity());
             ImageView nextToUpdateUser = rootView.findViewById(R.id.avatar_user);
-//            nextToUpdateUser.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    UserUpdateActivity userUpdateFragment = new UserUpdateFragment();
-//                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    transaction.replace(R.id.next_update_user, userUpdateFragment);
-//                    transaction.addToBackStack(null);
-//                    transaction.commit();
-//                }
-//            });
             int userId = UserManager.getInstance().getUserId();
             textName = rootView.findViewById(R.id.text_Name);
             textAddress = rootView.findViewById(R.id.text_address);
@@ -70,6 +60,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
                 }
             });
 
+
+
+
+            next_history_order = rootView.findViewById(R.id.next_history_order);
+            next_history_order.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    intent.putExtra("fragment", "order");
+                    startActivity(intent);
+                }
+            });
             LinearLayout logoutButton = rootView.findViewById(R.id.logout);
             logoutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,6 +127,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
                 @Override
                 public void onFailure(Call<UserResponsive> call, Throwable t) {
                     Toast.makeText(getContext(), "Network error", Toast.LENGTH_SHORT).show();
+                    LoadingManager.hideLoading();
                 }
             });
         }
