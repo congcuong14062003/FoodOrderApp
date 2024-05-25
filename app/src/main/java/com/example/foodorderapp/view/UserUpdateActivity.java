@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,7 @@ public class UserUpdateActivity extends BaseActivity {
     private static final int REQUEST_IMAGE_PICK = 102;
     private static final int PERMISSION_REQUEST_CODE = 200;
     private TextInputEditText editName, editSdt, editPass, editAddress;
+    private TextView errTextName, errSDT, errAddress, errPassword;
     private Button btnSave, btnSelectImage;
     private ImageView editImage;
     private ImageView backUser;
@@ -81,6 +83,60 @@ public class UserUpdateActivity extends BaseActivity {
                 onBackPressed();
             }
         });
+        editName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(editName.getText().toString().trim().isEmpty()){
+                        errTextName.setText("Vui lòng nhập họ và tên!");
+                    } else {
+                        errTextName.setText("");
+                    }
+                }
+
+            }
+        });
+        editSdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(editSdt.getText().toString().trim().isEmpty()){
+                        errSDT.setText("Vui lòng nhập số điện thoại!");
+                    }else{
+                        errSDT.setText("");
+                    }
+                }
+
+            }
+        });
+        editAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(editAddress.getText().toString().trim().isEmpty()){
+                        errAddress.setText("Vui lòng nhập địa chỉ của bạn!");
+                    }else {
+                        errAddress.setText("");
+                    }
+                }
+
+            }
+        });
+        editPass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(editPass.getText().toString().trim().isEmpty()){
+                        errPassword.setText("Vui lòng nhập mật khẩu!");
+                    } else if (editPass.getText().toString().trim().length() < 6) {
+                        errPassword.setText("Mật khẩu tối thiểu phải có 6 ký tự");
+                    } else {
+                        errPassword.setText("");
+                    }
+                }
+
+            }
+        });
         buttonSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,8 +148,6 @@ public class UserUpdateActivity extends BaseActivity {
             public void onClick(View v) {
                 // Upload image to server and update user info
                 if (imageUri != null) {
-                    // Do your API call to update user with imageUri
-                    // Then reset the imageUri to null
                     String realPath = RealPathUtil.getRealPath(UserUpdateActivity.this, imageUri);
                     File file = new File(realPath);
                     updateViewModel.uploadImage(userId, file);
@@ -103,7 +157,17 @@ public class UserUpdateActivity extends BaseActivity {
                 String phoneNumber = editSdt.getText().toString();
                 String password = editPass.getText().toString();
                 String address = editAddress.getText().toString();
-                updateViewModel.update(name, phoneNumber, address, password);
+                if(name.isEmpty() && phoneNumber.isEmpty() && address.isEmpty() &&password.isEmpty()){
+                    errTextName.setText("Vui lòng nhập họ và tên!");
+                    errSDT.setText("Vui lòng nhập số điện thoại!");
+                    errAddress.setText("Vui lòng nhập địa chỉ của bạn!");
+                    errPassword.setText("Vui lòng nhập mật khẩu!");
+                } else if (password.length() < 6) {
+                    errPassword.setText("Mật khẩu tối thiểu phải có 6 ký tự");
+                } else {
+                    updateViewModel.update(name, phoneNumber, address, password);
+                }
+
                 updateViewModel.getUpdateUserStatus().observe(UserUpdateActivity.this, new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean postOrderStatus) {
@@ -213,6 +277,10 @@ public class UserUpdateActivity extends BaseActivity {
         editImage = findViewById(R.id.updateImage);
         btnSelectImage = findViewById(R.id.buttonSelectImage);
         backUser = findViewById(R.id.backUser);
+        errTextName = findViewById(R.id.errorName);
+        errSDT = findViewById(R.id.errorSDT);
+        errAddress = findViewById(R.id.errorAddress);
+        errPassword = findViewById(R.id.errorPassword);
     }
 
     private void fetchUserInfo(int userId) {

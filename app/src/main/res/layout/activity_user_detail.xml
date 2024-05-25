@@ -15,20 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Thông tin người dùng"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageView
             android:id="@+id/backUser"
             android:layout_width="30dp"
@@ -40,6 +26,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/arrow_left" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Thông tin người dùng"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintStart_toStartOf="@+id/backUser"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -62,7 +63,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:cardCornerRadius="100dp"
         app:cardElevation="0dp"
@@ -72,12 +73,12 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:shapeAppearanceOverlay="@style/circular"
         >
+
         <ImageView
             android:id="@+id/updateImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -97,120 +98,177 @@
         app:layout_constraintTop_toBottomOf="@+id/cardViewUser" />
 
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSelectImage"
+        tools:layout_editor_absoluteX="9dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            tools:layout_editor_absoluteX="9dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout5"
+                style="@style/MyTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/textcolor"
+                app:boxStrokeColor="@color/maincolor"
+                app:endIconTint="@color/maincolor"
+                app:hintTextColor="@color/maincolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonSelectImage">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/updateTextName"
+                    style="@style/MyTextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Họ và tên"
+                    android:singleLine="true"
+                    android:textColor="@color/maincolor" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/errorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ea2e0e"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            tools:layout_editor_absoluteX="9dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout6"
+                style="@style/MyTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/textcolor"
+                app:boxStrokeColor="@color/maincolor"
+                app:endIconTint="@color/maincolor"
+                app:hintTextColor="@color/maincolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/updateSDT"
+                    style="@style/MyTextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Số điện thoại"
+                    android:singleLine="true"
+                    android:textColor="@color/maincolor" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/errorSDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ea2e0e"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            tools:layout_editor_absoluteX="9dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout7"
+                style="@style/MyTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/textcolor"
+                app:boxStrokeColor="@color/maincolor"
+                app:endIconTint="@color/maincolor"
+                app:hintTextColor="@color/maincolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/updateAddress"
+                    style="@style/MyTextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Địa chỉ"
+                    android:singleLine="true"
+                    android:textColor="@color/maincolor" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/errorAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ea2e0e"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            tools:layout_editor_absoluteX="9dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/MyTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/textcolor"
+                app:boxStrokeColor="@color/maincolor"
+                app:endIconTint="@color/maincolor"
+                app:hintTextColor="@color/maincolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/updatePassword"
+                    style="@style/MyTextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mật khẩu"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:textColor="@color/maincolor" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/errorPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ea2e0e"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSaveUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/button_custom"
         android:backgroundTint="@color/maincolor"
         android:text="Save"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="10dp"
-        style="@style/MyTextInputLayoutStyle"
-        android:textColorHint="@color/textcolor"
-        app:boxStrokeColor="@color/maincolor"
-        app:endIconTint="@color/maincolor"
-        app:hintTextColor="@color/maincolor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSelectImage">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/updateTextName"
-            android:singleLine="true"
-            android:textColor="@color/maincolor"
-            android:layout_width="match_parent"
-            style="@style/MyTextInputEditTextStyle"
-            android:layout_height="wrap_content"
-            android:hint="Họ và tên" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="10dp"
-        style="@style/MyTextInputLayoutStyle"
-        android:textColorHint="@color/textcolor"
-        app:boxStrokeColor="@color/maincolor"
-        app:endIconTint="@color/maincolor"
-        app:hintTextColor="@color/maincolor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/updateSDT"
-            android:singleLine="true"
-            android:layout_width="match_parent"
-            style="@style/MyTextInputEditTextStyle"
-            android:textColor="@color/maincolor"
-            android:layout_height="wrap_content"
-            android:hint="Số điện thoại" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        style="@style/MyTextInputLayoutStyle"
-        android:textColorHint="@color/textcolor"
-        app:boxStrokeColor="@color/maincolor"
-        app:endIconTint="@color/maincolor"
-        app:hintTextColor="@color/maincolor"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/updateAddress"
-            android:layout_width="match_parent"
-            android:textColor="@color/maincolor"
-            android:singleLine="true"
-            android:layout_height="wrap_content"
-            style="@style/MyTextInputEditTextStyle"
-            android:hint="Địa chỉ" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="12dp"
-        style="@style/MyTextInputLayoutStyle"
-        android:textColorHint="@color/textcolor"
-        app:boxStrokeColor="@color/maincolor"
-        app:endIconTint="@color/maincolor"
-        app:hintTextColor="@color/maincolor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/updatePassword"
-            android:layout_width="match_parent"
-            style="@style/MyTextInputEditTextStyle"
-            android:singleLine="true"
-            android:imeOptions="actionDone"
-            android:textColor="@color/maincolor"
-            android:layout_height="wrap_content"
-            android:hint="Mật khẩu" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-15dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

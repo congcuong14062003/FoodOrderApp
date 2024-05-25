@@ -79,8 +79,6 @@ public class SignupActivity extends AppCompatActivity {
                 if(!hasFocus){
                     if(txtPhoneNumber.getText().toString().trim().isEmpty()){
                         errSDT.setText("Vui lòng nhập số điện thoại!");
-                    } else if (!isNumeric(txtPhoneNumber.getText().toString())) {
-                        errSDT.setText("Số điện thoại không chứa kí tự số hoặc ký tự đặc biệt");
                     }else{
                         errSDT.setText("");
                     }
@@ -150,8 +148,6 @@ public class SignupActivity extends AppCompatActivity {
                     errAddress.setText("Vui lòng nhập địa chỉ của bạn!");
                     errPassword.setText("Vui lòng nhập mật khẩu!");
                     errRepeatPassword.setText("Vui lòng nhập trường nhắc lại mật khẩu!");
-                } else if (!isNumeric(phoneNumber)) {
-                    errSDT.setText("Số điện thoại không chứa kí tự số hoặc ký tự đặc biệt");
                 } else if (password.length() < 6) {
                     errPassword.setText("Mật khẩu tối thiểu phải có 6 ký tự");
                 } else if (!repeatPassword.equals(password)) {
@@ -189,14 +185,6 @@ public class SignupActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.buttonResign);
         btnToLogin = findViewById(R.id.buttonToLogin);
     }
-    private boolean isNumeric(String str) {
 
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
 }
