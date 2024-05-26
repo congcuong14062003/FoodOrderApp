@@ -13,8 +13,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
-    String BASE_URL = "https://food-app-server-murex.vercel.app/";
-
+    String BASE_URL = "https://server-food-app-lac.vercel.app/";
     @GET("orders/list/{userId}")
     Call<OrderResponse> getOrders(@Path("userId") int userId);
     // đặt hàng

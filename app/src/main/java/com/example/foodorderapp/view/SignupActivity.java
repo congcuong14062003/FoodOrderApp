@@ -51,10 +51,8 @@ public class SignupActivity extends AppCompatActivity {
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
-                    // Navigate to login activity or perform any other action
                 } else {
-                    // Handle failed sign-up (error message should already be set in ViewModel)
-                    Toast.makeText(SignupActivity.this, "Đăng ký thất bại!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this, "Số điện thoại bị trùng vui lòng thử số khác", Toast.LENGTH_SHORT).show();
                 }
             }
         });
