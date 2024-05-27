@@ -64,4 +64,5 @@ public abstract class BaseFragment extends Fragment {
             }
         }, 400);
     }
+
 }

@@ -1,12 +1,9 @@
 package com.example.foodorderapp.view;
 
-import static com.example.foodorderapp.R.id.list_food_recycle;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +11,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -27,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodorderapp.LoadingManager;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.ListFoodAdapter;
-import com.example.foodorderapp.adapter.OrderAdapter;
 import com.example.foodorderapp.object.FoodDTO;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 
@@ -43,6 +40,17 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                if (getFragmentManager().getBackStackEntryCount() > 0) {
+                    getFragmentManager().popBackStack();
+                } else {
+                    // Nếu không có Fragment nào trên BackStack, thoát Fragment hiện tại
+                    requireActivity().onBackPressed();
+                }
+            }
+        });
     }
 
     private void handleSubmit() {
@@ -74,7 +82,6 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_detail, container, false);
         LoadingManager.showLoading(requireActivity());
-
         searchFood = view.findViewById(R.id.search_food);
         // Yêu cầu focus cho EditText trong FoodFragment
         searchFood.requestFocus();

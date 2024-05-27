@@ -3,6 +3,7 @@ package com.example.foodorderapp.view;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,17 @@ public class HeartFragment extends BaseFragment implements FavorAdapter.InFoodIt
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                if (getFragmentManager().getBackStackEntryCount() > 0) {
+                    getFragmentManager().popBackStack();
+                } else {
+                    // Nếu không có Fragment nào trên BackStack, thoát Fragment hiện tại
+                    requireActivity().onBackPressed();
+                }
+            }
+        });
     }
 
     @Nullable

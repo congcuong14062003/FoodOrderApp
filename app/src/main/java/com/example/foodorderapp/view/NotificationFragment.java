@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -61,6 +62,17 @@ public class NotificationFragment extends BaseFragment {
         notiViewModel.getNotiList().observe(getViewLifecycleOwner(), notiDTOS -> {
             adapter.setNotiList(notiDTOS);
             LoadingManager.hideLoading();
+        });
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                if (getFragmentManager().getBackStackEntryCount() > 0) {
+                    getFragmentManager().popBackStack();
+                } else {
+                    // Nếu không có Fragment nào trên BackStack, thoát Fragment hiện tại
+                    requireActivity().onBackPressed();
+                }
+            }
         });
 
         ImageView cancelBtn = view.findViewById(R.id.backBtn);

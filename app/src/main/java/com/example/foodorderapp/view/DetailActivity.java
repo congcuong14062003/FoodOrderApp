@@ -47,6 +47,7 @@ public class DetailActivity extends BaseActivity {
     }
 
 
+
     private void getFetailFood(int foodId) {
         // Gọi API để nhận dữ liệu chi tiết của món ăn
         Retrofit retrofit = new Retrofit.Builder()
@@ -152,5 +153,14 @@ public class DetailActivity extends BaseActivity {
             starImage.setImageResource(starResource);
         }
     }
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }
 

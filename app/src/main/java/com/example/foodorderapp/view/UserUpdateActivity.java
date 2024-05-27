@@ -325,12 +325,9 @@ public class UserUpdateActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        // Kiểm tra nếu có Fragment trong Back Stack của Activity
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            // Nếu có, quay lại Fragment trước đó
             getSupportFragmentManager().popBackStack();
         } else {
-            // Nếu không, thực hiện hành động mặc định (quay lại Activity trước đó)
             super.onBackPressed();
         }
     }
