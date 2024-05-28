@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.foodorderapp.NetworkUtils;
 import com.example.foodorderapp.view.NoNetworkActivity;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private boolean isActivityVisible = false;
@@ -67,5 +70,4 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }, 400);
     }
-    
 }

@@ -51,17 +51,7 @@ public class OrderFragment extends BaseFragment {
             adapter.setOrderList(orderDTOs);
             LoadingManager.hideLoading();
         });
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                if (getFragmentManager().getBackStackEntryCount() > 0) {
-                    getFragmentManager().popBackStack();
-                } else {
-                    // Nếu không có Fragment nào trên BackStack, thoát Fragment hiện tại
-                    requireActivity().onBackPressed();
-                }
-            }
-        });
+
         return view;
     }
 }

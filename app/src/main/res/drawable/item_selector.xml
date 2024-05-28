@@ -6,6 +6,5 @@
         />
     <item
         android:state_selected="false"
-        android:color = "@color/secondarycolor"
-        />
+        android:color = "@color/secondarycolor" />
 </selector>

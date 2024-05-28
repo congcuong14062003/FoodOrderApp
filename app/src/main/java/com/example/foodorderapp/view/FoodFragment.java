@@ -40,17 +40,6 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                if (getFragmentManager().getBackStackEntryCount() > 0) {
-                    getFragmentManager().popBackStack();
-                } else {
-                    // Nếu không có Fragment nào trên BackStack, thoát Fragment hiện tại
-                    requireActivity().onBackPressed();
-                }
-            }
-        });
     }
 
     private void handleSubmit() {
@@ -126,7 +115,7 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
                     String normalizedIngredient = removeAccents(food.getIngredients().toLowerCase());
                     String normalizedSearchText = removeAccents(newText.toLowerCase());
                     if(normalizedName.contains(normalizedSearchText) ||
-                             normalizedDescription.contains(normalizedSearchText) ||
+                            normalizedDescription.contains(normalizedSearchText) ||
                             normalizedIngredient.contains(normalizedSearchText)){
                         newList.add(food);
                     }

@@ -7,9 +7,16 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.foodorderapp.NetworkUtils;
+import com.example.foodorderapp.R;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.snackbar.Snackbar;
 
 public abstract class BaseFragment extends Fragment {
@@ -29,6 +36,12 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requireActivity().registerReceiver(networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+//        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+//            @Override
+//            public void handleOnBackPressed() {
+//                requireActivity().getSupportFragmentManager().popBackStack();
+//            }
+//        };
     }
 
     @Override
@@ -64,5 +77,6 @@ public abstract class BaseFragment extends Fragment {
             }
         }, 400);
     }
+
 
 }
