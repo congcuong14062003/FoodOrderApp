@@ -47,7 +47,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onChanged(Boolean isSuccess) {
                 if (isSuccess) {
                     // Handle successful sign-up
-                    Toast.makeText(SignupActivity.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();

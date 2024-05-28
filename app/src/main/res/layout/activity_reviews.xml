@@ -57,7 +57,7 @@
             android:fontFamily="sans-serif"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
-            android:text="Stars:"
+            android:text="Số sao:"
             android:textColor="@color/black"
             android:textSize="26dp" />
         <LinearLayout
@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Your comments:"
+            android:text="Đánh giá của bạn:"
             android:textColor="@color/black"
             android:textSize="26dp" />
 
@@ -130,7 +130,7 @@
             android:layout_margin="10dp"
             android:backgroundTint="@color/maincolor"
             android:background="@drawable/button_custom"
-            android:text="Submit your review"
+            android:text="Đánh giá"
             android:textColor="@color/white"
             android:textSize="18dp" />
     </LinearLayout>

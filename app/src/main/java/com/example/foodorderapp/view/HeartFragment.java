@@ -3,10 +3,8 @@ package com.example.foodorderapp.view;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,14 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.foodorderapp.LoadingManager;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.adapter.FavorAdapter;
-import com.example.foodorderapp.view.DetailActivity;
-import com.example.foodorderapp.view.MainActivity;
 import com.example.foodorderapp.viewmodal.FoodViewModel;
 
 public class HeartFragment extends BaseFragment implements FavorAdapter.InFoodItemClickListener {
@@ -41,7 +36,7 @@ public class HeartFragment extends BaseFragment implements FavorAdapter.InFoodIt
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_favourite, container, false);
+        View view = inflater.inflate(R.layout.fragment_favourite, container, false);
         LoadingManager.showLoading(requireActivity());
         RecyclerView recyclerView = view.findViewById(R.id.favorRecycle);
         final FavorAdapter adapter = new FavorAdapter();

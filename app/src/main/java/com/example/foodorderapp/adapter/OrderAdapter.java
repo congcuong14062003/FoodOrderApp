@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodorderapp.DateTimeHelper;
 import com.example.foodorderapp.R;
 import com.example.foodorderapp.object.OrderDTO;
+import com.example.foodorderapp.view.DetailActivity;
 import com.example.foodorderapp.view.PostReviewActivity;
 import com.squareup.picasso.Picasso;
 
@@ -38,12 +38,24 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         OrderDTO order = orderList.get(position);
         holder.bind(order);
+
+        // Handle item click to view product details
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                intent.putExtra("foodId", order.getFood_id());
+                intent.putExtra("previousFragment", "OrderFragment");
+                v.getContext().startActivity(intent);
+            }
+        });
+
+        // Handle rateFood click
         holder.rateFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int foodId = order.getFood_id(); // Lấy foodId từ OrderDTO
                 Intent intent = new Intent(v.getContext(), PostReviewActivity.class);
-                intent.putExtra("foodId", foodId); // Truyền foodId qua Intent
+                intent.putExtra("foodId", order.getFood_id());
                 v.getContext().startActivity(intent);
             }
         });
@@ -81,12 +93,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             txtIngredientsHistoryOrder.setText(order.getIngredients());
             txtPriceHistoryOrder.setText(String.valueOf(order.getPrice()));
             txtQuantityHistoryOrder.setText(String.valueOf(order.getQuantity()));
-            String formattedDateTime = DateTimeHelper.formatDateTime(order.getPurchaseDate());
+            String formattedDateTime = com.example.foodorderapp.DateTimeHelper.formatDateTime(order.getPurchaseDate());
             txtOrderDateTime.setText(formattedDateTime);
             txtTotalPriceHistoryOrder.setText(String.valueOf(order.getTotalPrice()));
-            // Sử dụng Picasso để tải hình ảnh từ URL và hiển thị nó trong ImageView
             Picasso.get().load(order.getImageUrl()).into(imgHistoryOrder);
-
         }
     }
 }

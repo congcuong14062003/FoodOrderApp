@@ -109,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="reviews"
+                    android:text="đánh giá"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp" />
             </LinearLayout>

@@ -7,7 +7,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgourndlogin"
     tools:context=".view.SignupActivity">
-
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:alpha="0.5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
     <ImageView
         android:id="@+id/logoPanda"
         android:layout_width="match_parent"

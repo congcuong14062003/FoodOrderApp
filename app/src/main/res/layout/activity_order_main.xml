@@ -77,7 +77,7 @@
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price: "
+                        android:text="Giá: "
                         android:textSize="14sp" />
 
                     <TextView
@@ -155,7 +155,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Food price: " />
+                    android:text="Giá: " />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -198,7 +198,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quantity: " />
+                    android:text="Số lượng: " />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -240,7 +240,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shipping fee: " />
+                    android:text="Phí ship: " />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -286,7 +286,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total: " />
+                android:text="Tổng tiền thanh toán: " />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -316,7 +316,7 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -331,7 +331,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/button_custom"
             android:backgroundTint="@color/maincolor"
-            android:text="payment now"
+            android:text="Thanh toán"
             android:textColor="@color/white"
             android:textSize="@dimen/mainfontsize"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"

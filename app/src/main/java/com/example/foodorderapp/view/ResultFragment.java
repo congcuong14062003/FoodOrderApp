@@ -66,7 +66,7 @@ public class ResultFragment extends BaseFragment implements ResultAdapter.InFood
         if (args != null && args.containsKey("userInput")) {
              userInput = args.getString("userInput");
             TextView txtResult =view.findViewById(R.id.textResult);
-            txtResult.setText("Result for "+ userInput);
+            txtResult.setText("Kết quả tìm kiếm cho: '" + userInput + "'");
         }
 
         TextView message = view.findViewById(R.id.message);

@@ -33,13 +33,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DetailActivity extends BaseActivity {
-    ReviewViewModel reviewViewModel;
-    Button btn_order_food;
+    private ReviewViewModel reviewViewModel;
+    private Button btn_order_food;
+    private String previousFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        // Nhận ID của thức ăn từ Intent
+
+        previousFragment = getIntent().getStringExtra("previousFragment");
+
         int foodId = getIntent().getIntExtra("foodId", -1);
         if (foodId != -1) {
             getFetailFood(foodId);
@@ -97,6 +100,8 @@ public class DetailActivity extends BaseActivity {
         starImages[2] = findViewById(R.id.star3);
         starImages[3] = findViewById(R.id.star4);
         starImages[4] = findViewById(R.id.star5);
+        ImageView backBtnDetail = findViewById(R.id.backBtnDetail);
+        backBtnDetail.setOnClickListener(v -> onBackPressed());
 
 
         // danh sách đánh giá
@@ -155,12 +160,14 @@ public class DetailActivity extends BaseActivity {
     }
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
-        } else {
-            super.onBackPressed();
+        Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+        if ("OrderFragment".equals(previousFragment)) {
+            intent.putExtra("fragment", "order");
+        } else if ("FoodFragment".equals(previousFragment)) {
+            intent.putExtra("fragment", "food");
         }
+        startActivity(intent);
+        finish();
     }
-
 }
 

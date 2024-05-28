@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setupNavigation();
         handleIntent(getIntent().getStringExtra("fragment"));
     }
@@ -64,10 +63,15 @@ public class MainActivity extends AppCompatActivity {
                     binding.bottomNavigation.getMenu().findItem(R.id.navigation_receipt).setChecked(true);
                     replaceFragment(new OrderFragment());
                     break;
+                case "food":
+                    binding.bottomNavigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
+                    replaceFragment(new FoodFragment());
+                    break;
                 case "profile":
                     binding.bottomNavigation.getMenu().findItem(R.id.navigation_profile).setChecked(true);
                     replaceFragment(new ProfileFragment());
                     break;
+
                 default:
                     binding.bottomNavigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
                     replaceFragment(new HomeFragment());

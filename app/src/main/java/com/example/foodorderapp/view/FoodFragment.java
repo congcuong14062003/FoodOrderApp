@@ -11,7 +11,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -69,7 +68,7 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
 // Trong FoodFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_search_detail, container, false);
+        View view = inflater.inflate(R.layout.fargment_food, container, false);
         LoadingManager.showLoading(requireActivity());
         searchFood = view.findViewById(R.id.search_food);
         // Yêu cầu focus cho EditText trong FoodFragment
@@ -78,8 +77,6 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
         // Hiển thị màn hình loading khi bắt đầu tải dữ liệu
         searchFood.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE ) {
-                // Xử lý khi người dùng nhập liệu xong và nhấn Enter trên bàn phím ảo hoặc trên thiết bị thật
-                // Gọi hàm xử lý submit
                 handleSubmit();
                 return true;
             }
@@ -157,6 +154,7 @@ public class FoodFragment extends BaseFragment implements ListFoodAdapter.OnFood
 //         Handle item click event here, e.g., navigate to the detail fragment with foodId
         Intent intent = new Intent(requireContext(), DetailActivity.class);
         intent.putExtra("foodId", foodId); // Truyền ID của thức ăn qua Intent
+        intent.putExtra("previousFragment", "FoodFragment");
         startActivity(intent);
     }
 }

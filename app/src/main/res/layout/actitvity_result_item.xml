@@ -30,9 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
         android:layout_toEndOf="@+id/itemImage"
-
         android:background="@drawable/border_result"
         android:orientation="vertical"
         android:paddingLeft="10dp"

@@ -131,7 +131,6 @@ public class OrderMainActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().equals("0")) {
-                    // Nếu văn bản là số 0, bạn có thể xử lý ở đây
                     quantityOutline.getEditText().setText(""); // Xóa văn bản
                 }
             }
