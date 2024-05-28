@@ -81,52 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        String fragmentTag = fragment.getClass().getSimpleName();
-
-        // Avoid adding the same fragment multiple times
-        if (fragmentManager.findFragmentByTag(fragmentTag) == null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_layout, fragment, fragmentTag);
-            fragmentTransaction.addToBackStack(fragmentTag);
+            fragmentTransaction.replace(R.id.frame_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-        }
-    }
-    @Override
-    public void onBackPressed() {
-        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
-        if (backStackEntryCount > 1) {
-            getSupportFragmentManager().popBackStackImmediate();
 
-            // Lấy Fragment trước đó từ ngăn xếp
-            FragmentManager.BackStackEntry backStackEntry = getSupportFragmentManager().getBackStackEntryAt(backStackEntryCount - 2);
-            String previousFragmentTag = backStackEntry.getName();
-            Fragment previousFragment = getSupportFragmentManager().findFragmentByTag(previousFragmentTag);
-
-            // Chuyển đổi BottomNavigationView để chọn mục tương ứng với Fragment trước đó
-            if (previousFragment != null) {
-                int selectedItemId = getSelectedItemId(previousFragment);
-                binding.bottomNavigation.setSelectedItemId(selectedItemId);
-            }
-        } else {
-            // Nếu chỉ có một Fragment trong ngăn xếp, hoặc không có Fragment nào, thực hiện hành động mặc định
-            super.onBackPressed();
-        }
     }
-
-    // Phương thức để xác định id của mục trong BottomNavigationView tương ứng với Fragment
-    private int getSelectedItemId(Fragment fragment) {
-        if (fragment instanceof HomeFragment) {
-            return R.id.navigation_home;
-        } else if (fragment instanceof ProfileFragment) {
-            return R.id.navigation_profile;
-        } else if (fragment instanceof HeartFragment) {
-            return R.id.navigation_heart;
-        } else if (fragment instanceof NotificationFragment) {
-            return R.id.navigation_notification;
-        } else if (fragment instanceof OrderFragment) {
-            return R.id.navigation_receipt;
-        }
-        return R.id.navigation_home;
-    }
+  
 
 }
