@@ -1,17 +1,12 @@
 package com.example.foodorderapp.viewmodal;
 
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.foodorderapp.UserManager;
-import com.example.foodorderapp.object.LoginUser;
-import com.example.foodorderapp.object.PostOrder;
+import com.example.foodorderapp.object.PostOrderDTO;
 import com.example.foodorderapp.retrofit.ApiService;
-import com.example.foodorderapp.retrofit.LoginResponsive;
 import com.example.foodorderapp.retrofit.OrderFoodResponsive;
 
 import org.json.JSONException;
@@ -36,7 +31,7 @@ public class PostOrderViewModel {
     }
 
     public void postOrder(int food_id, int user_id, int quantity, double total_price) {
-        PostOrder postOrder = new PostOrder();
+        PostOrderDTO postOrder = new PostOrderDTO();
         postOrder.setFood_id(food_id);
         postOrder.setUser_id(user_id);
         postOrder.setQuantity(quantity);

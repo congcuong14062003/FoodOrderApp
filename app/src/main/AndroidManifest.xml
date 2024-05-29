@@ -28,30 +28,43 @@
         tools:targetApi="31">
         <activity
             android:name=".TestCamActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.OrderMainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.NoNetworkActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.PostReviewActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.UserUpdateActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.DetailActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.SignupActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.LoginActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".IntroActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

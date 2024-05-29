@@ -16,23 +16,18 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-        // nhánh dev
-        // cường code thêm
-        // cường code thêm part 2
-        new CountDownTimer(1000, 1000) {
+
+        new CountDownTimer(3000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
             }
+
             @Override
             public void onFinish() {
-                if(NetworkUtils.isNetworkAvailable(IntroActivity.this)){
-                    Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+                    Intent intent = new Intent(IntroActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
-                } else {
-                    Toast.makeText(IntroActivity.this, "Vui lòng kết nối mạng", Toast.LENGTH_SHORT).show();
-                }
             }
         }.start();
     }

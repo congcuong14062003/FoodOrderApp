@@ -44,12 +44,13 @@ public class OrderMainActivity extends BaseActivity {
     private PostNoticeViewModel postNoticeViewModel;
     private TextView quantityOrder, priceFoodOrder, totalPriceOrder, nameOrder, ingredientOrder, priceOrder, shipping_fee, btnPay;
     private TextView errorQuantity;
+    int foodId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        int foodId = getIntent().getIntExtra("foodId", -1);
+        foodId = getIntent().getIntExtra("foodId", -1);
         if (foodId != -1) {
             getFetailFood(foodId);
         }
@@ -206,11 +207,10 @@ public class OrderMainActivity extends BaseActivity {
     }
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
-        } else {
-            super.onBackPressed();
-        }
+        Intent intent = new Intent(OrderMainActivity.this, DetailActivity.class);
+        intent.putExtra("foodId", foodId);
+        startActivity(intent);
+        finish();
     }
 
 }

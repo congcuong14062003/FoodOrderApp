@@ -1,13 +1,10 @@
 package com.example.foodorderapp.retrofit;
 
-import com.example.foodorderapp.object.OrderDTO;
-import com.example.foodorderapp.object.PostOrder;
-
-import java.util.List;
+import com.example.foodorderapp.object.PostOrderDTO;
 
 public class OrderFoodResponsive {
     private boolean status;
-    private PostOrder data;
+    private PostOrderDTO data;
 
     public boolean isStatus() {
         return status;
@@ -17,11 +14,11 @@ public class OrderFoodResponsive {
         this.status = status;
     }
 
-    public PostOrder getData() {
+    public PostOrderDTO getData() {
         return data;
     }
 
-    public void setData(PostOrder data) {
+    public void setData(PostOrderDTO data) {
         this.data = data;
     }
 }

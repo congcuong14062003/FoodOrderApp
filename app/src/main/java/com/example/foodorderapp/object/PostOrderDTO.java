@@ -1,6 +1,6 @@
 package com.example.foodorderapp.object;
 
-public class PostOrder {
+public class PostOrderDTO {
     private int food_id;
     private int user_id;
     private int quantity;

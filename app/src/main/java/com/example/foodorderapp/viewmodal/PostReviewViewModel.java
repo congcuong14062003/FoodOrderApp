@@ -5,10 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.foodorderapp.object.PostOrder;
 import com.example.foodorderapp.object.PostReviewDTO;
 import com.example.foodorderapp.retrofit.ApiService;
-import com.example.foodorderapp.retrofit.OrderFoodResponsive;
 import com.example.foodorderapp.retrofit.PostReviewResponsive;
 
 import org.json.JSONException;
