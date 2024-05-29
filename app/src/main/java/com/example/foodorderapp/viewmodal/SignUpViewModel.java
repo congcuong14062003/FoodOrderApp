@@ -59,7 +59,6 @@ public class SignUpViewModel extends ViewModel {
                 signUpStatus.setValue(false);
                 Log.e("SignUpViewModel", "API call failed: " + t.getMessage());
             }
-
         });
     }
 }

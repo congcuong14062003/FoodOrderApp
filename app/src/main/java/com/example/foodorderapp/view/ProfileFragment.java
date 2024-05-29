@@ -32,7 +32,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
     public class ProfileFragment extends BaseFragment {
         TextView textName;
-        TextView textAddress;
+        TextView textAddress, text_phoneNumber;
+
         ImageView avtUser;
 
         LinearLayout next_history_order;
@@ -47,6 +48,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
             int userId = UserManager.getInstance().getUserId();
             textName = rootView.findViewById(R.id.text_Name);
             textAddress = rootView.findViewById(R.id.text_address);
+            text_phoneNumber = rootView.findViewById(R.id.text_phoneNumber);
             avtUser = rootView.findViewById(R.id.avatar_user);
             LinearLayout nextUpdateUser = rootView.findViewById(R.id.next_update_user);
             nextUpdateUser.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +109,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
                         if (userData != null) {
                             textName.setText(userData.getName());
                             textAddress.setText(userData.getAddress());
+                            text_phoneNumber.setText(userData.getPhone_number());
                             String avatarUser = userData.getAvatar_thumbnail();
                             Picasso.get().load(avatarUser).into(avtUser, new com.squareup.picasso.Callback() {
                                 @Override

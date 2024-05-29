@@ -66,10 +66,10 @@ public class FoodViewModel extends ViewModel {
                     ListFoodResponsive listFoodResponsive = response.body();
                     if ( listFoodResponsive.isStatus() && listFoodResponsive !=null ) {
                         foodList.setValue(listFoodResponsive.getData());
-                        Log.d("OrderViewModel", "API call successful."); // Log success message
+                        Log.d("FoodViewModel", "API call successful."); // Log success message
                         errorLiveData.setValue(false);
                     } else {
-                        Log.e("OrderViewModel", "API call failed: Invalid response."); // Log error message
+                        Log.e("FoodViewModel", "API call failed: Invalid response."); // Log error message
                     }
                 } else {
                     Log.e("FoodViewModel", "API call failed: " + response.message()); // Log error message
@@ -79,7 +79,7 @@ public class FoodViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<ListFoodResponsive> call, Throwable t) {
-                Log.e("OrderViewModel", "API call failed: " + t.getMessage()); // Log failure message
+                Log.e("FoodViewModel", "API call failed: " + t.getMessage()); // Log failure message
             }
         });
     }
@@ -113,7 +113,7 @@ public class FoodViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<ListFoodResponsive> call, Throwable t) {
-                Log.e("OrderViewModel", "API call failed: " + t.getMessage()); // Log failure message
+                Log.e("FoodViewModel", "API call failed: " + t.getMessage()); // Log failure message
             }
         });
     }

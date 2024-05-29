@@ -32,10 +32,6 @@ public class PostReviewViewModel {
 
     public void postReview(int food_id, int user_id, String comment, int rate) {
         PostReviewDTO postReview = new PostReviewDTO(food_id, user_id, comment, rate);
-//        postReview.setFood_id(food_id);
-//        postReview.setUser_id(user_id);
-//        postReview.setQuantity(quantity);
-//        postReview.setTotal_price(total_price);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -50,7 +46,7 @@ public class PostReviewViewModel {
                     PostReviewResponsive postReviewResponsiveve = response.body();
                     if (postReviewResponsiveve != null) {
                         postReviewStatus.setValue(true);
-                        Log.d("PostOrderViewModel", "API call successful.");
+                        Log.d("PostReviewViewModel", "API call successful.");
                     } else {
                         postReviewStatus.setValue(false);
                     }
@@ -69,14 +65,14 @@ public class PostReviewViewModel {
                     } else {
                         errorMessage = "Server error";
                     }
-                    Log.e("PostOrderViewModel", "API call failed: " + errorMessage); // Log error message
+                    Log.e("PostReviewViewModel", "API call failed: " + errorMessage); // Log error message
                 }
             }
 
             @Override
             public void onFailure(Call<PostReviewResponsive> call, Throwable t) {
                 postReviewStatus.setValue(false);
-                Log.e("PostOrderViewModel", "API call failed: " + t.getMessage()); // Log failure message
+                Log.e("PostReviewViewModel", "API call failed: " + t.getMessage()); // Log failure message
             }
         });
     }
