@@ -40,17 +40,12 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-
         previousFragment = getIntent().getStringExtra("previousFragment");
-
         int foodId = getIntent().getIntExtra("foodId", -1);
         if (foodId != -1) {
             getFetailFood(foodId);
         }
     }
-
-
-
     private void getFetailFood(int foodId) {
         // Gọi API để nhận dữ liệu chi tiết của món ăn
         Retrofit retrofit = new Retrofit.Builder()
@@ -114,8 +109,6 @@ public class DetailActivity extends BaseActivity {
         reviewViewModel.getReviewList(foodId).observe(this, reviewDTOs -> {
             adapter.setReviewList(reviewDTOs);
         });
-
-
 
         // Set dữ liệu cho các view
         Picasso.get().load(detailFoodDTO.getImg_thumbnail()).into(img_detail);

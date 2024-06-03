@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ReviewViewModel extends ViewModel {
     private MutableLiveData<List<ReviewDTO>> reviewList;
 
-    public LiveData<List<ReviewDTO>> getReviewList(int foodId) {
+    public LiveData<List<ReviewDTO>>  getReviewList(int foodId) {
         if (reviewList == null) {
             reviewList = new MutableLiveData<>();
             loadReviewsList(foodId);
